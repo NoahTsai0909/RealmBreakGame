@@ -9,6 +9,7 @@ using UnityEngine.InputSystem;
 public class MapController : MonoBehaviour
 {
     [SerializeField] private Button prepSceneButton;
+    [SerializeField] private Button mainMenuButton;
 
     [Header("Event Display")]
     [SerializeField] private Transform eventButtonContainer;
@@ -66,6 +67,11 @@ public class MapController : MonoBehaviour
         prepSceneButton.onClick.AddListener(() =>
         {
             inspectTeam();
+        });
+
+        mainMenuButton.onClick.AddListener(() =>
+        {
+            SceneLoader.Instance.LoadScene(GameScene.MainMenuScene);
         });
 
         if (closePreviewButton != null)

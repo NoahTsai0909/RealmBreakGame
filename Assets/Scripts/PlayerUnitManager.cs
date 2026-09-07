@@ -33,19 +33,28 @@ public class PlayerUnitManager : MonoBehaviour
 
     public bool TryAcquireUnit(UnitDefinition incomingDef, Rarity incomingRarity, MutationPrefixSO incomingPrefix = null, MutationSuffixSO incomingSuffix = null)
     {
+        bool success = false;
+
         RunManager.UnitPlacement mergeTarget = FindMergeTarget(incomingDef, incomingRarity);
         if (mergeTarget != null)
         {
             MergeInto(mergeTarget, incomingPrefix, incomingSuffix);
-            return true;
+            success = true;
         }
-
-        if (TryAddToBench(incomingDef, incomingRarity, incomingPrefix, incomingSuffix))
+        else if (TryAddToBench(incomingDef, incomingRarity, incomingPrefix, incomingSuffix))
         {
-            return true;
+            success = true;
+        }
+        else if (TryAddToBattleGrid(incomingDef, incomingRarity, incomingPrefix, incomingSuffix))
+        {
+            success = true;
+        }
+        if (success && MetaManager.Instance != null)
+        {
+            MetaManager.Instance.UnlockUnitInCompendium(incomingDef);
         }
 
-        return TryAddToBattleGrid(incomingDef, incomingRarity, incomingPrefix, incomingSuffix);
+        return success;
     }
 
     RunManager.UnitPlacement FindMergeTarget(UnitDefinition def, Rarity rarity)
@@ -180,6 +189,11 @@ public class PlayerUnitManager : MonoBehaviour
         );
 
         if (newDef == null) return false;
+
+        if (MetaManager.Instance != null)
+        {
+            MetaManager.Instance.UnlockUnitInCompendium(newDef);
+        }
 
         RunManager.UnitPlacement placement = targetUnit.myPlacement;
         placement.unitData.definition = newDef;

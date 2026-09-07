@@ -341,6 +341,7 @@ GameObject:
   - component: {fileID: 221976166}
   - component: {fileID: 221976167}
   - component: {fileID: 221976168}
+  - component: {fileID: 221976169}
   m_Layer: 0
   m_Name: RuntimeSystems
   m_TagString: Untagged
@@ -462,6 +463,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93a74d3eb53492a4c8a13b4e1d2564c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerTacticManager
+--- !u!114 &221976169
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 221976163}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa79ffe7c8ee43e42a90a145f4f32451, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MetaManager
+  metaData:
+    unlockedCompendiumUnits: []
+    crownedUnits: []
+    totalRunsCompleted: 0
+    totalEnemiesDefeated: 0
 --- !u!1 &281473834
 GameObject:
   m_ObjectHideFlags: 0

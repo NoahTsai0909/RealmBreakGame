@@ -302,6 +302,7 @@ public class RunManager : MonoBehaviour
 
         if (Stats.CurrentDay >= TOTAL_DAYS)
         {
+            MetaManager.Instance.RegisterWinningTeam(playerTeamPlacements);
             SceneLoader.Instance.LoadScene(GameScene.RunSummaryScene);
             return;
         }

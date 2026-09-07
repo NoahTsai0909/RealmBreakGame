@@ -1,0 +1,14 @@
+using System.Collections.Generic;
+
+[System.Serializable] 
+public class MetaSaveData
+{
+    // A list of string IDs representing units the player has seen
+    public List<string> unlockedCompendiumUnits = new List<string>();
+
+    // A list of string IDs representing units the player has won the game with
+    public List<string> crownedUnits = new List<string>();
+
+    public int totalRunsCompleted = 0;
+    public int totalEnemiesDefeated = 0;
+}

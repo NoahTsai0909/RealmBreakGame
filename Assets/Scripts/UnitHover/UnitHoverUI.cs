@@ -50,6 +50,9 @@ public class UnitHoverUI : MonoBehaviour
     private UnitHoverUI activePreviewUI;
     [Tooltip("Drag the Inspect Notice and your new Preview Button here so they vanish on the cloned UI")]
     [SerializeField] private GameObject[] hideInPreviewMode;
+    public bool placedOnRightSide = true;
+    [Tooltip("Check this if this UI is sitting in the Compendium Modal. It will disable ALL movement.")]
+    [SerializeField] private bool isCompendiumUI = false;
 
     private int lastEnergy, lastAttack, lastShield, lastHeal, lastPoison, lastBurn, lastCrit, lastMulticast;
 
@@ -224,94 +227,77 @@ public class UnitHoverUI : MonoBehaviour
 
     private void UpdatePosition()
     {
+        if (isCompendiumUI) return;
         if (canvas == null || currentUnit == null || mainCamera == null) return;
-        
+
         if (useFixedPosition)
         {
             Vector2 screenPos = mainCamera.WorldToScreenPoint(currentUnit.transform.position);
 
             float flipThreshold = Screen.width * 0.7f;
-
             bool unitIsOnLeft = screenPos.x < flipThreshold;
-
-            float edgePadding = 50f;
 
             if (unitIsOnLeft)
             {
                 rectTransform.anchorMin = new Vector2(1, 0.5f);
                 rectTransform.anchorMax = new Vector2(1, 0.5f);
                 rectTransform.pivot = new Vector2(1, 0.5f);
-                rectTransform.anchoredPosition = new Vector2(-edgePadding, 0f);
+                rectTransform.anchoredPosition = new Vector2(-edgePadding.x, 0f);
             }
             else
             {
                 rectTransform.anchorMin = new Vector2(0, 0.5f);
                 rectTransform.anchorMax = new Vector2(0, 0.5f);
                 rectTransform.pivot = new Vector2(0, 0.5f);
-                rectTransform.anchoredPosition = new Vector2(edgePadding, 0f);
+                rectTransform.anchoredPosition = new Vector2(edgePadding.x, 0f);
             }
-
-            return; // Exit early so we don't run the relative positioning code below
+            return; // Exit early 
         }
+
         Vector3 unitWorldPos = currentUnit.transform.position;
-
         Collider2D collider = currentUnit.GetComponent<Collider2D>();
-        float unitHeight = 2f; 
 
+        float unitWorldExtentsX = 1f;
         if (collider != null)
         {
-            unitHeight = collider.bounds.size.y;
+            unitWorldExtentsX = collider.bounds.extents.x;
         }
+
+        // 1. Convert unit bounds to Screen Space
+        Vector2 unitScreenPos = mainCamera.WorldToScreenPoint(unitWorldPos);
+        Vector2 unitEdgeRightScreen = mainCamera.WorldToScreenPoint(unitWorldPos + new Vector3(unitWorldExtentsX, 0, 0));
+        float unitScreenExtentsX = Mathf.Abs(unitEdgeRightScreen.x - unitScreenPos.x);
 
         float uiWidth = (rectTransform.rect.width + edgePadding.x) * canvas.scaleFactor;
         float uiHeight = (rectTransform.rect.height + edgePadding.y) * canvas.scaleFactor;
 
+        // Extra padding to push it away from the unit's body
+        float extraScreenPadding = 20f * canvas.scaleFactor;
 
-        Vector3 aboveWorldPos = unitWorldPos;
-        if (collider != null)
-        {
-            aboveWorldPos.y = collider.bounds.max.y + 5.0f; // Your preferred padding
-        }
-        else
-        {
-            aboveWorldPos.y += unitHeight * 0.5f + 5.0f;
-        }
-
-        Vector2 aboveScreenPos = mainCamera.WorldToScreenPoint(aboveWorldPos);
-
-        // Check if there's space above (UI won't go off-screen)
-        bool hasSpaceAbove = aboveScreenPos.y + uiHeight * 0.5f < Screen.height;
+        // 2. Check if we have enough room for TWO UIs (Main + Preview) on the right side
+        float spaceNeededForTwoUIs = uiWidth * 2.1f;
+        bool hasSpaceOnRight = unitScreenPos.x + unitScreenExtentsX + spaceNeededForTwoUIs < Screen.width;
 
         Vector2 targetScreenPos;
+        targetScreenPos.y = unitScreenPos.y; // Vertically align with unit
 
-        if (hasSpaceAbove)
+        if (hasSpaceOnRight)
         {
-            // Position above the unit
-            targetScreenPos = aboveScreenPos;
+            placedOnRightSide = true;
+            // Push right by: Unit Edge + Half UI Width (to account for center pivot) + Padding
+            targetScreenPos.x = unitScreenPos.x + unitScreenExtentsX + (uiWidth * 0.5f) + extraScreenPadding;
         }
         else
         {
-            // Position BELOW the unit
-            Vector3 belowWorldPos = unitWorldPos;
-            if (collider != null)
-            {
-                belowWorldPos.y = collider.bounds.min.y - 5.0f; // Below with padding
-            }
-            else
-            {
-                belowWorldPos.y -= unitHeight * 0.5f + 5.0f;
-            }
-
-            targetScreenPos = mainCamera.WorldToScreenPoint(belowWorldPos);
+            placedOnRightSide = false;
+            // Push left by the exact same math
+            targetScreenPos.x = unitScreenPos.x - unitScreenExtentsX - (uiWidth * 0.5f) - extraScreenPadding;
         }
 
-        // Clamp horizontal position to keep UI on screen
-        targetScreenPos.x = Mathf.Clamp(targetScreenPos.x, uiWidth * 0.5f, Screen.width - uiWidth * 0.5f);
-
-        // Also clamp vertical just in case (though we already checked)
+        // 3. Clamp vertically so tall UIs simply slide up/down instead of going off-screen
         targetScreenPos.y = Mathf.Clamp(targetScreenPos.y, uiHeight * 0.5f, Screen.height - uiHeight * 0.5f);
 
-        // Convert to canvas space
+        // 4. Convert final screen position to Canvas space
         RectTransform canvasRect = canvas.GetComponent<RectTransform>();
         Vector2 anchoredPos;
 

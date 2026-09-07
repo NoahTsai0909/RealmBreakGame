@@ -8,19 +8,44 @@ public class MainMenuController : MonoBehaviour
     [SerializeField] private Button playButton;
     [SerializeField] private Button compendiumButton;
     [SerializeField] private Button settingsButton;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    [SerializeField] private GameObject mainMenuPanel;
+    [SerializeField] private GameObject compendiumPanel;
+    [SerializeField] private GameObject LeftSideBar;
+    [SerializeField] private GameObject FilterSideBar;
+    [SerializeField] private Button filterButton;
+    [SerializeField] private Button searchButton;
+    [SerializeField] private Button closeCompendiumButton;
+    
+    private bool isFilterSidebarOpen = false;
     void Start()
     {
         Application.runInBackground = true; // Prevents pausing when tabbed out
 
         playButton.onClick.AddListener(() => SceneLoader.Instance.LoadScene(GameScene.AdventureSelectionScene));
-        compendiumButton.onClick.AddListener(() => Debug.Log("Compendium coming soon!"));
+        compendiumButton.onClick.AddListener(() => ShowCompendium());
         settingsButton.onClick.AddListener(() => Debug.Log("Settings coming soon!"));
+        filterButton.onClick.AddListener(() => ToggleFilterSideBar());
     }
 
-    // Update is called once per frame
-    void StartRun()
+
+
+    void ShowCompendium()
     {
-        SceneLoader.Instance.LoadScene(GameScene.MapScene);
+        mainMenuPanel.SetActive(false);
+        compendiumPanel.SetActive(true);
+        closeCompendiumButton.onClick.AddListener(() => CloseCompendium());
+    }
+
+    void CloseCompendium()
+    {
+        compendiumPanel.SetActive(false);
+        mainMenuPanel.SetActive(true);
+    }
+
+    void ToggleFilterSideBar()
+    {
+        isFilterSidebarOpen = !isFilterSidebarOpen;
+        FilterSideBar.SetActive(isFilterSidebarOpen);
+        LeftSideBar.SetActive(!isFilterSidebarOpen);
     }
 }
