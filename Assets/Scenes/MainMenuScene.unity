@@ -428,7 +428,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 78497131}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 507355460}
+        m_TargetAssemblyTypeName: CompendiumFilterManager, Assembly-CSharp
+        m_MethodName: ToggleTag
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 128
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &78497131
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1324,7 +1336,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 300441771}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 507355460}
+        m_TargetAssemblyTypeName: CompendiumFilterManager, Assembly-CSharp
+        m_MethodName: ToggleTag
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 32
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &300441771
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1445,7 +1469,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 312400302}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 507355460}
+        m_TargetAssemblyTypeName: CompendiumFilterManager, Assembly-CSharp
+        m_MethodName: ToggleRarity
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &312400302
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1566,7 +1602,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 319585394}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 507355460}
+        m_TargetAssemblyTypeName: CompendiumFilterManager, Assembly-CSharp
+        m_MethodName: ToggleTag
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 16384
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &319585394
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1824,7 +1872,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 354754349}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 507355460}
+        m_TargetAssemblyTypeName: CompendiumFilterManager, Assembly-CSharp
+        m_MethodName: ToggleTag
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1024
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &354754349
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2041,7 +2101,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 390755774}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 507355460}
+        m_TargetAssemblyTypeName: CompendiumFilterManager, Assembly-CSharp
+        m_MethodName: ToggleTag
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 8
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &390755774
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2162,7 +2234,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 395715610}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 507355460}
+        m_TargetAssemblyTypeName: CompendiumFilterManager, Assembly-CSharp
+        m_MethodName: ToggleRarity
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &395715610
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2963,7 +3047,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 502043032}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 507355460}
+        m_TargetAssemblyTypeName: CompendiumFilterManager, Assembly-CSharp
+        m_MethodName: ToggleTag
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 64
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &502043032
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3328,7 +3424,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 541856111}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 507355460}
+        m_TargetAssemblyTypeName: CompendiumFilterManager, Assembly-CSharp
+        m_MethodName: ToggleRegion
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &541856111
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3586,7 +3694,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 599645607}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 507355460}
+        m_TargetAssemblyTypeName: CompendiumFilterManager, Assembly-CSharp
+        m_MethodName: ToggleTag
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2048
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &599645607
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4201,7 +4321,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 670278827}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 507355460}
+        m_TargetAssemblyTypeName: CompendiumFilterManager, Assembly-CSharp
+        m_MethodName: ToggleRegion
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 3
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &670278827
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4846,7 +4978,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 742944814}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 507355460}
+        m_TargetAssemblyTypeName: CompendiumFilterManager, Assembly-CSharp
+        m_MethodName: ToggleTag
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &742944814
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4967,7 +5111,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 749294393}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 507355460}
+        m_TargetAssemblyTypeName: CompendiumFilterManager, Assembly-CSharp
+        m_MethodName: ToggleRarity
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &749294393
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5756,7 +5912,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 903316482}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 507355460}
+        m_TargetAssemblyTypeName: CompendiumFilterManager, Assembly-CSharp
+        m_MethodName: ToggleTag
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 256
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &903316482
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6002,7 +6170,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1006150288}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 507355460}
+        m_TargetAssemblyTypeName: CompendiumFilterManager, Assembly-CSharp
+        m_MethodName: ToggleTag
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 512
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1006150288
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8179,7 +8359,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1324601230}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 507355460}
+        m_TargetAssemblyTypeName: CompendiumFilterManager, Assembly-CSharp
+        m_MethodName: ToggleTag
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1324601230
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8404,7 +8596,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1381851096}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 507355460}
+        m_TargetAssemblyTypeName: CompendiumFilterManager, Assembly-CSharp
+        m_MethodName: ToggleTag
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 32768
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1381851096
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8525,7 +8729,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1382031708}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 507355460}
+        m_TargetAssemblyTypeName: CompendiumFilterManager, Assembly-CSharp
+        m_MethodName: ToggleRarity
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 3
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1382031708
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9512,7 +9728,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1529429001}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 507355460}
+        m_TargetAssemblyTypeName: CompendiumFilterManager, Assembly-CSharp
+        m_MethodName: ToggleTag
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 4
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1529429001
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10751,7 +10979,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1714276108}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 507355460}
+        m_TargetAssemblyTypeName: CompendiumFilterManager, Assembly-CSharp
+        m_MethodName: ToggleRegion
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1714276108
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11347,7 +11587,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1810292290}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 507355460}
+        m_TargetAssemblyTypeName: CompendiumFilterManager, Assembly-CSharp
+        m_MethodName: ToggleTag
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 16
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1810292290
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12122,7 +12374,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1984781107}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 507355460}
+        m_TargetAssemblyTypeName: CompendiumFilterManager, Assembly-CSharp
+        m_MethodName: ToggleTag
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 8192
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1984781107
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12502,7 +12766,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2049149359}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 507355460}
+        m_TargetAssemblyTypeName: CompendiumFilterManager, Assembly-CSharp
+        m_MethodName: ToggleTag
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 4096
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2049149359
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12622,7 +12898,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2063522091}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 507355460}
+        m_TargetAssemblyTypeName: CompendiumFilterManager, Assembly-CSharp
+        m_MethodName: ToggleRegion
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2063522091
 MonoBehaviour:
   m_ObjectHideFlags: 0

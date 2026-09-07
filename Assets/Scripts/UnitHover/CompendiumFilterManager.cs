@@ -1,56 +1,126 @@
 using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class CompendiumFilterManager : MonoBehaviour
 {
     public CompendiumScreen compendiumScreen;
 
     [Header("Active Filters")]
-    public Region? selectedRegion = null;
-    public Rarity? selectedRarity = null;
+    public HashSet<Region> selectedRegions = new HashSet<Region>();
+    public HashSet<Rarity> selectedRarities = new HashSet<Rarity>();
     public UnitTagFlags activeTags = UnitTagFlags.None;
 
-    // --- REGION BUTTONS ---
     public void ToggleRegion(int regionIndex)
     {
         Region clickedRegion = (Region)regionIndex;
 
-        // If they click the same region twice, turn it off. Otherwise, swap to it.
-        if (selectedRegion == clickedRegion) selectedRegion = null;
-        else selectedRegion = clickedRegion;
+        if (selectedRegions.Contains(clickedRegion))
+            selectedRegions.Remove(clickedRegion);
+        else
+            selectedRegions.Add(clickedRegion);
+
+        GameObject clickedObj = EventSystem.current.currentSelectedGameObject;
+        if (clickedObj != null && clickedObj.transform.parent != null)
+        {
+            UpdateRegionVisuals(clickedObj.transform.parent);
+        }
 
         ApplyFilters();
     }
 
-    // --- RARITY BUTTONS ---
+    private void UpdateRegionVisuals(Transform regionGrid)
+    {
+        foreach (Transform child in regionGrid)
+        {
+            Image icon = child.GetComponent<Image>();
+            if (icon == null) continue;
+
+            bool isSelected = false;
+
+            if (selectedRegions.Count == 0)
+            {
+                isSelected = true;
+            }
+            else
+            {
+                if (child.name.Contains("Solmire") && selectedRegions.Contains(Region.Solmire)) isSelected = true;
+                if (child.name.Contains("Nethervale") && selectedRegions.Contains(Region.Nethervale)) isSelected = true;
+                if (child.name.Contains("Everborn") && selectedRegions.Contains(Region.Everborn)) isSelected = true;
+                if (child.name.Contains("Axiom") && selectedRegions.Contains(Region.Axiom)) isSelected = true;
+            }
+
+            if (isSelected)
+            {
+                icon.color = Color.white;
+                child.localScale = new Vector3(1.15f, 1.15f, 1f); 
+            }
+            else
+            {
+                icon.color = new Color(0.25f, 0.25f, 0.25f, 1f);
+                child.localScale = new Vector3(0.85f, 0.85f, 1f); 
+            }
+
+            Transform uglyGlow = child.Find("RegionGlow");
+            if (uglyGlow != null) Destroy(uglyGlow.gameObject);
+
+            Outline outline = child.GetComponent<Outline>();
+            if (outline != null) Destroy(outline);
+        }
+    }
+
     public void ToggleRarity(int rarityIndex)
     {
         Rarity clickedRarity = (Rarity)rarityIndex;
+        bool isNowSelected = false;
 
-        if (selectedRarity == clickedRarity) selectedRarity = null;
-        else selectedRarity = clickedRarity;
+        if (selectedRarities.Contains(clickedRarity))
+            selectedRarities.Remove(clickedRarity);
+        else
+        {
+            selectedRarities.Add(clickedRarity);
+            isNowSelected = true;
+        }
 
+        ToggleGlow(isNowSelected);
         ApplyFilters();
     }
 
-    // --- TAG BUTTONS (Multi-Select!) ---
     public void ToggleTag(int tagFlagValue)
     {
         UnitTagFlags clickedTag = (UnitTagFlags)tagFlagValue;
+        bool isNowSelected = false;
 
-        // Bitwise logic: If they already have the tag, remove it. If not, add it.
         if (activeTags.HasFlag(clickedTag))
-            activeTags &= ~clickedTag; // Remove
+            activeTags &= ~clickedTag;
         else
-            activeTags |= clickedTag;  // Add
+        {
+            activeTags |= clickedTag;
+            isNowSelected = true;
+        }
 
+        ToggleGlow(isNowSelected);
         ApplyFilters();
+    }
+
+    private void ToggleGlow(bool isSelected)
+    {
+        GameObject clickedObj = EventSystem.current.currentSelectedGameObject;
+        if (clickedObj == null) return;
+
+        Outline glow = clickedObj.GetComponent<Outline>();
+        if (glow == null)
+        {
+            glow = clickedObj.AddComponent<Outline>();
+            glow.effectColor = new Color(1f, 0.8f, 0.2f, 1f); // Golden Yellow Glow
+            glow.effectDistance = new Vector2(3, -3);
+        }
+        glow.enabled = isSelected;
     }
 
     private void ApplyFilters()
     {
-        // Tell the main screen to update the visual cards!
-        compendiumScreen.FilterCards(selectedRegion, selectedRarity, activeTags);
+        compendiumScreen.FilterCards(selectedRegions, selectedRarities, activeTags);
     }
 }
