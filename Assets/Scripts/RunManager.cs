@@ -53,7 +53,7 @@ public class RunManager : MonoBehaviour
 
     [Header("Default Unit")]
     [SerializeField] private List<UnitPlacement> defaultUnits;
-    [SerializeField] private int benchSize = 9;
+    [SerializeField] public int benchSize = 5;
 
     public int regularEventsCompleted = 0;
     public const int REGULAR_EVENTS_PER_DAY = 3;
@@ -67,13 +67,15 @@ public class RunManager : MonoBehaviour
     public BaseEventSO selectedEvent;
     public EncounterDefinition currentEncounter;
     public bool eventInProgress = false;
-    public int TOTAL_DAYS{ get; private set; } = 12;
+    public int TOTAL_DAYS { get; set; } = 12;
     public bool hasUsedLastChance = false;
     public ShopState shopState;
 
 
     private Dictionary<Guid, PermanentStats> permanentStatsMap = new();
     public Dictionary<Guid, UnitLifetimeStats> masterUnitStats = new Dictionary<Guid, UnitLifetimeStats>();
+    public Dictionary<Guid, PermanentStats> GetPermanentStatsMap() => permanentStatsMap;
+    public void SetPermanentStatsMap(Dictionary<Guid, PermanentStats> map) => permanentStatsMap = map;
     [SerializeField] public RarityDistributionTable rarityDistributionTable;
     [Header("Region Progression")]
     public Region playerRegion;
@@ -145,7 +147,7 @@ public class RunManager : MonoBehaviour
         Debug.Log($"Adventure Setup Complete: {adventure.adventureName} playing as {playerRegion}.");
     }
 
-    private void AssignRegionTree()
+    public void AssignRegionTree()
     {
         currentRegionTree = null; // Clear any old data
 
@@ -303,6 +305,7 @@ public class RunManager : MonoBehaviour
         if (Stats.CurrentDay >= TOTAL_DAYS)
         {
             MetaManager.Instance.RegisterWinningTeam(playerTeamPlacements);
+            SaveLoadManager.DeleteSave();
             SceneLoader.Instance.LoadScene(GameScene.RunSummaryScene);
             return;
         }
@@ -450,6 +453,25 @@ public class RunManager : MonoBehaviour
         }
 
         return RarityDistributionTable.RollRarity(dist);
+    }
+    private void OnEnable()
+    {
+        UnityEngine.SceneManagement.SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        UnityEngine.SceneManagement.SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(UnityEngine.SceneManagement.Scene scene, UnityEngine.SceneManagement.LoadSceneMode mode)
+    {
+        if (scene.name == "MainMenuScene" || scene.name == "AdventureSelectionScene" || scene.name == "RunSummaryScene" || scene.name == "Bootstrap")
+        {
+            return;
+        }
+
+        SaveLoadManager.SaveRun();
     }
 
     public void ResetRun()

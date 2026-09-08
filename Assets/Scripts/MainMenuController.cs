@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -6,6 +7,7 @@ using static SceneLoader;
 public class MainMenuController : MonoBehaviour
 {
     [SerializeField] private Button playButton;
+    [SerializeField] private Button abandonButton;
     [SerializeField] private Button compendiumButton;
     [SerializeField] private Button settingsButton;
     [SerializeField] private GameObject mainMenuPanel;
@@ -19,14 +21,55 @@ public class MainMenuController : MonoBehaviour
     private bool isFilterSidebarOpen = false;
     void Start()
     {
+        RefreshMenuState();
         Application.runInBackground = true; // Prevents pausing when tabbed out
-
-        playButton.onClick.AddListener(() => SceneLoader.Instance.LoadScene(GameScene.AdventureSelectionScene));
         compendiumButton.onClick.AddListener(() => ShowCompendium());
         settingsButton.onClick.AddListener(() => Debug.Log("Settings coming soon!"));
         filterButton.onClick.AddListener(() => ToggleFilterSideBar());
     }
 
+    private void RefreshMenuState()
+    {
+        if (SaveLoadManager.HasSaveFile())
+        {
+            playButton.GetComponentInChildren<TextMeshProUGUI>().text = "Continue";
+            abandonButton.gameObject.SetActive(true);
+
+            playButton.onClick.RemoveAllListeners();
+            playButton.onClick.AddListener(() =>
+            {
+                bool loadSuccess = SaveLoadManager.LoadRun();
+
+                if (loadSuccess)
+                {
+                    SceneLoader.Instance.LoadScene(GameScene.MapScene);
+                }
+                else
+                {
+                    Debug.LogError("Failed to load save file! Check the console for errors.");
+                }
+            });
+
+            abandonButton.onClick.RemoveAllListeners();
+            abandonButton.onClick.AddListener(() =>
+            {
+                SaveLoadManager.DeleteSave();
+                RunManager.Instance.ResetRun();
+                RefreshMenuState();
+            });
+        }
+        else
+        {
+            playButton.GetComponentInChildren<TextMeshProUGUI>().text = "Play";
+            abandonButton.gameObject.SetActive(false);
+
+            playButton.onClick.RemoveAllListeners();
+            playButton.onClick.AddListener(() =>
+            {
+                SceneLoader.Instance.LoadScene(GameScene.AdventureSelectionScene);
+            });
+        }
+    }
 
 
     void ShowCompendium()

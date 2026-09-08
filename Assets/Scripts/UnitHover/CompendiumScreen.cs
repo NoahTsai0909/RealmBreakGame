@@ -44,39 +44,42 @@ public class CompendiumScreen : MonoBehaviour
         }
     }
 
-    public void FilterCards(HashSet<Region> regionFilters, HashSet<Rarity> rarityFilters, UnitTagFlags tagFilters)
+    public void FilterCards(HashSet<Region> regionFilters, HashSet<Rarity> rarityFilters, UnitTagFlags tagFilters, string searchQuery)
     {
-
         foreach (GameObject cardObj in activeCards)
         {
             CompendiumCardUI ui = cardObj.GetComponent<CompendiumCardUI>();
             UnitDefinition def = ui.GetDefinition();
 
+            bool isUnlocked = MetaManager.Instance.metaData.unlockedCompendiumUnits.Contains(def.name);
+
             bool matches = true;
 
-            if (regionFilters.Count > 0 && !regionFilters.Contains(def.region))
-            {
-                matches = false;
-            }
+            if (regionFilters.Count > 0 && !regionFilters.Contains(def.region)) matches = false;
 
-            if (rarityFilters.Count > 0 && !rarityFilters.Contains(def.startingRarity))
-            {
-                matches = false;
-            }
+            if (rarityFilters.Count > 0 && !rarityFilters.Contains(def.startingRarity)) matches = false;
 
             if (tagFilters != UnitTagFlags.None)
             {
-
                 UnitTagFlags effectiveTags = def.tagFlags;
                 if (effectiveTags.HasFlag(UnitTagFlags.BurnRef)) effectiveTags |= UnitTagFlags.Burn;
                 if (effectiveTags.HasFlag(UnitTagFlags.PoisonRef)) effectiveTags |= UnitTagFlags.Poison;
                 if (effectiveTags.HasFlag(UnitTagFlags.DamageRef)) effectiveTags |= UnitTagFlags.Damage;
                 if (effectiveTags.HasFlag(UnitTagFlags.HealRef)) effectiveTags |= UnitTagFlags.Heal;
 
-                if ((effectiveTags & tagFilters) != tagFilters)
+                if ((effectiveTags & tagFilters) != tagFilters) matches = false;
+            }
+
+            if (matches && !string.IsNullOrEmpty(searchQuery))
+            {
+                bool searchMatch = false;
+
+                if (isUnlocked)
                 {
-                    matches = false;
+                    if (def.unitName.ToLower().Contains(searchQuery)) searchMatch = true;
                 }
+
+                if (!searchMatch) matches = false;
             }
 
             cardObj.SetActive(matches);

@@ -156,7 +156,6 @@ public class PrepSceneManager : MonoBehaviour
                 continue;
             }
 
-            // Update placement row/col
             unit.myPlacement.row = battleGrid.GetUnitPosition(unit).x;
             unit.myPlacement.col = battleGrid.GetUnitPosition(unit).y;
 
@@ -171,25 +170,36 @@ public class PrepSceneManager : MonoBehaviour
         {
             for (int i = 0; i < RunManager.Instance.playerBenchPlacements.Count; i++)
             {
-                // Query the specific slot on the physical grid (Row 0, Column i)
-                UnitInstance unitInSlot = benchGrid.GetUnitAtPosition(0, i);
-
-                if (unitInSlot != null && unitInSlot.myPlacement != null)
-                {
-                    // Unit exists here Save its data
-                    RunManager.Instance.playerBenchPlacements[i].unitData = unitInSlot.myPlacement.unitData;
-                }
-                else
-                {
-                    // Slot is empty. Save as null.
-                    RunManager.Instance.playerBenchPlacements[i].unitData = null;
-                }
-
-                // Hardcode bench coordinates
+                RunManager.Instance.playerBenchPlacements[i].unitData = null;
                 RunManager.Instance.playerBenchPlacements[i].row = -1;
                 RunManager.Instance.playerBenchPlacements[i].col = -1;
             }
+
+            foreach (UnitInstance unit in benchGrid.GetAllUnits())
+            {
+                if (unit.myPlacement == null) continue;
+
+                int col = benchGrid.GetUnitPosition(unit).y;
+
+                if (col >= 0 && col < RunManager.Instance.playerBenchPlacements.Count && RunManager.Instance.playerBenchPlacements[col].unitData == null)
+                {
+                    RunManager.Instance.playerBenchPlacements[col].unitData = unit.myPlacement.unitData;
+                }
+                else
+                {
+                    for (int i = 0; i < RunManager.Instance.playerBenchPlacements.Count; i++)
+                    {
+                        if (RunManager.Instance.playerBenchPlacements[i].unitData == null)
+                        {
+                            RunManager.Instance.playerBenchPlacements[i].unitData = unit.myPlacement.unitData;
+                            break;
+                        }
+                    }
+                }
+            }
         }
+
+        //SAVE TACTICS
         if (playerTacticBarManager != null)
         {
             RunManager.Instance.playerTactics.Clear();
