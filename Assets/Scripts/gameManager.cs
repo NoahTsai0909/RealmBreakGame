@@ -391,6 +391,14 @@ public class gameManager : MonoBehaviour
         enemyGrid.ClearAllUnits();
 
         combatActive = true;
+        if (GameplayManager.Instance != null)
+        {
+            Time.timeScale = GameplayManager.Instance.CombatSpeedMultiplier;
+        }
+        else
+        {
+            Time.timeScale = 1f;
+        }
         TeamDefinition playerTeam = RunManager.Instance.GetTeamForCombat();
         EncounterDefinition currentEncounter = RunManager.Instance.currentEncounter;
 

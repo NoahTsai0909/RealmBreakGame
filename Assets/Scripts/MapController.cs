@@ -52,27 +52,8 @@ public class MapController : MonoBehaviour
         if (CheckLevelUp()) return;
 
         UpdateUI();
-        if (RunManager.Instance.currentDailyEvents.Count == 0 &&
-            !RunManager.Instance.eventInProgress)
-        {
-            // First time - start with regular events
-            RunManager.Instance.isBattlePhase = false;
-            RunManager.Instance.regularEventsCompleted = 0;
-            RunManager.Instance.GenerateDailyEvents();
-        }
 
-        // Display current events
         DisplayEvents(RunManager.Instance.currentDailyEvents);
-
-        prepSceneButton.onClick.AddListener(() =>
-        {
-            inspectTeam();
-        });
-
-        mainMenuButton.onClick.AddListener(() =>
-        {
-            SceneLoader.Instance.LoadScene(GameScene.MainMenuScene);
-        });
 
         if (closePreviewButton != null)
         {
@@ -148,13 +129,62 @@ public class MapController : MonoBehaviour
     void OnEnable()
     {
         isPinned = false;
-        // Always clear the event in progress flag when returning to map
+
         if (RunManager.Instance != null)
         {
-            RunManager.Instance.eventInProgress = false;
-            RunManager.Instance.selectedEvent = null;
+            // === ANTI-SAVE-SCUM LOGIC ===
+            if (RunManager.Instance.eventInProgress)
+            {
+                BaseEventSO abandonedEvent = RunManager.Instance.selectedEvent;
 
-            // Generate new events if none
+                if (abandonedEvent is CombatEventSO combatEvent)
+                {
+                    Debug.LogWarning("Player fled combat! Applying damage penalty.");
+
+                    // 1. Apply the exact same penalty as losing in gameManager
+                    RunManager.Instance.Stats.PlayerHealth -= RunManager.Instance.Stats.CurrentDay;
+
+                    // 2. Did the penalty kill them?
+                    if (RunManager.Instance.Stats.PlayerHealth <= 0)
+                    {
+                        if (!RunManager.Instance.hasUsedLastChance)
+                        {
+                            // Trigger Last Chance
+                            RunManager.Instance.hasUsedLastChance = true;
+                            RunManager.Instance.Stats.PlayerHealth = 1;
+                            RunManager.Instance.lastChanceEvent.OnSelected();
+                            return; // Stop right here, we are changing scenes!
+                        }
+                        else
+                        {
+                            // They are dead for good. Wipe save and go to summary.
+                            SaveLoadManager.DeleteSave();
+                            SceneLoader.Instance.LoadScene(GameScene.RunSummaryScene);
+                            return; // Stop right here!
+                        }
+                    }
+
+                    // 3. They survived the penalty! Finish the battle phase and advance the day.
+                    RunManager.Instance.CompleteBattleEvent();
+                }
+                else if (abandonedEvent is ShopEventSO shopEvent)
+                {
+                    Debug.LogWarning("Player abandoned a shop.");
+                    RunManager.Instance.shopState = null; // Clean up the shop memory
+                    RunManager.Instance.CompleteRegularEvent();
+                }
+                else // Story Event or anything else
+                {
+                    Debug.LogWarning("Player abandoned an event.");
+                    RunManager.Instance.CompleteRegularEvent();
+                }
+
+                // Clear the flag so the punishment only happens once
+                RunManager.Instance.eventInProgress = false;
+                RunManager.Instance.selectedEvent = null;
+            }
+
+            // Generate new events if none exist (e.g., we just advanced to a new day)
             if (RunManager.Instance.currentDailyEvents.Count == 0)
             {
                 RunManager.Instance.GenerateDailyEvents();
@@ -162,15 +192,11 @@ public class MapController : MonoBehaviour
 
             DisplayEvents(RunManager.Instance.currentDailyEvents);
         }
+
         isTransitioning = false;
         UpdateUI();
     }
 
-
-    public void inspectTeam()
-    {
-        SceneLoader.Instance.LoadScene(GameScene.PrepScene);
-    }
 
     private bool CheckLastChance()
     {

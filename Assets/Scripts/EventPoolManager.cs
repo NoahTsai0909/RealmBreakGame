@@ -20,6 +20,7 @@ public class EventPoolManager : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
+            LoadEventsFromResources();
         }
         else
         {
@@ -29,7 +30,6 @@ public class EventPoolManager : MonoBehaviour
 
     void Start()
     {
-        LoadEventsFromResources();
         CategorizeEvents();
         DebugEventPool();
     }
@@ -58,13 +58,12 @@ public class EventPoolManager : MonoBehaviour
                     regularEvents.Add(eventSO);
             }
         }
-
-        Debug.Log($"Categorized: {combatEvents.Count} combat, {regularEvents.Count} regular events");
     }
 
     // Get combat events (weighted random)
     public List<BaseEventSO> GetCombatEvents(int count)
-    { 
+    {
+        if (allEvents.Count == 0) LoadEventsFromResources();
         CategorizeEvents();
         return GetWeightedRandomEvents(combatEvents, count);
     }
@@ -72,6 +71,7 @@ public class EventPoolManager : MonoBehaviour
     // Get regular events (weighted random)
     public List<BaseEventSO> GetRegularEvents(int count)
     {
+        if (allEvents.Count == 0) LoadEventsFromResources(); 
         CategorizeEvents();
         return GetWeightedRandomEvents(regularEvents, count);
     }

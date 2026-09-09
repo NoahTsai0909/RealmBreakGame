@@ -15,6 +15,8 @@ public class RunHUDManager : MonoBehaviour
     [SerializeField] private Image playerXPFill;
     [SerializeField] private TMP_Text provisionCapText;
     [SerializeField] private TMP_Text goldText;
+    [SerializeField] private Button squadButton;
+    [SerializeField] private Button settingsButton;
 
     [Header("XP Settings")]
     [SerializeField] private int maxReputation = 10; 
@@ -56,6 +58,26 @@ public class RunHUDManager : MonoBehaviour
                 originalAnchoredPos = hudRect.anchoredPosition;
             }
         }
+        squadButton.onClick.AddListener(() => {
+            // Get the name of the active scene
+            string currentScene = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
+
+            // Toggle between Map and Prep
+            if (currentScene == "PrepScene")
+            {
+                SceneLoader.Instance.LoadScene(GameScene.MapScene);
+            }
+            else
+            {
+                SceneLoader.Instance.LoadScene(GameScene.PrepScene);
+            }
+        });
+        settingsButton.onClick.AddListener(() => {
+            if (SettingsManager.Instance != null)
+            {
+                SettingsManager.Instance.OpenSettings();
+            }
+        });
         StartCoroutine(InitializeFromRunManager());
     }
 
@@ -83,7 +105,6 @@ public class RunHUDManager : MonoBehaviour
 
     private IEnumerator InitializeFromRunManager()
     {
-        // Wait a frame to ensure RunManager is fully initialized
         yield return null;
 
         if (RunManager.Instance != null)
@@ -113,7 +134,7 @@ public class RunHUDManager : MonoBehaviour
     private void UpdateDay(int day)
     {
         if (dayText != null)
-            dayText.SetText(TextIconUtility.ParseDescription("Day \n" + "[c_day]" + day.ToString() + "[/c]"));
+            dayText.SetText(TextIconUtility.ParseDescription(day.ToString()));
     }
 
     private void UpdateLevel(int level)

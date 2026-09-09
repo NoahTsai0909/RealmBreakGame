@@ -88,9 +88,12 @@ public class CombatResultUI : MonoBehaviour
             else
             {
                 // Heavy Slam (from 3.0 scale down to 1.0)
-                float easeOut = 1f - (1f - t) * (1f - t) * (1f - t);
-                float scale = Mathf.Lerp(3f, 1f, easeOut);
-                activeBannerRect.localScale = new Vector3(scale, scale, 1f);
+                if (GameplayManager.Instance.EnableScreenShake)
+                {
+                    float easeOut = 1f - (1f - t) * (1f - t) * (1f - t);
+                    float scale = Mathf.Lerp(3f, 1f, easeOut);
+                    activeBannerRect.localScale = new Vector3(scale, scale, 1f);
+                }
             }
 
             yield return null;

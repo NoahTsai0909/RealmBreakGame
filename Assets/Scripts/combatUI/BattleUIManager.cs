@@ -223,6 +223,7 @@ public class BattleUIManager : MonoBehaviour
 
     private void SpawnFloatingText(Vector3 worldPos, string text, Color color, bool isCrit)
     {
+        if (!GameplayManager.Instance.EnableDamageNumbers) return;
         Vector3 offset = new Vector3(Random.Range(-0.1f, 0.1f),1f + Random.Range(-0.2f, 0.2f),0f);
         var instance = Instantiate(
             floatingTextPrefab,

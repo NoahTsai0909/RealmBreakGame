@@ -24,8 +24,9 @@ public class MainMenuController : MonoBehaviour
         RefreshMenuState();
         Application.runInBackground = true; // Prevents pausing when tabbed out
         compendiumButton.onClick.AddListener(() => ShowCompendium());
-        settingsButton.onClick.AddListener(() => Debug.Log("Settings coming soon!"));
+        settingsButton.onClick.AddListener(() => {if (SettingsManager.Instance != null){SettingsManager.Instance.OpenSettings();}});
         filterButton.onClick.AddListener(() => ToggleFilterSideBar());
+        RunHUDManager.Instance?.Hide();
     }
 
     private void RefreshMenuState()

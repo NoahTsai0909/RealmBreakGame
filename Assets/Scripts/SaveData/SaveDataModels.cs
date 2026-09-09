@@ -1,10 +1,8 @@
 using System;
 using System.Collections.Generic;
-
-// We use namespaces to keep Newtonsoft organized
 using Newtonsoft.Json;
 
-// 1. The Master Save File
+
 [System.Serializable]
 public class RunSaveData
 {
@@ -17,6 +15,7 @@ public class RunSaveData
     public bool isBattlePhase;
     public int currentEventPhase;
     public bool hasUsedLastChance;
+    public bool eventInProgress;
 
     public Dictionary<Guid, PermanentStats> permanentStatsMap = new Dictionary<Guid, PermanentStats>();
     public Dictionary<Guid, UnitLifetimeStats> masterUnitStats = new Dictionary<Guid, UnitLifetimeStats>();
@@ -47,7 +46,6 @@ public class UnitPlacementDTO
     public System.Guid id;
 }
 
-// 3. The Tactic DTO
 [System.Serializable]
 public class TacticPlacementDTO
 {
@@ -57,7 +55,6 @@ public class TacticPlacementDTO
     public Guid id;
 }
 
-// 4. The Shop DTO
 [System.Serializable]
 public class ShopStateDTO
 {

@@ -8,9 +8,7 @@ public static class SaveLoadManager
     public static bool pendingLoad = false;
     private static string SavePath => Application.persistentDataPath + "/midgame_save.json";
 
-    // ==========================================
-    // 1. SAVE THE RUN
-    // ==========================================
+
     public static void SaveRun()
     {
         RunManager rm = RunManager.Instance;
@@ -26,12 +24,13 @@ public static class SaveLoadManager
         data.isBattlePhase = rm.isBattlePhase;
         data.currentEventPhase = rm.currentEventPhase;
         data.hasUsedLastChance = rm.hasUsedLastChance;
+        data.eventInProgress = rm.eventInProgress;
 
-        // Save Dictionaries (Newtonsoft handles this automatically!)
-        data.permanentStatsMap = rm.GetPermanentStatsMap(); // *Note: See minor tweak below*
+        // Save Dictionaries
+        data.permanentStatsMap = rm.GetPermanentStatsMap();
         data.masterUnitStats = rm.masterUnitStats;
 
-        // Save Placements (Mapping ScriptableObjects to Strings)
+        // Save Placements
         data.playerTeam = ConvertUnitPlacementsToDTO(rm.playerTeamPlacements);
         data.playerBench = ConvertUnitPlacementsToDTO(rm.playerBenchPlacements);
         data.playerTactics = ConvertTacticPlacementsToDTO(rm.playerTactics);
@@ -48,9 +47,6 @@ public static class SaveLoadManager
         Debug.Log($"Game Saved Successfully to: {SavePath}");
     }
 
-    // ==========================================
-    // 2. LOAD THE RUN
-    // ==========================================
     public static bool LoadRun()
     {
         if (!File.Exists(SavePath)) return false;
@@ -70,8 +66,9 @@ public static class SaveLoadManager
             rm.isBattlePhase = data.isBattlePhase;
             rm.currentEventPhase = data.currentEventPhase;
             rm.hasUsedLastChance = data.hasUsedLastChance;
+            rm.eventInProgress = data.eventInProgress;
 
-            // SAFELY RESTORE DICTIONARIES (No '??' operator)
+            // SAFELY RESTORE DICTIONARIES
             if (data.permanentStatsMap != null)
                 rm.SetPermanentStatsMap(data.permanentStatsMap);
             else
@@ -82,14 +79,14 @@ public static class SaveLoadManager
             else
                 rm.masterUnitStats = new Dictionary<System.Guid, UnitLifetimeStats>();
 
-            // Restore Placements (with safety checks in case Newtonsoft skipped empty lists)
+            // Restore Placements
             if (data.playerTeam != null)
                 rm.playerTeamPlacements = RestoreUnitPlacements(data.playerTeam);
 
             if (data.playerBench != null)
                 rm.playerBenchPlacements = RestoreUnitPlacements(data.playerBench);
 
-            // Dynamically pad the bench to exactly match the inspector size!
+            // Dynamically pad the bench
             while (rm.playerBenchPlacements.Count < rm.benchSize)
             {
                 rm.playerBenchPlacements.Add(new RunManager.UnitPlacement { row = -1, col = -1 });
@@ -107,7 +104,7 @@ public static class SaveLoadManager
                     .Where(e => e != null).ToList();
             }
 
-            // NEW: Restore the 3 active choices!
+            //Restore the 3 active choices
             if (data.currentDailyEventNames != null)
             {
                 rm.currentDailyEvents = data.currentDailyEventNames
@@ -123,15 +120,12 @@ public static class SaveLoadManager
         }
         catch (System.Exception e)
         {
-            // IF ANYTHING FAILS, WE WILL SEE EXACTLY WHY!
             Debug.LogError($"Save file crashed during loading! Error: {e.Message}\n{e.StackTrace}");
             return false;
         }
     }
 
-    // ==========================================
-    // HELPER METHODS (Data Mapping)
-    // ==========================================
+
     private static List<UnitPlacementDTO> ConvertUnitPlacementsToDTO(List<RunManager.UnitPlacement> placements)
     {
         List<UnitPlacementDTO> dtos = new List<UnitPlacementDTO>();
@@ -147,7 +141,7 @@ public static class SaveLoadManager
                 rarity = p.unitData.rarity,
                 prefixName = p.unitData.prefix != null ? p.unitData.prefix.name : null,
                 suffixName = p.unitData.suffix != null ? p.unitData.suffix.name : null,
-                id = p.unitData.id // NEW: Save the ID
+                id = p.unitData.id 
             });
         }
         return dtos;
@@ -164,7 +158,6 @@ public static class SaveLoadManager
             UnitDefinition def = UnitDatabase.Instance.allUnits.FirstOrDefault(u => u.name == dto.unitDefinitionName);
             if (def == null) continue;
 
-            // NEW: Inject the saved ID so it remembers its permanent stats!
             UnitSaveData data = new UnitSaveData { definition = def, rarity = dto.rarity, id = dto.id };
 
             if (!string.IsNullOrEmpty(dto.prefixName))
