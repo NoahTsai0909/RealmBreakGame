@@ -16,36 +16,38 @@ public class LootSummaryUI : MonoBehaviour
 
     private UnitDefinition pendingUnit;
     private Rarity pendingUnitRarity;
+    private MutationPrefixSO pendingPrefix;
+    private MutationSuffixSO pendingSuffix;
+
+
     private TacticDefinition pendingTactic;
     private Rarity pendingTacticRarity;
 
-    // Track the specific component types just like EventSceneController
     private UnitInstance spawnedUnitPreview;
     private TacticInstance spawnedTacticPreview;
 
-    public void ShowSummary(int gold, int xp, UnitDefinition unitDef, Rarity uRarity, TacticDefinition tacticDef, Rarity tRarity)
+    public void ShowSummary(int gold, int xp, UnitDefinition unitDef, Rarity uRarity, TacticDefinition tacticDef, Rarity tRarity, MutationPrefixSO prefix = null, MutationSuffixSO suffix = null)
     {
         gameObject.SetActive(true);
         goldText.SetText(TextIconUtility.ParseDescription($"+ [GOLD] {gold}"));
         xpText.text = $"+{xp} XP";
 
-
         pendingUnit = unitDef;
         pendingUnitRarity = uRarity;
+        pendingPrefix = prefix; 
+        pendingSuffix = suffix; 
+
         pendingTactic = tacticDef;
         pendingTacticRarity = tRarity;
 
-
-        // Clean up any old previews
         ClearPreviews();
 
-        // Spawn the preview and hook up buttons
         if (pendingUnit != null || pendingTactic != null)
         {
             rewardContainer.SetActive(true);
 
             if (pendingUnit != null)
-                SpawnUnitPreview(pendingUnit, pendingUnitRarity);
+                SpawnUnitPreview(pendingUnit, pendingUnitRarity, pendingPrefix, pendingSuffix); 
             else if (pendingTactic != null)
                 SpawnTacticPreview(pendingTactic, pendingTacticRarity);
 
@@ -61,16 +63,21 @@ public class LootSummaryUI : MonoBehaviour
         }
     }
 
-    private void SpawnUnitPreview(UnitDefinition def, Rarity rarity)
+    private void SpawnUnitPreview(UnitDefinition def, Rarity rarity, MutationPrefixSO prefix, MutationSuffixSO suffix)
     {
         spawnedUnitPreview = Instantiate(def.unitPrefab, rewardAnchor);
 
-        // Mimicking EventSceneController logic
-        UnitSaveData mockData = new UnitSaveData { definition = def, rarity = rarity };
+        UnitSaveData mockData = new UnitSaveData
+        {
+            definition = def,
+            rarity = rarity,
+            prefix = prefix,
+            suffix = suffix
+        };
         spawnedUnitPreview.InitializeFromSaveData(mockData);
 
         spawnedUnitPreview.isPlayer = true;
-        spawnedUnitPreview.enabled = false; // Stop logic ticks
+        spawnedUnitPreview.enabled = false; 
 
         spawnedUnitPreview.transform.localPosition = Vector3.zero;
         spawnedUnitPreview.transform.localScale = Vector3.one * 30f;
@@ -86,7 +93,6 @@ public class LootSummaryUI : MonoBehaviour
     {
         spawnedTacticPreview = Instantiate(def.tacticPrefab, rewardAnchor);
 
-        // Mimicking EventSceneController logic
         RunManager.TacticSaveData mockData = new RunManager.TacticSaveData { definition = def, rarity = rarity };
         spawnedTacticPreview.InitializeFromSaveData(mockData);
 
@@ -107,7 +113,9 @@ public class LootSummaryUI : MonoBehaviour
     private void AcceptReward()
     {
         if (pendingUnit != null)
-            PlayerUnitManager.Instance.TryAcquireUnit(pendingUnit, pendingUnitRarity);
+        {
+            PlayerUnitManager.Instance.TryAcquireUnit(pendingUnit, pendingUnitRarity, pendingPrefix, pendingSuffix);
+        }
         else if (pendingTactic != null)
             PlayerTacticManager.Instance.TryAcquireTactic(pendingTactic, pendingTacticRarity);
 

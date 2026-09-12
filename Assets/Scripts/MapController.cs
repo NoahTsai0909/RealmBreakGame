@@ -292,14 +292,13 @@ public class MapController : MonoBehaviour
             previewGrid.gameObject.SetActive(true);
         }
         previewGrid.ClearAllUnits();
-
         foreach (var placement in encounter.enemyUnits)
         {
             if (placement.unitData == null || placement.unitData.definition == null) continue;
 
             UnitInstance unit = Instantiate(placement.unitData.definition.unitPrefab);
-            unit.InitializeEnemy(placement.unitData.definition, placement.unitData.rarity);
-
+            unit.InitializeEnemy(placement.unitData);
+            unit.myPlacement = placement; 
             unit.EnterCombat(previewGrid, placement.row, placement.col, false, false);
         }
         if (enemyTacticBarManager != null)

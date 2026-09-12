@@ -157,7 +157,9 @@ public class UnitInstance : MonoBehaviour
     {
         definition = def;
         CurrentRarity = rarity;
+        isPassive = definition.isPassive;
 
+        // CRITICAL: Prevent save bloat
         permanentStats = null;
         temporaryStats = new TemporaryStats();
 
@@ -166,6 +168,21 @@ public class UnitInstance : MonoBehaviour
         currentEnergy = stats.maxEnergy;
 
         Visuals?.UpdateRarityOutline(CurrentRarity);
+    }
+
+    public virtual void InitializeEnemy(UnitSaveData data)
+    {
+        if (data == null)
+        {
+            Debug.LogError("InitializeEnemy called with null UnitSaveData");
+            return;
+        }
+        InitializeEnemy(data.definition, data.rarity);
+        id = data.id;
+        currentPrefix = data.prefix;
+        currentSuffix = data.suffix;
+
+        RecalculateStats();
         Visuals?.ApplyMutationVisuals(currentPrefix);
     }
 

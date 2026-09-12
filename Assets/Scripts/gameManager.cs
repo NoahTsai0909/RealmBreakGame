@@ -34,6 +34,8 @@ public class gameManager : MonoBehaviour
     [SerializeField] private Button startCombatButton;
     [SerializeField] private SellZone sellZone;
     [SerializeField] private LootSummaryUI lootSummaryUI;
+    private MutationPrefixSO pendingUnitRewardPrefix;
+    private MutationSuffixSO pendingUnitRewardSuffix;
 
     [Header("Combat Settings")]
     [SerializeField] private float endCombatDelay = 1.0f;
@@ -206,8 +208,9 @@ public class gameManager : MonoBehaviour
             int goldEarned = (playerWon && combatEvent != null) ? combatEvent.goldReward : goldFromKills;
             int xpEarned = (playerWon && combatEvent != null) ? combatEvent.reputationReward : 0;
 
-            if (playerWon){
-                lootSummaryUI.ShowSummary(goldEarned, xpEarned, pendingUnitRewardDef, pendingUnitRewardRarity, pendingTacticRewardDef, pendingTacticRewardRarity);
+            if (playerWon)
+            {
+                lootSummaryUI.ShowSummary(goldEarned, xpEarned, pendingUnitRewardDef, pendingUnitRewardRarity, pendingTacticRewardDef, pendingTacticRewardRarity, pendingUnitRewardPrefix, pendingUnitRewardSuffix);
             }
             else
             {
@@ -298,6 +301,8 @@ public class gameManager : MonoBehaviour
             {
                 pendingUnitRewardDef = enemyUnits[roll].Definition;
                 pendingUnitRewardRarity = enemyUnits[roll].CurrentRarity;
+                pendingUnitRewardPrefix = enemyUnits[roll].currentPrefix;
+                pendingUnitRewardSuffix = enemyUnits[roll].currentSuffix;
             }
             else
             {
@@ -323,7 +328,9 @@ public class gameManager : MonoBehaviour
     private UnitInstance SpawnEnemyUnit(RunManager.UnitPlacement placement, GridManager grid, bool startCombat)
     {
         UnitInstance unit = Instantiate(placement.unitData.definition.unitPrefab);
-        unit.InitializeEnemy(placement.unitData.definition, placement.unitData.rarity);
+        unit.InitializeEnemy(placement.unitData);
+        unit.myPlacement = placement;
+
         unit.EnterCombat(grid, placement.row, placement.col, false, startCombat);
 
         return unit;
@@ -342,11 +349,9 @@ public class gameManager : MonoBehaviour
                 battleUIManager.RemoveUnitUI(unit);
             }
         }
-        // Wipe both grids clean
         playerGrid.ClearAllUnits();
         enemyGrid.ClearAllUnits();
 
-        // Get the teams again
         TeamDefinition playerTeam = RunManager.Instance.GetTeamForCombat();
         EncounterDefinition currentEncounter = RunManager.Instance.currentEncounter;
 
