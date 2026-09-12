@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: f3116b3789e92ca42a6ee3125321cc31
+guid: 3093514d1e1793f4da91f6709de8e0ad
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7872595650591514457
-    second: roundEdgeUI_0
+      213: -878879273919260884
+    second: UISpecialButton_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -52,7 +52,7 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 160
-  spriteBorder: {x: 20, y: 21, z: 19, w: 18}
+  spriteBorder: {x: 88, y: 18, z: 90, w: 18}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: roundEdgeUI_0
+      name: UISpecialButton_0
       rect:
         serializedVersion: 2
-        x: 7
-        y: 7
-        width: 627
-        height: 626
+        x: 17
+        y: 2
+        width: 606
+        height: 127
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 7a0253277fbeeb290800000000000000
-      internalID: -7872595650591514457
+      spriteID: c27d695f4f79dc3f0800000000000000
+      internalID: -878879273919260884
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      roundEdgeUI_0: -7872595650591514457
+      UISpecialButton_0: -878879273919260884
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

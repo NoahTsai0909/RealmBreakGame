@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AdventureDefinitionSO
   adventureName: Ruins Below
   description: 
-  artworkCard: {fileID: 21300000, guid: e8ba05a73b5559148a633e15c6a95e16, type: 3}
+  artworkCard: {fileID: 21300000, guid: 884917f0f561a20428de3a08cf984895, type: 3}
   totalDays: 12
   startingGold: 10
   startingHealth: 12

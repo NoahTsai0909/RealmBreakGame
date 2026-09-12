@@ -38,6 +38,10 @@ public class EventSceneController : MonoBehaviour
             SceneLoader.Instance.LoadScene(GameScene.MapScene);
             return;
         }
+        if (RunHUDManager.Instance != null)
+        {
+            RunHUDManager.Instance.ResetAndShow();
+        }
 
         eventNameText.text = currentEvent.eventName;
         descriptionText.text = currentEvent.description;
