@@ -221,7 +221,6 @@ public class EventSceneController : MonoBehaviour
         CompleteEvent();
     }
 
-    //Pass UnitSaveData now instead of UnitDefinition
     private void SpawnUnitOnButton(UnitSaveData unitData, Button parentButton)
     {
         Transform anchor = parentButton.transform.Find("UnitAnchor");
@@ -238,8 +237,11 @@ public class EventSceneController : MonoBehaviour
         preview.transform.localScale = Vector3.one * 25f;
         if (preview.Visuals != null) preview.Visuals.SetBaseScale(preview.transform.localScale);
 
-        SpriteRenderer renderer = preview.GetComponent<SpriteRenderer>();
-        if (renderer != null) renderer.sortingOrder = 100;
+        if (preview.Visuals != null)
+        {
+            preview.Visuals.SetBaseScale(preview.transform.localScale);
+            preview.Visuals.SyncSortingOrder(100);
+        }
 
         spawnedPreviews.Add(preview);
     }
@@ -285,7 +287,7 @@ public class EventSceneController : MonoBehaviour
 
         spawnedIllustration.transform.localPosition = Vector3.zero;
 
-        spawnedIllustration.transform.localScale = Vector3.one * 10f;
+        spawnedIllustration.transform.localScale = Vector3.one * 7f;
     }
 
     public void ShowUnitSelectorPanel(UnitTargetEffectSO effectToApply, EventOutcomeSO onSuccessOutcome, EventContext context)

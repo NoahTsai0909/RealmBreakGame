@@ -85,8 +85,11 @@ public class LootSummaryUI : MonoBehaviour
         if (spawnedUnitPreview.Visuals != null)
             spawnedUnitPreview.Visuals.SetBaseScale(spawnedUnitPreview.transform.localScale);
 
-        SpriteRenderer renderer = spawnedUnitPreview.GetComponent<SpriteRenderer>();
-        if (renderer != null) renderer.sortingOrder = 100;
+        if (spawnedUnitPreview.Visuals != null)
+        {
+            spawnedUnitPreview.Visuals.SetBaseScale(spawnedUnitPreview.transform.localScale);
+            spawnedUnitPreview.Visuals.SyncSortingOrder(100);
+        }
     }
 
     private void SpawnTacticPreview(TacticDefinition def, Rarity rarity)

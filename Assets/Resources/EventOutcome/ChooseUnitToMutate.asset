@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0bf93521559ad14a8d79fe0bb50f05c, type: 3}
   m_Name: ChooseUnitToMutate
   m_EditorClassIdentifier: Assembly-CSharp::OpenUnitSelectorOutcomeSO
-  effectToApply: {fileID: 0}
+  effectToApply: {fileID: 11400000, guid: dabb85f7cf2b0b143ae9e8583a0a7271, type: 2}
   onSuccessOutcome: {fileID: 0}

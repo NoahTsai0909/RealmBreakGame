@@ -20,6 +20,8 @@ MonoBehaviour:
       provisionCost: 0
       provisionModifier: 0
       valueModifier: 0
+      prefix: {fileID: 0}
+      suffix: {fileID: 0}
     row: 1
     col: 1
   - unitData:
@@ -28,6 +30,8 @@ MonoBehaviour:
       provisionCost: 0
       provisionModifier: 0
       valueModifier: 0
+      prefix: {fileID: 0}
+      suffix: {fileID: 0}
     row: 1
     col: 2
   enemyTactics:
@@ -35,3 +39,4 @@ MonoBehaviour:
       definition: {fileID: 11400000, guid: b10ef5b4905e4e14a83953d72c66a88d, type: 2}
       rarity: 0
     orderIndex: 0
+  randomMutationCount: 0

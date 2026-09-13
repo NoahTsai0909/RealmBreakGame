@@ -15,7 +15,7 @@ MonoBehaviour:
   eventName: Ironmoon Altar
   description: 'Sacrifice a unit or 30 [GOLD] for rewards. '
   eventIcon: {fileID: 21300000, guid: d3e49c22ac0f4484bab16cf120bfe708, type: 3}
-  eventBackgroundImage: {fileID: 21300000, guid: 95f87df34ec49df49b816b29856fa078, type: 3}
+  eventBackgroundImage: {fileID: 21300000, guid: 9bf677eb2d018a84c9ff2577efc7bce9, type: 3}
   portalGlowColor: {r: 1, g: 1, b: 1, a: 1}
   minDayRequired: 8
   maxDayRequired: 12
@@ -35,6 +35,8 @@ MonoBehaviour:
       generateRandomUnitPreview: 0
       randomRegion: 4
       preferredTags: 0
+      previewTactic: {fileID: 0}
+      generateRandomTacticPreview: 0
       outcomes:
       - {fileID: 11400000, guid: ad75b575183a9ed4bb757e61399955a1, type: 2}
       - {fileID: 11400000, guid: 38dfb952901f1c94bb6e94de1ed7f0b0, type: 2}
@@ -46,6 +48,8 @@ MonoBehaviour:
       generateRandomUnitPreview: 0
       randomRegion: 0
       preferredTags: 2097152
+      previewTactic: {fileID: 0}
+      generateRandomTacticPreview: 0
       outcomes:
       - {fileID: 11400000, guid: 3c2324e4944c5be4786a2a487ec74ea9, type: 2}
       - {fileID: 11400000, guid: 6a2ccca15d5746344956314ea83f34cb, type: 2}
@@ -57,6 +61,8 @@ MonoBehaviour:
       generateRandomUnitPreview: 0
       randomRegion: 0
       preferredTags: 0
+      previewTactic: {fileID: 0}
+      generateRandomTacticPreview: 0
       outcomes:
       - {fileID: 11400000, guid: f55e49cdda5c02c43a443ab2b5264be3, type: 2}
       condition: {fileID: 0}

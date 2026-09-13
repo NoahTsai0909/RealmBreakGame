@@ -76,5 +76,5 @@ public class UnitDefinition : ScriptableObject, IStatSource
     public UnitTagFlags TagFlags => tagFlags;
 }
 
-public enum Rarity { Common, Uncommon, Rare, Epic }
+public enum Rarity { Common, Uncommon, Rare, Epic, Mythic }
 public enum Region { Solmire, Nethervale, Everborn, Axiom, None}

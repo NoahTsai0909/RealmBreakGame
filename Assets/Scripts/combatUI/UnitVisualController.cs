@@ -118,9 +118,9 @@ public class UnitVisualController : MonoBehaviour
         if (mutationRuneSR != null)
         {
             mutationRuneSR.transform.localScale = new Vector3(
-                1f / transform.localScale.x,
-                1f / transform.localScale.y,
-                1f / transform.localScale.z
+                originalScale.x / transform.localScale.x,
+                originalScale.y / transform.localScale.y,
+                originalScale.z / transform.localScale.z
             );
         }
     }
@@ -295,6 +295,7 @@ public class UnitVisualController : MonoBehaviour
                 runeObj.transform.localPosition = new Vector3(0f, -0.4f, 0f);
 
                 mutationRuneSR = runeObj.AddComponent<SpriteRenderer>();
+                mutationRuneSR.sortingLayerID = sr.sortingLayerID;
                 mutationRuneSR.sortingOrder = sr.sortingOrder - 1;
             }
             mutationRuneSR.sprite = prefix.runeSprite;
@@ -333,5 +334,15 @@ public class UnitVisualController : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void SyncSortingOrder(int newOrder)
+    {
+        if (sr != null) sr.sortingOrder = newOrder;
+
+        if (mutationRuneSR != null) mutationRuneSR.sortingOrder = newOrder - 1;
+
+        SpriteRenderer shadowSR = transform.Find("DropShadow")?.GetComponent<SpriteRenderer>();
+        if (shadowSR != null) shadowSR.sortingOrder = newOrder - 1;
     }
 }

@@ -250,7 +250,9 @@ public class gameManager : MonoBehaviour
             SpawnPlayerUnit(placement, playerGrid, startCombat);
         }
 
-        foreach (var enemyPlacement in encounter.enemyUnits)
+        var runtimeEnemyList = encounter.GetRuntimeEnemyPlacements(RunManager.Instance.Stats.CurrentDay);
+
+        foreach (var enemyPlacement in runtimeEnemyList)
         {
             SpawnEnemyUnit(enemyPlacement, enemyGrid, startCombat);
         }

@@ -50,6 +50,7 @@ public class UIUnitVisualController : MonoBehaviour
             case Rarity.Uncommon: outlineColor = Color.green; break;
             case Rarity.Rare: outlineColor = Color.blue; break;
             case Rarity.Epic: ColorUtility.TryParseHtmlString("#A335EE", out outlineColor); break;
+            case Rarity.Mythic: ColorUtility.TryParseHtmlString("#FF4B33", out outlineColor); break;
         }
 
         image.material.SetColor("_SolidOutline", outlineColor);

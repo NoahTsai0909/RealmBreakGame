@@ -1075,8 +1075,8 @@ MonoBehaviour:
     row: 0
     col: 0
   - unitData:
-      definition: {fileID: 11400000, guid: 5467cd0d052e12d46a69750eb406f9a0, type: 2}
-      rarity: 2
+      definition: {fileID: 11400000, guid: 005d0d6378e9c634da8db0e118e691b3, type: 2}
+      rarity: 1
       provisionCost: 0
       provisionModifier: 0
       valueModifier: 0
@@ -1084,6 +1084,16 @@ MonoBehaviour:
       suffix: {fileID: 0}
     row: 1
     col: 0
+  - unitData:
+      definition: {fileID: 11400000, guid: 6435ef4f87c06cd478998c73bcdf6d2b, type: 2}
+      rarity: 3
+      provisionCost: 0
+      provisionModifier: 0
+      valueModifier: 0
+      prefix: {fileID: 0}
+      suffix: {fileID: 0}
+    row: 1
+    col: 1
   benchSize: 5
   regularEventsCompleted: 0
   isBattlePhase: 0

@@ -48,6 +48,10 @@ public class CooldownBarUI : MonoBehaviour
                 backgroundImage.sprite = epicBackground;
                 cooldownFill.sprite = epicFill;
                 break;
+            case Rarity.Mythic:
+                backgroundImage.sprite = commonBackground;
+                cooldownFill.sprite = commonFill;
+                break;
         }
     }
 

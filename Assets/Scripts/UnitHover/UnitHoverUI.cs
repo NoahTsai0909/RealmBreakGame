@@ -316,6 +316,7 @@ public class UnitHoverUI : MonoBehaviour
             case Rarity.Uncommon: backgroundImage.sprite = backgroundUncommon; break;
             case Rarity.Rare: backgroundImage.sprite = backgroundRare; break;
             case Rarity.Epic: backgroundImage.sprite = backgroundEpic; break;
+            case Rarity.Mythic: backgroundImage.sprite = backgroundEpic; break; 
         }
     }
 

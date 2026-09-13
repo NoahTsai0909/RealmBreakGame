@@ -59,6 +59,7 @@ public class PlayerUnitManager : MonoBehaviour
 
     RunManager.UnitPlacement FindMergeTarget(UnitDefinition def, Rarity rarity)
     {
+        if (rarity >= Rarity.Epic) return null;
         foreach (var placement in RunManager.Instance.playerBenchPlacements)
         {
             if (CanMerge(placement, def, rarity)) return placement;

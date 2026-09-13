@@ -17,7 +17,7 @@ MonoBehaviour:
     But from somewhere deep within, a final spark refuses to die. You rise once more,
     granted one last chance to defy the fate that awaits you.
   eventIcon: {fileID: 0}
-  eventBackgroundImage: {fileID: 21300000, guid: 95f87df34ec49df49b816b29856fa078, type: 3}
+  eventBackgroundImage: {fileID: 21300000, guid: 9bf677eb2d018a84c9ff2577efc7bce9, type: 3}
   portalGlowColor: {r: 1, g: 1, b: 1, a: 1}
   minDayRequired: 0
   maxDayRequired: 0

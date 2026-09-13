@@ -20,6 +20,8 @@ MonoBehaviour:
       provisionCost: 0
       provisionModifier: 0
       valueModifier: 0
+      prefix: {fileID: 0}
+      suffix: {fileID: 0}
     row: 0
     col: 1
   - unitData:
@@ -28,6 +30,8 @@ MonoBehaviour:
       provisionCost: 0
       provisionModifier: 0
       valueModifier: 0
+      prefix: {fileID: 0}
+      suffix: {fileID: 0}
     row: 0
     col: 2
   - unitData:
@@ -36,6 +40,8 @@ MonoBehaviour:
       provisionCost: 0
       provisionModifier: 0
       valueModifier: 0
+      prefix: {fileID: 0}
+      suffix: {fileID: 0}
     row: 1
     col: 0
   - unitData:
@@ -44,6 +50,8 @@ MonoBehaviour:
       provisionCost: 0
       provisionModifier: 0
       valueModifier: 0
+      prefix: {fileID: 0}
+      suffix: {fileID: 0}
     row: 1
     col: 1
   - unitData:
@@ -52,6 +60,8 @@ MonoBehaviour:
       provisionCost: 0
       provisionModifier: 0
       valueModifier: 0
+      prefix: {fileID: 0}
+      suffix: {fileID: 0}
     row: 1
     col: 2
   - unitData:
@@ -60,6 +70,8 @@ MonoBehaviour:
       provisionCost: 0
       provisionModifier: 0
       valueModifier: 0
+      prefix: {fileID: 0}
+      suffix: {fileID: 0}
     row: 2
     col: 1
   - unitData:
@@ -68,6 +80,8 @@ MonoBehaviour:
       provisionCost: 0
       provisionModifier: 0
       valueModifier: 0
+      prefix: {fileID: 0}
+      suffix: {fileID: 0}
     row: 2
     col: 2
   enemyTactics:
@@ -79,3 +93,4 @@ MonoBehaviour:
       definition: {fileID: 11400000, guid: e4a50db2aab163748991c8a8f23c5e9d, type: 2}
       rarity: 2
     orderIndex: 1
+  randomMutationCount: 2

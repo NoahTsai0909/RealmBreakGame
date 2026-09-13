@@ -290,7 +290,7 @@ public class UnitInstance : MonoBehaviour
 
     public bool CanUpgradeTier()
     {
-        return CurrentRarity != Rarity.Epic;
+        return CurrentRarity != Rarity.Epic && CurrentRarity != Rarity.Mythic;
     }
 
     public void UpgradeTier()
@@ -583,9 +583,11 @@ public class UnitInstance : MonoBehaviour
         else if (CurrentRarity == Rarity.Uncommon) rarityMultiplier = 2;
         else if (CurrentRarity == Rarity.Rare) rarityMultiplier = 3;
         else if (CurrentRarity == Rarity.Epic) rarityMultiplier = 4;
+        else if (CurrentRarity == Rarity.Mythic) rarityMultiplier = 5;
         else rarityMultiplier = 1;
-
-        return definition.provisionCost != 0 ? rarityMultiplier * definition.provisionCost : rarityMultiplier;
+        int mutationMultiplier = 1;
+        if (currentPrefix != null) mutationMultiplier += 1;
+        return definition.provisionCost != 0 ? rarityMultiplier * definition.provisionCost * mutationMultiplier : rarityMultiplier;
     }
 
     public void TemporaryStatModify(ModifiableStats modifiableStats, int bonus)

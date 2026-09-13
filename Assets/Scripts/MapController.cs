@@ -292,10 +292,11 @@ public class MapController : MonoBehaviour
             previewGrid.gameObject.SetActive(true);
         }
         previewGrid.ClearAllUnits();
-        foreach (var placement in encounter.enemyUnits)
+        var runtimeEnemyList = encounter.GetRuntimeEnemyPlacements(RunManager.Instance.Stats.CurrentDay);
+
+        foreach (var placement in runtimeEnemyList)
         {
             if (placement.unitData == null || placement.unitData.definition == null) continue;
-
             UnitInstance unit = Instantiate(placement.unitData.definition.unitPrefab);
             unit.InitializeEnemy(placement.unitData);
             unit.myPlacement = placement; 

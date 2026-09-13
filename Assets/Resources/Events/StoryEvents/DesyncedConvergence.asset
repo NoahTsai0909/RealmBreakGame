@@ -14,16 +14,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::StoryEventSO
   eventName: Desynced Convergence
   description: Give a unit a random mutation.
-  eventIcon: {fileID: 0}
-  eventBackgroundImage: {fileID: 0}
-  portalGlowColor: {r: 1, g: 1, b: 1, a: 1}
-  minDayRequired: 0
-  maxDayRequired: 0
-  selectionWeight: 1
-  maxAppearancesPerRun: 0
-  targetScene: 0
+  eventIcon: {fileID: 21300000, guid: d3e49c22ac0f4484bab16cf120bfe708, type: 3}
+  eventBackgroundImage: {fileID: 21300000, guid: 9bf677eb2d018a84c9ff2577efc7bce9, type: 3}
+  portalGlowColor: {r: 0.5031446, g: 0, b: 0.49166262, a: 1}
+  minDayRequired: 9
+  maxDayRequired: 12
+  selectionWeight: 4
+  maxAppearancesPerRun: 1
+  targetScene: 5
   pages:
   - promptText: Something within your units has fallen out of sync with reality.
       For a brief moment, what they are and what they could become overlap.
-    choices: []
+    choices:
+    - buttonText: Choose a unit to mutate.
+      previewUnit: {fileID: 0}
+      rollRandomRarity: 0
+      previewRarity: 0
+      generateRandomUnitPreview: 0
+      randomRegion: 0
+      preferredTags: 0
+      previewTactic: {fileID: 0}
+      generateRandomTacticPreview: 0
+      outcomes:
+      - {fileID: 11400000, guid: fc50889b61f35bf479fb237d92911891, type: 2}
+      condition: {fileID: 0}
+    - buttonText: Leave.
+      previewUnit: {fileID: 0}
+      rollRandomRarity: 0
+      previewRarity: 0
+      generateRandomUnitPreview: 0
+      randomRegion: 0
+      preferredTags: 0
+      previewTactic: {fileID: 0}
+      generateRandomTacticPreview: 0
+      outcomes:
+      - {fileID: 11400000, guid: f55e49cdda5c02c43a443ab2b5264be3, type: 2}
+      condition: {fileID: 0}
   eventIllustration: {fileID: 0}
