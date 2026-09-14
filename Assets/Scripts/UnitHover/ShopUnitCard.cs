@@ -30,8 +30,13 @@ public class ShopUnitCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     private bool isPurchased = false;
     private bool wasDragged = false;
 
+    private UnitInstance myDummyUnit;
+    private RectTransform myRect;
+
     public void Initialize(UnitInstance dummyUnit, int price, UnityAction onBuyClicked)
     {
+        myDummyUnit = dummyUnit;
+        myRect = GetComponent<RectTransform>();
         assignedUnit = dummyUnit;
 
         // Restore the breathing and rarity outline animations
@@ -96,7 +101,10 @@ public class ShopUnitCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         if (isPurchased || dragPhantom != null) return;
 
         isHovered = true;
-        hoverGlowGroup.gameObject.SetActive(true);
+        if (hoverGlowGroup != null)
+        {
+            hoverGlowGroup.gameObject.SetActive(true);
+        }
 
         if (isTactic && assignedTactic != null)
         {
@@ -129,17 +137,20 @@ public class ShopUnitCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
                 );
             }
         }
-        else if (!isTactic && assignedUnit != null)
+        else if (!isTactic && myDummyUnit != null)
         {
-            if (UnitHoverDetector.Instance != null) UnitHoverDetector.Instance.ShowTooltipFromUI(assignedUnit);
+            if (UnitHoverDetector.Instance != null) UnitHoverDetector.Instance.ShowTooltipFromUI(myDummyUnit, myRect);
         }
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
         isHovered = false;
-        hoverGlowGroup.alpha = 0f;
-        hoverGlowGroup.gameObject.SetActive(false);
+        if (hoverGlowGroup != null)
+        {
+            hoverGlowGroup.alpha = 0f;
+            hoverGlowGroup.gameObject.SetActive(false);
+        }
 
         if (isTactic)
         {

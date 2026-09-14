@@ -44,6 +44,7 @@ public class UnitHoverUI : MonoBehaviour
     [SerializeField] private bool isPermanentUI = false;
     [Tooltip("Extra padding to prevent IgnoreLayout elements from getting cut off at screen edges!")]
     [SerializeField] private Vector2 edgePadding = new Vector2(50f, 150f);
+    private RectTransform uiAnchorOverride;
 
     [Header("Preview State")]
     public bool isPreviewMode = false;
@@ -99,8 +100,9 @@ public class UnitHoverUI : MonoBehaviour
         if (activePreviewUI != null) activePreviewUI.UpdatePreviewPosition(this);
     }
 
-    public void Show(UnitInstance unit)
+    public void Show(UnitInstance unit, RectTransform uiAnchor = null)
     {
+        uiAnchorOverride = uiAnchor;
         if (unit == null || unit.Definition == null)
             return;
 
@@ -182,7 +184,6 @@ public class UnitHoverUI : MonoBehaviour
             Destroy(child.gameObject);
         }
 
-        // 2. Safely get the unit's tags
         UnitTagFlags unitTags = unit.Stats.Tags;
 
         // 3. Loop through every possible tag defined in your UnitTagFlags enum
@@ -230,12 +231,37 @@ public class UnitHoverUI : MonoBehaviour
         if (isCompendiumUI) return;
         if (canvas == null || currentUnit == null || mainCamera == null) return;
 
+        // --- NEW SMART POSITION TRACKING ---
+        Vector2 unitScreenPos;
+        float unitScreenExtentsX = 0f;
+
+        if (uiAnchorOverride != null)
+        {
+            unitScreenPos = RectTransformUtility.WorldToScreenPoint(mainCamera, uiAnchorOverride.position);
+
+            unitScreenExtentsX = (uiAnchorOverride.rect.width / 2f) * (Screen.width / 1920f);
+        }
+        else
+        {
+            // WE ARE HOVERING A 3D UNIT: Track the physics collider
+            Vector3 unitWorldPos = currentUnit.transform.position;
+            unitScreenPos = mainCamera.WorldToScreenPoint(unitWorldPos);
+
+            Collider2D collider = currentUnit.GetComponent<Collider2D>();
+            float unitWorldExtentsX = 1f;
+            if (collider != null)
+            {
+                unitWorldExtentsX = collider.bounds.extents.x;
+            }
+            Vector2 unitEdgeRightScreen = mainCamera.WorldToScreenPoint(unitWorldPos + new Vector3(unitWorldExtentsX, 0, 0));
+            unitScreenExtentsX = Mathf.Abs(unitEdgeRightScreen.x - unitScreenPos.x);
+        }
+
+        // Apply useFixedPosition logic using our new smart unitScreenPos
         if (useFixedPosition)
         {
-            Vector2 screenPos = mainCamera.WorldToScreenPoint(currentUnit.transform.position);
-
             float flipThreshold = Screen.width * 0.7f;
-            bool unitIsOnLeft = screenPos.x < flipThreshold;
+            bool unitIsOnLeft = unitScreenPos.x < flipThreshold;
 
             if (unitIsOnLeft)
             {
@@ -253,20 +279,6 @@ public class UnitHoverUI : MonoBehaviour
             }
             return; // Exit early 
         }
-
-        Vector3 unitWorldPos = currentUnit.transform.position;
-        Collider2D collider = currentUnit.GetComponent<Collider2D>();
-
-        float unitWorldExtentsX = 1f;
-        if (collider != null)
-        {
-            unitWorldExtentsX = collider.bounds.extents.x;
-        }
-
-        // 1. Convert unit bounds to Screen Space
-        Vector2 unitScreenPos = mainCamera.WorldToScreenPoint(unitWorldPos);
-        Vector2 unitEdgeRightScreen = mainCamera.WorldToScreenPoint(unitWorldPos + new Vector3(unitWorldExtentsX, 0, 0));
-        float unitScreenExtentsX = Mathf.Abs(unitEdgeRightScreen.x - unitScreenPos.x);
 
         float uiWidth = (rectTransform.rect.width + edgePadding.x) * canvas.scaleFactor;
         float uiHeight = (rectTransform.rect.height + edgePadding.y) * canvas.scaleFactor;

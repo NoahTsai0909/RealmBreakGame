@@ -179,14 +179,16 @@ public class UnitHoverDetector : MonoBehaviour
         if (hoverUIInstance != null) Destroy(hoverUIInstance.gameObject);
     }
 
-    public void ShowTooltipFromUI(UnitInstance unit)
+    public void ShowTooltipFromUI(UnitInstance unit, RectTransform uiAnchor = null)
     {
         if (isPinned) return;
         CancelHover();
         currentHoveredUnit = unit;
         isUIHoverDriven = true;
         if (hoverUICanvasGroup != null) hoverUICanvasGroup.blocksRaycasts = false;
-        hoverUIInstance.Show(unit);
+
+        // Pass the anchor through to the UI
+        hoverUIInstance.Show(unit, uiAnchor);
     }
 
     public void HideTooltipFromUI()

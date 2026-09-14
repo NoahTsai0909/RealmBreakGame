@@ -15,7 +15,6 @@ public class ShopSceneController : MonoBehaviour
 
     [Header("Buttons & Text")]
     [SerializeField] private Button refreshButton;
-    [SerializeField] private Button prepSceneButton;
     [SerializeField] private Button continueButton;
 
     [Header("Player Boards")]
@@ -63,7 +62,6 @@ public class ShopSceneController : MonoBehaviour
         continueButton.onClick.AddListener(() => CompleteEventAndReturn(shopEvent));
 
         SetupRefreshButton();
-        SetupPrepSceneButton();
         DisplayCurrentPage();
 
         LoadBattleGridFromRunManager();
@@ -82,8 +80,10 @@ public class ShopSceneController : MonoBehaviour
         refreshButton.gameObject.SetActive(!shopState.hasRefreshed);
 
         var buttonText = refreshButton.GetComponentInChildren<TextMeshProUGUI>();
-        if (buttonText != null) buttonText.text = $"Refresh ({shopEvent.refreshCost}g)";
-
+        if (buttonText != null) {
+            buttonText.text = $"Refresh ({shopEvent.refreshCost} [GOLD])";
+            buttonText.SetText(TextIconUtility.ParseDescription(buttonText.text));
+        }
         refreshButton.onClick.RemoveAllListeners();
         refreshButton.onClick.AddListener(() =>
         {
@@ -99,11 +99,6 @@ public class ShopSceneController : MonoBehaviour
             refreshButton.gameObject.SetActive(false);
             DisplayCurrentPage();
         });
-    }
-
-    void SetupPrepSceneButton()
-    {
-        prepSceneButton.onClick.AddListener(() => SceneLoader.Instance.LoadScene(SceneLoader.GameScene.PrepScene));
     }
 
     void DisplayCurrentPage()

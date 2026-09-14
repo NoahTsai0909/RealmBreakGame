@@ -9,6 +9,10 @@ public class GridManager : MonoBehaviour
     public int cols = 3;
     public float cellSize = 4f;
 
+    [Header("Visual Overrides")]
+    [Tooltip("If true, unrolls a 2D grid into a single horizontal line for UI purposes.")]
+    public bool displayAsSingleRow = false;
+
     public GameObject tilePrefab;
     private SpriteRenderer[,] tileVisuals;
     private Vector2[,] worldPositions;
@@ -29,17 +33,40 @@ public class GridManager : MonoBehaviour
 
     void GenerateGrid()
     {
-        float halfW = (cols - 1) * cellSize * 0.5f;
-        float halfH = (rows - 1) * cellSize * 0.5f;
         Vector2 center = transform.position;
 
-        for (int r = 0; r < rows; r++)
+        if (displayAsSingleRow)
         {
-            for (int c = 0; c < cols; c++)
+            int totalCells = rows * cols;
+            float totalWidth = ((totalCells - 1) * cellSize);
+            float halfW = totalWidth * 0.5f;
+
+            for (int r = 0; r < rows; r++)
             {
-                float x = center.x + (c * cellSize) - halfW;
-                float y = center.y - (r * cellSize) + halfH;
-                worldPositions[r, c] = new Vector2(x, y);
+                for (int c = 0; c < cols; c++)
+                {
+                    int linearIndex = (r * cols) + c;
+
+                    float x = center.x + (linearIndex * cellSize) - halfW;
+                    float y = center.y; 
+
+                    worldPositions[r, c] = new Vector2(x, y);
+                }
+            }
+        }
+        else
+        {
+            float halfW = (cols - 1) * cellSize * 0.5f;
+            float halfH = (rows - 1) * cellSize * 0.5f;
+
+            for (int r = 0; r < rows; r++)
+            {
+                for (int c = 0; c < cols; c++)
+                {
+                    float x = center.x + (c * cellSize) - halfW;
+                    float y = center.y - (r * cellSize) + halfH;
+                    worldPositions[r, c] = new Vector2(x, y);
+                }
             }
         }
     }
