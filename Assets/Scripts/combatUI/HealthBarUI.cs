@@ -8,7 +8,7 @@ public class HealthBarUI : MonoBehaviour
     [SerializeField] private Image shieldFill;
 
     [SerializeField] private TextMeshProUGUI healthText;
-    [SerializeField] private TextMeshProUGUI shieldText;
+    [SerializeField] private TextMeshProUGUI healthTitleText;
 
     public void SetValues(int currentHP, int maxHP, int shield)
     {
@@ -22,18 +22,15 @@ public class HealthBarUI : MonoBehaviour
         shieldFill.fillAmount = Mathf.Clamp01((float)shield / maxHP);
 
         if (healthText != null)
-            healthText.text = currentHP.ToString();
-
-        if (shieldText != null)
         {
             if (shield > 0)
             {
-                shieldText.text = shield.ToString();
-                shieldText.gameObject.SetActive(true);
+                healthText.text = $"{currentHP} <color=#FFD700>+{shield}</color> / {maxHP}";
             }
             else
             {
-                shieldText.gameObject.SetActive(false);
+                // Format: 260 / 260
+                healthText.text = $"{currentHP} / {maxHP}";
             }
         }
     }
@@ -42,5 +39,8 @@ public class HealthBarUI : MonoBehaviour
         {
          if (healthText != null)
              healthText.gameObject.SetActive(visible);
+         if (healthTitleText != null)
+             healthTitleText.gameObject.SetActive(visible);
+        healthTitleText.SetText(TextIconUtility.ParseDescription("[MAXHEALTH] HP"));
     }
 }

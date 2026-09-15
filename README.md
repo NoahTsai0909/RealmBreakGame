@@ -1,10 +1,10 @@
 # Realm Break (Working Title)
 
 > A tactical roguelike autobattler where you construct the ultimate battalion to weather deadly encounters and survive 12 days of escalating challenges.
-
-![Shop Phase](Media/ShopScene.gif) 
-![Prep Phase](Media/PrepScene.gif)
-![Combat Phase](Media/CombatScene.gif)
+![Main Menu](Media/MainMenuScene.gif)
+![Shop Phase](Media/AdventureShopScene.gif) 
+![Combat Phase](Media/RegularCombatScene.gif)
+![Combat Phase](Media/BossCombatScene.gif)
 
 ---
 

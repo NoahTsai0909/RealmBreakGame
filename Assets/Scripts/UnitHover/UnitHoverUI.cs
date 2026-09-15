@@ -376,19 +376,55 @@ public class UnitHoverUI : MonoBehaviour
         lastCrit = stats.CritChance;
         lastMulticast = stats.Multicast;
 
-        // 3. REBUILD STRING (Only runs when a stat fluctuates)
-        string allStats = "";
+        System.Collections.Generic.List<string> topRow = new System.Collections.Generic.List<string>();
+        System.Collections.Generic.List<string> botRow = new System.Collections.Generic.List<string>();
 
-        if (currentUnit.Definition.isEnergy) allStats += TextIconUtility.FormatEnergy(currentEnergy) + "/" + stats.maxEnergy + "  ";
-        if (currentUnit.Stats.Tags.HasFlag(UnitTagFlags.Damage) && stats.Attack > 0) allStats += TextIconUtility.FormatAttack(stats.Attack) + "  ";
-        if (currentUnit.Stats.Tags.HasFlag(UnitTagFlags.Shield) && stats.Shield > 0) allStats += TextIconUtility.FormatShield(stats.Shield) + "  ";
-        if (currentUnit.Stats.Tags.HasFlag(UnitTagFlags.Heal) && stats.Heal > 0) allStats += TextIconUtility.FormatHeal(stats.Heal) + "  ";
-        if (currentUnit.Stats.Tags.HasFlag(UnitTagFlags.Poison) && stats.Poison > 0) allStats += TextIconUtility.FormatPoison(stats.Poison) + "  ";
-        if (currentUnit.Stats.Tags.HasFlag(UnitTagFlags.Burn) && stats.Burn > 0) allStats += TextIconUtility.FormatBurn(stats.Burn) + "  ";
-        if (currentUnit.GetActiveDescription() != "" && stats.CritChance > 0) allStats += TextIconUtility.FormatCrit(stats.CritChance) + "  ";
-        if (stats.Multicast > 1) multicastText.SetText(TextIconUtility.FormatMulticast(stats.Multicast)); else multicastContainer.SetActive(false);
+        if (currentUnit.Definition.isEnergy)
+        {
+            topRow.Add($"{TextIconUtility.FormatEnergy(currentEnergy)}/{stats.maxEnergy}");
+            botRow.Add("ENERGY");
+        }
+        if (currentUnit.Stats.Tags.HasFlag(UnitTagFlags.Damage) && stats.Attack > 0)
+        {
+            topRow.Add(TextIconUtility.FormatAttack(stats.Attack));
+            botRow.Add("ATK");
+        }
+        if (currentUnit.Stats.Tags.HasFlag(UnitTagFlags.Shield) && stats.Shield > 0)
+        {
+            topRow.Add(TextIconUtility.FormatShield(stats.Shield));
+            botRow.Add("SHIELD");
+        }
+        if (currentUnit.Stats.Tags.HasFlag(UnitTagFlags.Heal) && stats.Heal > 0)
+        {
+            topRow.Add(TextIconUtility.FormatHeal(stats.Heal));
+            botRow.Add("HEAL");
+        }
+        if (currentUnit.Stats.Tags.HasFlag(UnitTagFlags.Poison) && stats.Poison > 0)
+        {
+            topRow.Add(TextIconUtility.FormatPoison(stats.Poison));
+            botRow.Add("POISON");
+        }
+        if (currentUnit.Stats.Tags.HasFlag(UnitTagFlags.Burn) && stats.Burn > 0)
+        {
+            topRow.Add(TextIconUtility.FormatBurn(stats.Burn));
+            botRow.Add("BURN");
+        }
+        if (currentUnit.GetActiveDescription() != "" && stats.CritChance > 0)
+        {
+            topRow.Add(TextIconUtility.FormatCrit(stats.CritChance));
+            botRow.Add("CRIT");
+        }
 
-        statText.SetText(allStats);
+        if (stats.Multicast > 1)
+            multicastText.SetText(TextIconUtility.FormatMulticast(stats.Multicast));
+        else
+            multicastContainer.SetActive(false);
+
+        // Stitch them together using standard spacing and color tags!
+        string finalTop = string.Join("   ", topRow);
+        string finalBot = "<size=60%><color=#A0A0A0>" + string.Join("        ", botRow) + "</color></size>";
+
+        statText.SetText($"{finalTop}\n{finalBot}");
         UpdateAbilityDescriptions();
     }
 

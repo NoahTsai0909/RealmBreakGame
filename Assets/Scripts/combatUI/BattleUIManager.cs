@@ -41,14 +41,14 @@ public class BattleUIManager : MonoBehaviour
         // Create health bar
         GameObject healthBarGO = Instantiate(healthBarPrefab, battleCanvas.transform);
         healthBarGO.transform.position = uiPosition + GetHealthBarOffset(unit.isPlayer);
-        healthBarGO.transform.localScale = new Vector3(0.9f, 0.4f, 1f);
+        healthBarGO.transform.localScale = new Vector3(0.9f, 0.4f, 1f) * (1.5f/100f);
 
         HealthBarUI healthBar = healthBarGO.GetComponent<HealthBarUI>();
 
         // Create cooldown bar
         GameObject cooldownBarGO = Instantiate(cooldownBarPrefab, battleCanvas.transform);
         cooldownBarGO.transform.position = uiPosition + GetCooldownBarOffset(unit.isPlayer);
-        cooldownBarGO.transform.localScale = Vector3.one * 1.0f;
+        cooldownBarGO.transform.localScale = Vector3.one * (1/75f);
 
         CooldownBarUI cooldownBar = cooldownBarGO.GetComponent<CooldownBarUI>();
 

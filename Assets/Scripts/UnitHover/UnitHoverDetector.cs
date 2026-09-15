@@ -36,7 +36,7 @@ public class UnitHoverDetector : MonoBehaviour
         GameObject tooltipCanvasObj = new GameObject("UnitHoverCanvas");
         Canvas tooltipCanvas = tooltipCanvasObj.AddComponent<Canvas>();
         tooltipCanvas.renderMode = RenderMode.ScreenSpaceOverlay;
-        tooltipCanvas.sortingOrder = 30000;
+        tooltipCanvas.sortingOrder = 29997;
 
         UnityEngine.UI.CanvasScaler scaler = tooltipCanvasObj.AddComponent<UnityEngine.UI.CanvasScaler>();
         scaler.uiScaleMode = UnityEngine.UI.CanvasScaler.ScaleMode.ScaleWithScreenSize;
