@@ -10,6 +10,7 @@ public class MainMenuController : MonoBehaviour
     [SerializeField] private Button abandonButton;
     [SerializeField] private Button compendiumButton;
     [SerializeField] private Button settingsButton;
+    [SerializeField] private Button quitButton;
     [SerializeField] private GameObject mainMenuPanel;
     [SerializeField] private GameObject compendiumPanel;
     [SerializeField] private GameObject LeftSideBar;
@@ -26,6 +27,7 @@ public class MainMenuController : MonoBehaviour
         compendiumButton.onClick.AddListener(() => ShowCompendium());
         settingsButton.onClick.AddListener(() => {if (SettingsManager.Instance != null){SettingsManager.Instance.OpenSettings();}});
         filterButton.onClick.AddListener(() => ToggleFilterSideBar());
+        quitButton.onClick.AddListener(() => QuitGame());
         RunHUDManager.Instance?.Hide();
     }
 
@@ -91,5 +93,15 @@ public class MainMenuController : MonoBehaviour
         isFilterSidebarOpen = !isFilterSidebarOpen;
         FilterSideBar.SetActive(isFilterSidebarOpen);
         LeftSideBar.SetActive(!isFilterSidebarOpen);
+    }
+
+    public void QuitGame()
+    {
+        
+        #if UNITY_EDITOR
+                UnityEditor.EditorApplication.isPlaying = false;
+        #else
+                Application.Quit();
+        #endif
     }
 }

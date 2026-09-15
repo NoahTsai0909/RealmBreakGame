@@ -83,12 +83,9 @@ public class LootSummaryUI : MonoBehaviour
         spawnedUnitPreview.transform.localScale = Vector3.one * 30f;
 
         if (spawnedUnitPreview.Visuals != null)
-            spawnedUnitPreview.Visuals.SetBaseScale(spawnedUnitPreview.transform.localScale);
-
-        if (spawnedUnitPreview.Visuals != null)
         {
             spawnedUnitPreview.Visuals.SetBaseScale(spawnedUnitPreview.transform.localScale);
-            spawnedUnitPreview.Visuals.SyncSortingOrder(100);
+            spawnedUnitPreview.Visuals.SyncSortingOrder(30000);
         }
     }
 

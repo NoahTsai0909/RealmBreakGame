@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class IronmoonCocoon : UnitInstance
 {
+    private int mutationTriggerCount = 0;
+    private int mutationTriggerThreshold = 5;
     public override void EnterCombat(GridManager grid, int row, int col, bool isPlayer, bool startCombat = true)
     {
         base.EnterCombat(grid, row, col, isPlayer, startCombat);
@@ -19,6 +21,15 @@ public class IronmoonCocoon : UnitInstance
     {
         if (action.source == null) return;
         if (action.type != CombatActionType.Shield || action.target != this || action.source == this) return;
+        if (currentSuffix != null)
+        {
+            mutationTriggerCount++;
+            if (mutationTriggerCount >= mutationTriggerThreshold)
+            {
+                mutationTriggerCount = 0;
+                currentSuffix.ExecuteEffect(this);
+            }
+        }
         CombatManager.Instance.ExecuteAction(
                 new CombatAction
                 {
@@ -34,5 +45,10 @@ public class IronmoonCocoon : UnitInstance
     public override string GetPassiveDescription()
     {
         return ($"When this is [c_shield]shielded[/c] by another unit, [c_shield]shield[/c] this for [SHIELD] {stats.Shield}.");
+    }
+
+    public override string GetMutationTriggerText()
+    {
+        return ($"<br>Every {mutationTriggerThreshold} times this is [c_shield]shielded[/c] by another unit, ");
     }
 }

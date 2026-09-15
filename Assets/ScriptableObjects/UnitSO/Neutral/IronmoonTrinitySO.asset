@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::UnitDefinition
   unitName: Ironmoon Trinity
   maxHP: 140
+  mainStat: 5
   attack: 0
   heal: 0
   shield: 30
@@ -27,6 +28,12 @@ MonoBehaviour:
   isEnergy: 0
   maxEnergy: 0
   multicast: 3
+  overrideCooldownScaling: 0
+  cooldownByRarity:
+  - 0
+  - 0
+  - 0
+  - 0
   unitSprite: {fileID: 21300000, guid: b58ac5171f11ea24c92b3fd7d3a9aed4, type: 3}
   defaultProjectile: []
   cost: 0

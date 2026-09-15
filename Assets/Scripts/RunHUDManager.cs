@@ -134,7 +134,7 @@ public class RunHUDManager : MonoBehaviour
     private void UpdateDay(int day)
     {
         if (dayText != null)
-            dayText.SetText(TextIconUtility.ParseDescription(day.ToString()));
+            dayText.SetText(TextIconUtility.ParseDescription("[c_day]Day " + day.ToString() + "[/c]"));
     }
 
     private void UpdateLevel(int level)

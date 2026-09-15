@@ -230,12 +230,22 @@ public class gameManager : MonoBehaviour
                     RunManager.Instance.selectedEvent.OnCompleted();
 
                 bool isFinalDay = RunManager.Instance.Stats.CurrentDay >= RunManager.Instance.TOTAL_DAYS;
+                if (isFinalDay && playerWon)
+                {
+                    SceneLoader.Instance.LoadScene(GameScene.RunSummaryScene);
+                    return;
+                }
+
                 bool canUseLastChance = RunManager.Instance.Stats.PlayerHealth <= 0 && !isFinalDay && !RunManager.Instance.hasUsedLastChance;
 
                 if (playerWon || RunManager.Instance.Stats.PlayerHealth > 0 || canUseLastChance)
+                {
                     SceneLoader.Instance.LoadScene(GameScene.MapScene);
+                }
                 else
+                {
                     SceneLoader.Instance.LoadScene(GameScene.RunSummaryScene);
+                }
             });
         }
     }
