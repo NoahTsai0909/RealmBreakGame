@@ -107,7 +107,6 @@ public class EventSceneController : MonoBehaviour
                 string displayText = choice.buttonText;
                 bool isInteractable = true;
 
-                // Evaluate conditions
                 if (choice.condition != null)
                 {
                     isInteractable = choice.condition.IsMet();
@@ -123,6 +122,12 @@ public class EventSceneController : MonoBehaviour
                 EventContext choiceContext = new EventContext();
                 choiceContext.uiController = this;
 
+                int uniqueSeed = RunManager.Instance.runSeed
+                    + RunManager.Instance.Stats.CurrentDay
+                    + RunManager.Instance.regularEventsCompleted
+                    + choice.buttonText.GetHashCode();
+                Random.InitState(uniqueSeed);
+
                 if (choice.generateRandomUnitPreview)
                 {
                     UnitSaveData randomData = UnitGenerationService.GenerateUnit(choice.randomRegion, choice.preferredTags);
@@ -132,8 +137,6 @@ public class EventSceneController : MonoBehaviour
                 else if (choice.previewUnit != null)
                 {
                     Rarity finalRarity;
-
-                    // Check the new flag to determine how we get the rarity
                     if (choice.rollRandomRarity)
                     {
                         int day = RunManager.Instance.Stats.CurrentDay;
@@ -145,12 +148,7 @@ public class EventSceneController : MonoBehaviour
                         finalRarity = choice.previewRarity;
                     }
 
-                    UnitSaveData generatedData = new UnitSaveData
-                    {
-                        definition = choice.previewUnit,
-                        rarity = finalRarity
-                    };
-
+                    UnitSaveData generatedData = new UnitSaveData { definition = choice.previewUnit, rarity = finalRarity };
                     choiceContext.generatedUnit = generatedData;
                     SpawnUnitOnButton(generatedData, newButton);
                 }
@@ -163,7 +161,6 @@ public class EventSceneController : MonoBehaviour
                 else if (choice.previewTactic != null)
                 {
                     Rarity finalRarity;
-
                     if (choice.rollRandomRarity)
                     {
                         int day = RunManager.Instance.Stats.CurrentDay;
@@ -178,23 +175,15 @@ public class EventSceneController : MonoBehaviour
                     if (RunManager.Instance != null)
                     {
                         var existingTactic = RunManager.Instance.playerTactics.FirstOrDefault(p =>
-                            p.tacticData != null &&
-                            p.tacticData.definition == choice.previewTactic);
-
-                        if (existingTactic != null)
-                        {
-                            finalRarity = existingTactic.tacticData.rarity;
-                        }
+                            p.tacticData != null && p.tacticData.definition == choice.previewTactic);
+                        if (existingTactic != null) finalRarity = existingTactic.tacticData.rarity;
                     }
-                    RunManager.TacticSaveData generatedData = new RunManager.TacticSaveData
-                    {
-                        definition = choice.previewTactic,
-                        rarity = finalRarity
-                    };
 
+                    RunManager.TacticSaveData generatedData = new RunManager.TacticSaveData { definition = choice.previewTactic, rarity = finalRarity };
                     choiceContext.generatedTactic = generatedData;
                     SpawnTacticOnButton(generatedData, newButton);
                 }
+                UnityEngine.Random.InitState((int)System.DateTime.Now.Ticks);
 
                 newButton.onClick.AddListener(() => ExecutePlayerChoice(choice, choiceContext));
             }

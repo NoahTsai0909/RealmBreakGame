@@ -364,7 +364,6 @@ public class DragAndDropManager : MonoBehaviour
         draggedPlacement.col = sourcePos.y;
 
         SetUnitDragVisuals(draggedUnit, false);
-        StartCoroutine(ShowProvisionWarning());
 
         draggedUnit = null;
         draggedPlacement = null;
@@ -375,18 +374,6 @@ public class DragAndDropManager : MonoBehaviour
 
         currentHoveredGrid = null;
         currentHoveredCell = new Vector2Int(-1, -1);
-    }
-
-    System.Collections.IEnumerator ShowProvisionWarning()
-    {
-        var provisionText = provisionManager.provisionText;
-        if (provisionText != null)
-        {
-            Color originalColor = provisionText.color;
-            provisionText.color = provisionManager.exceededColor;
-            yield return new WaitForSeconds(0.5f);
-            provisionText.color = originalColor;
-        }
     }
 
     GridManager GetClosestGrid(Vector3 worldPos)

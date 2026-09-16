@@ -103,7 +103,7 @@ public class gameManager : MonoBehaviour
         CombatEventBus.OnCombatEvent += OnCombatEvent;
         if (RunHUDManager.Instance != null)
         {
-            RunHUDManager.Instance.SlideOutAndHide(0.5f);
+            RunHUDManager.Instance.HideSquadButton();
         }
     }
 
@@ -225,6 +225,10 @@ public class gameManager : MonoBehaviour
             continueButton.onClick.AddListener(() =>
             {
                 Time.timeScale = 1f;
+                if (RunHUDManager.Instance != null)
+                {
+                    RunHUDManager.Instance.ShowSquadButton();
+                }
 
                 if (RunManager.Instance.selectedEvent != null)
                     RunManager.Instance.selectedEvent.OnCompleted();

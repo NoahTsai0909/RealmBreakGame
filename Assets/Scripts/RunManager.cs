@@ -11,6 +11,7 @@ public class RunManager : MonoBehaviour
 
     // Run Data
     public RunStats Stats = new RunStats();
+    public int runSeed;
 
     public List<UnitPlacement> playerTeamPlacements = new();
     public List<UnitPlacement> playerBenchPlacements = new();
@@ -134,6 +135,7 @@ public class RunManager : MonoBehaviour
         hasUsedLastChance = false;
         permanentStatsMap.Clear();
         playerTactics.Clear();
+        runSeed = UnityEngine.Random.Range(1, 99999999);
 
         // 4. Reset team/bench to defaults
         playerTeamPlacements.Clear();

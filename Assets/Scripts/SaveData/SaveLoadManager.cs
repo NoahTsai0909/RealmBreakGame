@@ -25,7 +25,7 @@ public static class SaveLoadManager
         data.currentEventPhase = rm.currentEventPhase;
         data.hasUsedLastChance = rm.hasUsedLastChance;
         data.eventInProgress = rm.eventInProgress;
-
+        data.runSeed = rm.runSeed;
         // Save Dictionaries
         data.permanentStatsMap = rm.GetPermanentStatsMap();
         data.masterUnitStats = rm.masterUnitStats;
@@ -67,7 +67,7 @@ public static class SaveLoadManager
             rm.currentEventPhase = data.currentEventPhase;
             rm.hasUsedLastChance = data.hasUsedLastChance;
             rm.eventInProgress = data.eventInProgress;
-
+            rm.runSeed = data.runSeed;
             // SAFELY RESTORE DICTIONARIES
             if (data.permanentStatsMap != null)
                 rm.SetPermanentStatsMap(data.permanentStatsMap);

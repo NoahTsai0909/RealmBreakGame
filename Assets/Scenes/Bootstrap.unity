@@ -1060,40 +1060,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0409c08c9b8e8eb4bb00b3ad36e1d726, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RunManager
+  runSeed: 0
   playerTeamPlacements: []
   playerBenchPlacements: []
   playerTactics: []
-  defaultUnits:
-  - unitData:
-      definition: {fileID: 11400000, guid: 9e60735db16bcc84aa82b76462459001, type: 2}
-      rarity: 2
-      provisionCost: 0
-      provisionModifier: 0
-      valueModifier: 0
-      prefix: {fileID: 11400000, guid: d6465bb6e64abc44cadd13f0f45ae05e, type: 2}
-      suffix: {fileID: 11400000, guid: da0d2f426274dcb4082a8f9f09b5f2e1, type: 2}
-    row: 0
-    col: 0
-  - unitData:
-      definition: {fileID: 11400000, guid: 005d0d6378e9c634da8db0e118e691b3, type: 2}
-      rarity: 1
-      provisionCost: 0
-      provisionModifier: 0
-      valueModifier: 0
-      prefix: {fileID: 0}
-      suffix: {fileID: 0}
-    row: 1
-    col: 0
-  - unitData:
-      definition: {fileID: 11400000, guid: 6435ef4f87c06cd478998c73bcdf6d2b, type: 2}
-      rarity: 3
-      provisionCost: 0
-      provisionModifier: 0
-      valueModifier: 0
-      prefix: {fileID: 0}
-      suffix: {fileID: 0}
-    row: 1
-    col: 1
+  defaultUnits: []
   benchSize: 5
   regularEventsCompleted: 0
   isBattlePhase: 0

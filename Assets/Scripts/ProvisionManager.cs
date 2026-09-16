@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ProvisionManager : MonoBehaviour
@@ -6,11 +5,6 @@ public class ProvisionManager : MonoBehaviour
     [SerializeField] private GridManager battleGrid;
     [SerializeField] private GridManager benchGrid;
     private RunManager runManager;
-
-    [Header("UI")]
-    [SerializeField] public TMPro.TextMeshProUGUI provisionText;
-    [SerializeField] private Color validColor = Color.white;
-    [SerializeField] public Color exceededColor = Color.red;
 
     private int currentProvisionUsed = 0;
 
@@ -23,13 +17,19 @@ public class ProvisionManager : MonoBehaviour
         UpdateUI();
     }
 
+    private void OnDestroy()
+    {
+        if (RunHUDManager.Instance != null)
+        {
+            RunHUDManager.Instance.ClearCurrentProvision();
+        }
+    }
+
     public int GetUnitProvisionCost(UnitInstance unit)
     {
         if (unit == null || unit.myPlacement == null || unit.myPlacement.unitData == null)
             return 0;
 
-        // Use the provision cost from UnitSaveData if available,
-        // otherwise fall back to the UnitDefinition default
         return unit.myPlacement.unitData.provisionCost > 0
             ? unit.myPlacement.unitData.provisionCost
             : unit.Definition.provisionCost;
@@ -64,9 +64,6 @@ public class ProvisionManager : MonoBehaviour
 
     public bool CanSwapUnits(UnitInstance unitLeavingBattle, UnitInstance unitEnteringBattle)
     {
-        // unitLeavingBattle is currently in battle grid
-        // unitEnteringBattle is trying to enter battle grid
-
         int leavingCost = GetUnitProvisionCost(unitLeavingBattle);
         int enteringCost = GetUnitProvisionCost(unitEnteringBattle);
         int netChange = enteringCost - leavingCost;
@@ -81,13 +78,12 @@ public class ProvisionManager : MonoBehaviour
 
     private void UpdateUI()
     {
-        if (provisionText == null) return;
-
-        provisionText.SetText(TextIconUtility.ParseDescription($"[PROVISION] [c_gold]{currentProvisionUsed}/{runManager.Stats.ProvisionCap}[/c]"));
-        provisionText.color = IsProvisionValid() ? validColor : exceededColor;
+        if (RunHUDManager.Instance != null)
+        {
+            RunHUDManager.Instance.SetCurrentProvision(currentProvisionUsed, IsProvisionValid());
+        }
     }
 
-    // Call this whenever units are moved
     public void OnUnitMoved(GridManager fromGrid, GridManager toGrid, UnitInstance unit)
     {
         CalculateCurrentProvision();
@@ -95,9 +91,9 @@ public class ProvisionManager : MonoBehaviour
 
     public void HideProvisionText()
     {
-               if (provisionText != null)
+        if (RunHUDManager.Instance != null)
         {
-            provisionText.gameObject.SetActive(false);
+            RunHUDManager.Instance.ClearCurrentProvision();
         }
     }
 }

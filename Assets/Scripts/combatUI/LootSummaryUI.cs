@@ -106,7 +106,8 @@ public class LootSummaryUI : MonoBehaviour
         if (canvas != null)
         {
             canvas.overrideSorting = true;
-            canvas.sortingOrder = 100;
+            canvas.sortingLayerName = "Units";
+            canvas.sortingOrder = 30000;
         }
     }
 

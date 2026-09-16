@@ -18,6 +18,7 @@ public class RunHUDManager : MonoBehaviour
     [SerializeField] private Button squadButton;
     [SerializeField] private Button settingsButton;
 
+
     [Header("XP Settings")]
     [SerializeField] private int maxReputation = 10; 
 
@@ -31,6 +32,8 @@ public class RunHUDManager : MonoBehaviour
 
     [Header("Behavior")]
     [SerializeField] private bool dontDestroyOnLoad = false;
+    private int currentProvision = -1; // -1 means not currently tracking provision usage
+    private bool isProvisionValid = true;
 
     private void Awake()
     {
@@ -59,13 +62,18 @@ public class RunHUDManager : MonoBehaviour
             }
         }
         squadButton.onClick.AddListener(() => {
-            // Get the name of the active scene
             string currentScene = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
-
-            // Toggle between Map and Prep
             if (currentScene == "PrepScene")
             {
-                SceneLoader.Instance.LoadScene(GameScene.MapScene);
+                PrepSceneManager prepManager = Object.FindFirstObjectByType<PrepSceneManager>();
+                if (prepManager != null)
+                {
+                    prepManager.ReturnToMapScene();
+                }
+                else
+                {
+                    SceneLoader.Instance.LoadScene(SceneLoader.Instance.lastScene);
+                }
             }
             else
             {
@@ -154,8 +162,39 @@ public class RunHUDManager : MonoBehaviour
 
     private void UpdateProvisionCap(int cap)
     {
-        if (provisionCapText != null)
+        if (provisionCapText == null) return;
+
+        if (currentProvision >= 0)
+        {
+            if (isProvisionValid)
+            {
+                provisionCapText.SetText(TextIconUtility.ParseDescription($"[c_maxprovision]{currentProvision} / {cap}[/c]"));
+            }
+            else
+            {
+                provisionCapText.SetText(TextIconUtility.ParseDescription($"[c_maxprovision]<color=#FF4444>{currentProvision} / {cap}</color>[/c]"));
+            }
+        }
+        else 
+        {
             provisionCapText.SetText(TextIconUtility.ParseDescription("[c_maxprovision]" + cap.ToString() + "[/c]"));
+        }
+    }
+
+    public void SetCurrentProvision(int current, bool isValid)
+    {
+        currentProvision = current;
+        isProvisionValid = isValid;
+        if (RunManager.Instance != null)
+            UpdateProvisionCap(RunManager.Instance.Stats.ProvisionCap);
+    }
+
+    public void ClearCurrentProvision()
+    {
+        currentProvision = -1;
+        isProvisionValid = true;
+        if (RunManager.Instance != null)
+            UpdateProvisionCap(RunManager.Instance.Stats.ProvisionCap);
     }
 
 
@@ -228,6 +267,22 @@ public class RunHUDManager : MonoBehaviour
 
         hudRect.anchoredPosition = endPos;
         Hide();
+    }
+
+    public void HideSquadButton()
+    {
+        if (squadButton != null)
+        {
+            squadButton.gameObject.SetActive(false);
+        }
+    }
+
+    public void ShowSquadButton()
+    {
+        if (squadButton != null)
+        {
+            squadButton.gameObject.SetActive(true);
+        }
     }
 
     public void ResetAndShow()

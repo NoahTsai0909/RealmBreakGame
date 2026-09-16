@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class Arsonist : UnitInstance
 {
+    private int mutationTriggerCount = 0;
+    private int mutationTriggerThreshold = 4;
     public override void EnterCombat(GridManager grid, int row, int col, bool isPlayer, bool startCombat = true)
     {
         base.EnterCombat(grid, row, col, isPlayer, startCombat);
@@ -34,12 +36,26 @@ public class Arsonist : UnitInstance
                     isPassive = true
                 }
             );
+            if (currentSuffix != null)
+            {
+                mutationTriggerCount++;
+                if (mutationTriggerCount == mutationTriggerThreshold)
+                {
+                    mutationTriggerCount = 0;
+                    currentSuffix.ExecuteEffect(this);
+                }
+            }
         }
 
     }
 
     public override string GetPassiveDescription()
     {
-        return ($"When an enemy is applied [c_burn]burn[/c] from an ability, [c_burn]burn[/c] it for [BURN] {stats.Burn}.");
+        return ($"When an enemy is applied [c_burn]burn[/c] from another ally's ability, [c_burn]burn[/c] it for [BURN] {stats.Burn}.");
+    }
+
+    public override string GetMutationTriggerText()
+    {
+        return ($"<br>Every {mutationTriggerThreshold} times this [c_burn]burns[/c], ");
     }
 }

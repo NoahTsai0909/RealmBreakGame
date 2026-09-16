@@ -8,7 +8,6 @@ public class PrepSceneManager : MonoBehaviour
 {
     public GridManager battleGrid;
     public GridManager benchGrid;
-    [SerializeField] private Button ReturnButton;
     [SerializeField] private ProvisionManager provisionManager;
     [Header("Tactics")]
     [SerializeField] private TacticBarManager playerTacticBarManager;
@@ -17,19 +16,15 @@ public class PrepSceneManager : MonoBehaviour
 
     void Start()
     {
-        if (RunHUDManager.Instance != null)
+        /*if (RunHUDManager.Instance != null)
         {
             RunHUDManager.Instance.SlideOutAndHide(0.5f);
-        }
+        }*/
 
         if (RunManager.Instance != null)
         {
             RunManager.Instance.SanitizeBench();
         }
-
-        ReturnButton.onClick.AddListener(() => {
-            ReturnToMapScene();
-        });
 
         DragAndDropManager dragManager = FindFirstObjectByType<DragAndDropManager>();
 

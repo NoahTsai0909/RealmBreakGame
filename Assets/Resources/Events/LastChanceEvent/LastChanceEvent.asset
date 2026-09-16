@@ -74,4 +74,16 @@ MonoBehaviour:
       - {fileID: 11400000, guid: ec2bd3a307c5a0346a76e2ef83dbeea4, type: 2}
       - {fileID: 11400000, guid: ec2bd3a307c5a0346a76e2ef83dbeea4, type: 2}
       condition: {fileID: 0}
+    - buttonText: Mutate a unit.
+      previewUnit: {fileID: 0}
+      rollRandomRarity: 0
+      previewRarity: 0
+      generateRandomUnitPreview: 0
+      randomRegion: 0
+      preferredTags: 2097152
+      previewTactic: {fileID: 0}
+      generateRandomTacticPreview: 0
+      outcomes:
+      - {fileID: 11400000, guid: fc50889b61f35bf479fb237d92911891, type: 2}
+      condition: {fileID: 0}
   eventIllustration: {fileID: 21300000, guid: d9dfab79340d2264a9944829d65a05f1, type: 3}

@@ -6,43 +6,59 @@ public class TacticBarManager : MonoBehaviour
     public enum BarAlignment { Left, Center, Right }
     public BarAlignment alignment = BarAlignment.Left; // Player will be Left, Enemy will be Right
 
+    [Header("Spacing & Bounds")]
     [Tooltip("The standard distance between tactics")]
     public float defaultSpacing = 1f;
-
-    [Tooltip("The maximum physical width the bar is allowed to take up on screen before it starts squishing tactics closer together")]
+    [Tooltip("The max width the bar is allowed to take up before squishing tactics")]
     public float maxBarWidth = 20f;
+
+    [Tooltip("Where should the tactics start spawning? (Drag an empty GameObject here)")]
+    public Transform trackAnchor;
+    [Tooltip("Force tactics to this size to fit the bar")]
+    public Vector3 tacticScale = Vector3.one;
 
     [Header("Visuals")]
     public Vector2 tacticVisualOffset = new Vector2(0f, 0.5f);
-    [Tooltip("If true, tactics will alternate up and down to interlock.")]
     public bool useVerticalStagger = true;
-
-    [Tooltip("How much to physically drop every alternating tactic.")]
     public float verticalStaggerAmount = -1f;
 
-    // The dynamic, gapless timeline of tactics
-    private List<TacticInstance> activeTactics = new List<TacticInstance>();
+    [Header("Enemy Bar Settings")]
+    public bool isEnemyBar = false;
+    public RectTransform barBackgroundRect; 
+    public GameObject tacticsTextObj;       
 
-    [Header("Combat State")]
+    private List<TacticInstance> activeTactics = new List<TacticInstance>();
     public bool isCombatRunning = false;
 
+    void Start()
+    {
+        if (isEnemyBar)
+        {
+            alignment = BarAlignment.Right;
+            if (barBackgroundRect != null)
+                barBackgroundRect.localScale = new Vector3(-1, 1, 1); 
+            if (tacticsTextObj != null)
+                tacticsTextObj.SetActive(false); 
+
+            if (trackAnchor != null)
+            {
+                Vector3 mirroredPos = trackAnchor.localPosition;
+                mirroredPos.x = -mirroredPos.x; 
+                trackAnchor.localPosition = mirroredPos;
+            }
+        }
+    }
 
     void Update()
     {
         if (!isCombatRunning) return;
 
-        // 1. Find the first active tactic in the line that HAS NOT fired yet
         TacticInstance currentActive = GetFirstReadyActiveTactic();
-
-        // 2. If we found one, tick its timer down
         if (currentActive != null)
         {
             if (currentActive.TickCooldown(Time.deltaTime))
             {
-                // BOOM! Timer hit 0. Fire the effect!
                 currentActive.ExecuteActiveEffect();
-
-                // Mark it as permanently spent for this combat so the runner moves to the next one
                 currentActive.MarkAsSpent();
             }
         }
@@ -52,11 +68,8 @@ public class TacticBarManager : MonoBehaviour
     {
         foreach (var tactic in activeTactics)
         {
-            // We ignore passives, and we ignore anything that has already triggered
             if (tactic != null && !tactic.isPassive && !tactic.isSpent)
-            {
                 return tactic;
-            }
         }
         return null;
     }
@@ -68,7 +81,6 @@ public class TacticBarManager : MonoBehaviour
         {
             if (tactic != null)
             {
-                // Pass it straight down to the tactic
                 tactic.SetupTargeting(isPlayerBar);
                 tactic.EnterCombat();
             }
@@ -88,60 +100,35 @@ public class TacticBarManager : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Adds a tactic to the end of the timeline.
-    /// </summary>
-
     public void AddTactic(TacticInstance tactic)
     {
         if (tactic == null) return;
-
         if (!activeTactics.Contains(tactic))
         {
             activeTactics.Add(tactic);
             tactic.myBar = this;
             tactic.SetupTargeting(alignment == BarAlignment.Left);
-
             UpdateVisualLayout();
         }
     }
 
-    /// <summary>
-    /// Inserts a tactic at a specific index. Perfect for Drag & Drop reordering!
-    /// </summary>
     public void InsertTactic(int index, TacticInstance tactic)
     {
         if (tactic == null) return;
-
-        // If it's already in the bar, remove it first so we can re-insert it at the new position
-        if (activeTactics.Contains(tactic))
-        {
-            activeTactics.Remove(tactic);
-        }
-
-        // Clamp the index safely so we don't get out of bounds errors
+        if (activeTactics.Contains(tactic)) activeTactics.Remove(tactic);
         index = Mathf.Clamp(index, 0, activeTactics.Count);
-
         activeTactics.Insert(index, tactic);
         tactic.myBar = this;
         UpdateVisualLayout();
     }
 
-    /// <summary>
-    /// Removes a tactic from the bar and closes the gap.
-    /// </summary>
     public void RemoveTactic(TacticInstance tactic, bool destroyVisual = true)
     {
         if (activeTactics.Contains(tactic))
         {
             activeTactics.Remove(tactic);
-
-            if (destroyVisual && tactic != null)
-            {
-                Destroy(tactic.gameObject);
-            }
-
-            UpdateVisualLayout(); // Automatically closes the gap!
+            if (destroyVisual && tactic != null) Destroy(tactic.gameObject);
+            UpdateVisualLayout();
         }
     }
 
@@ -162,7 +149,6 @@ public class TacticBarManager : MonoBehaviour
         int count = activeTactics.Count;
         if (count == 0) return;
 
-        // 1. Auto-Size: Determine the actual spacing to use
         float currentSpacing = defaultSpacing;
         float totalWidth = (count - 1) * currentSpacing;
 
@@ -171,14 +157,14 @@ public class TacticBarManager : MonoBehaviour
             currentSpacing = maxBarWidth / (count > 1 ? count - 1 : 1);
         }
 
-        Vector2 anchorPos = transform.position;
+        // USE THE NEW ANCHOR IF IT EXISTS
+        Vector2 anchorPos = trackAnchor != null ? trackAnchor.position : transform.position;
 
         for (int i = 0; i < count; i++)
         {
             float x = anchorPos.x;
-            float y = anchorPos.y; // Start with the anchor's default Y
+            float y = anchorPos.y;
 
-            // ALIGNMENT (X-Axis)
             if (alignment == BarAlignment.Center)
             {
                 float halfW = totalWidth * 0.5f;
@@ -193,23 +179,20 @@ public class TacticBarManager : MonoBehaviour
                 x = anchorPos.x - (i * currentSpacing);
             }
 
-            // STAGGER (Y-Axis): If it is an odd number (1, 3, 5), drop it down!
-            if (useVerticalStagger && i % 2 != 0)
-            {
-                y += verticalStaggerAmount;
-            }
+            if (useVerticalStagger && i % 2 != 0) y += verticalStaggerAmount;
 
             Vector2 targetPos = new Vector2(x, y) + tacticVisualOffset;
 
             if (activeTactics[i] != null)
             {
+                // FORCE THE SCALE
+                activeTactics[i].transform.localScale = tacticScale;
                 if (!activeTactics[i].isDragging)
                 {
                     activeTactics[i].transform.position = targetPos;
                 }
             }
         }
-
     }
 
     public int GetInsertIndexFromPosition(Vector3 worldPosition)
@@ -221,26 +204,18 @@ public class TacticBarManager : MonoBehaviour
             ? maxBarWidth / (count > 1 ? count - 1 : 1)
             : defaultSpacing;
 
-        float startX = transform.position.x;
+        float startX = trackAnchor != null ? trackAnchor.position.x : transform.position.x;
 
         if (alignment == BarAlignment.Center)
         {
             float halfW = (count - 1) * currentSpacing * 0.5f;
-            startX = transform.position.x - halfW;
+            startX = trackAnchor != null ? trackAnchor.position.x - halfW : transform.position.x - halfW;
         }
 
-        // Calculate distance from the anchor
         float localX = worldPosition.x - startX;
+        if (alignment == BarAlignment.Right) localX = startX - worldPosition.x;
 
-        // If right aligned, the bar grows to the left, so we invert the distance
-        if (alignment == BarAlignment.Right)
-        {
-            localX = startX - worldPosition.x;
-        }
-
-        // Using RoundToInt instead of FloorToInt ensures dropping between two items feels natural
         int index = Mathf.RoundToInt(localX / currentSpacing);
-
         return Mathf.Clamp(index, 0, count);
     }
 
@@ -251,7 +226,6 @@ public class TacticBarManager : MonoBehaviour
 
     public void ClearAllTactics()
     {
-        // Loop backwards when destroying objects in a list
         for (int i = activeTactics.Count - 1; i >= 0; i--)
         {
             RemoveTactic(activeTactics[i], true);
