@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: f3116b3789e92ca42a6ee3125321cc31
+guid: fe803e43604933947951c7953e7fbceb
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7872595650591514457
-    second: roundEdgeUI_0
+      213: -1674958650734758790
+    second: MapBackground 1_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -51,8 +51,8 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 160
-  spriteBorder: {x: 260, y: 260, z: 260, w: 260}
+  spritePixelsToUnits: 45
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
@@ -100,23 +100,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: roundEdgeUI_0
+      name: MapBackground 1_0
       rect:
         serializedVersion: 2
-        x: 7
-        y: 7
-        width: 627
-        height: 626
+        x: 0
+        y: 0
+        width: 1920
+        height: 1080
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 7a0253277fbeeb290800000000000000
-      internalID: -7872595650591514457
+      spriteID: a74bc714bf951c8e0800000000000000
+      internalID: -1674958650734758790
       vertices: []
       indices: 
       edges: []
@@ -126,7 +126,7 @@ TextureImporter:
     physicsShape: []
     bones: []
     spriteID: 5e97eb03825dee720800000000000000
-    internalID: 1537655665
+    internalID: 0
     vertices: []
     indices: 
     edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      roundEdgeUI_0: -7872595650591514457
+      MapBackground 1_0: -1674958650734758790
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

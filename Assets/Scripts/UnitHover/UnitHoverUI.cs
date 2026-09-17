@@ -353,7 +353,6 @@ public class UnitHoverUI : MonoBehaviour
         StatBlock stats = currentUnit.Stats;
         int currentEnergy = currentUnit.inCombat ? currentUnit.currentEnergy : stats.maxEnergy;
 
-        // 1. PERFORMANCE CHECK: Did anything actually change?
         if (lastEnergy == currentEnergy &&
             lastAttack == stats.Attack &&
             lastShield == stats.Shield &&
@@ -363,10 +362,9 @@ public class UnitHoverUI : MonoBehaviour
             lastCrit == stats.CritChance &&
             lastMulticast == stats.Multicast)
         {
-            return; // Nothing changed, skip expensive string rebuilding!
+            return; 
         }
 
-        // 2. UPDATE CACHE
         lastEnergy = currentEnergy;
         lastAttack = stats.Attack;
         lastShield = stats.Shield;
@@ -420,7 +418,6 @@ public class UnitHoverUI : MonoBehaviour
         else
             multicastContainer.SetActive(false);
 
-        // Stitch them together using standard spacing and color tags!
         string finalTop = string.Join("   ", topRow);
         string finalBot = "<size=60%><color=#A0A0A0>" + string.Join("        ", botRow) + "</color></size>";
 
