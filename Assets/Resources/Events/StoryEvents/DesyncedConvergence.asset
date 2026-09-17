@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::StoryEventSO
   eventName: Desynced Convergence
   description: Give a unit a random mutation.
-  eventIcon: {fileID: 21300000, guid: d3e49c22ac0f4484bab16cf120bfe708, type: 3}
+  eventIcon: {fileID: 21300000, guid: ef55c91682e07784b84d953429afcf3a, type: 3}
   eventBackgroundImage: {fileID: 21300000, guid: 9bf677eb2d018a84c9ff2577efc7bce9, type: 3}
   portalGlowColor: {r: 0.5031446, g: 0, b: 0.49166262, a: 1}
   minDayRequired: 9

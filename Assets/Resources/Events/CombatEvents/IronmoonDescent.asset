@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CombatEventSO
   eventName: Ironmoon Descent
   description: 
-  eventIcon: {fileID: 21300000, guid: f2f8b2f7c8f1d934dbee773fe15c7e5f, type: 3}
+  eventIcon: {fileID: 21300000, guid: c72e405dc9c9470449624177b1f92a74, type: 3}
   eventBackgroundImage: {fileID: 0}
   portalGlowColor: {r: 0.042917524, g: 0.24892062, b: 0.44025147, a: 1}
   minDayRequired: 11

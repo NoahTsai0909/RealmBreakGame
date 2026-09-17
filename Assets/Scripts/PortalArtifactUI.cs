@@ -30,6 +30,7 @@ public class PortalArtifactUI : MonoBehaviour, IPointerEnterHandler, IPointerExi
     private bool isHovered = false;
     private Color baseColor;
     private bool isTransitioning = false;
+    private float currentLift = 0f;
 
     public void Initialize(BaseEventSO eventSO)
     {
@@ -76,23 +77,34 @@ public class PortalArtifactUI : MonoBehaviour, IPointerEnterHandler, IPointerExi
     private void Update()
     {
         if (isTransitioning) return;
-        float sineWave = Mathf.Sin(Time.time * bobSpeed);
-        artifactRoot.anchoredPosition = originalArtifactPos + new Vector3(0f, sineWave * bobHeight, 0f);
 
-        float shadowScale = 1f - (sineWave * 0.2f);
-        shadowTransform.localScale = originalShadowScale * shadowScale;
+        float targetLift = isHovered ? bobHeight : 0f;
+        currentLift = Mathf.Lerp(currentLift, targetLift, Time.deltaTime * 10f);
+
+        float hoverBob = Mathf.Sin(Time.time * bobSpeed) * (bobHeight * 0.3f) * (currentLift / bobHeight);
+
+        artifactRoot.anchoredPosition = originalArtifactPos + new Vector3(0f, currentLift + hoverBob, 0f);
+
+        if (shadowTransform != null)
+        {
+            float shadowScale = 1f - (currentLift / bobHeight * 0.3f);
+            shadowTransform.localScale = originalShadowScale * shadowScale;
+        }
 
         float breathingMath = (Mathf.Sin(Time.time * pulseSpeed) + 1f) / 2f;
         float targetGlow = isHovered ? 1f : Mathf.Lerp(idleGlowMin, idleGlowMax, breathingMath);
 
-        Color ringColor = baseColor;
-        ringColor.a = Mathf.Lerp(energyRing.color.a, targetGlow, Time.deltaTime * 10f);
-        energyRing.color = ringColor;
+        if (energyRing != null)
+        {
+            Color ringColor = baseColor;
+            ringColor.a = Mathf.Lerp(energyRing.color.a, targetGlow, Time.deltaTime * 10f);
+            energyRing.color = ringColor;
+        }
 
         if (outerGlow != null)
         {
-            Color outerColor = ringColor;
-            outerColor.a *= 0.6f;
+            Color outerColor = baseColor;
+            outerColor.a = Mathf.Lerp(outerGlow.color.a, targetGlow * 0.6f, Time.deltaTime * 10f);
             outerGlow.color = outerColor;
 
             float scaleTarget = isHovered ? 1.15f : 1.0f;

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ShopEventSO
   eventName: Terminus
   description: Recruit [c_epic]epic[/c] units.
-  eventIcon: {fileID: 21300000, guid: 63fb5d75a9be073409d7d28eeea04845, type: 3}
+  eventIcon: {fileID: 21300000, guid: 3b9203e8606ac504685dd4528b6a0fee, type: 3}
   eventBackgroundImage: {fileID: 21300000, guid: 95f87df34ec49df49b816b29856fa078, type: 3}
   portalGlowColor: {r: 1, g: 1, b: 1, a: 1}
   minDayRequired: 9
@@ -23,12 +23,16 @@ MonoBehaviour:
   maxAppearancesPerRun: 0
   targetScene: 6
   totalUnitsGenerated: 6
+  totalTacticsGenerated: 0
   unitsPerPage: 3
   refreshCost: 2
   discount: 0
+  forceMutation: 0
   allowedTags: 0
   region: 0
   maxProvisionCost: -1
   minProvisionCost: 0
   forceRarity: 1
   designatedRarity: 3
+  allowCombatExclusiveTactics: 0
+  onlyCombatExclusiveTactics: 0
