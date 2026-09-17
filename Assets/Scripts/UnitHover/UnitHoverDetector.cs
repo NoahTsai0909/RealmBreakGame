@@ -56,7 +56,6 @@ public class UnitHoverDetector : MonoBehaviour
         }
     }
 
-    // NEW HELPER: Shoots a laser exactly at the mouse to see if it hits our specific UI
     private bool IsPointerOverUnitHoverUI()
     {
         if (EventSystem.current == null || hoverUIInstance == null) return false;
@@ -68,7 +67,6 @@ public class UnitHoverDetector : MonoBehaviour
 
         foreach (var result in results)
         {
-            // If the UI element we hit is a child of our Hover UI (like the Preview Button!)
             if (result.gameObject.transform.IsChildOf(hoverUIInstance.transform))
             {
                 return true;
@@ -81,12 +79,10 @@ public class UnitHoverDetector : MonoBehaviour
     {
         if (mouse == null || Keyboard.current == null) return;
 
-        // 1. Unpinning Logic
         if (isPinned)
         {
             bool clickAttempt = mouse.leftButton.wasPressedThisFrame || mouse.rightButton.wasPressedThisFrame;
 
-            // ONLY unpin if T, Escape, or a click that did NOT hit the UnitHoverUI
             if (Keyboard.current.tKey.wasPressedThisFrame ||
                 Keyboard.current.escapeKey.wasPressedThisFrame ||
                 (clickAttempt && !IsPointerOverUnitHoverUI()))
@@ -98,7 +94,6 @@ public class UnitHoverDetector : MonoBehaviour
             return;
         }
 
-        // 2. Pinning Logic[cite: 9]
         if (currentHoveredUnit != null && Keyboard.current.tKey.wasPressedThisFrame)
         {
             isPinned = true;
@@ -108,15 +103,12 @@ public class UnitHoverDetector : MonoBehaviour
 
         if (isUIHoverDriven) return;
 
-        // 3. EXACT ORIGINAL DRAG PROTECTION[cite: 9]
-        // This instantly hides the UI the moment you hold click to drag a unit!
         if (mouse.leftButton.isPressed)
         {
             CancelHover();
             return;
         }
 
-        // 4. Normal Hover Logic[cite: 9]
         Vector3 mouseWorldPos = GetMouseWorldPosition();
         Collider2D hit = Physics2D.OverlapPoint(mouseWorldPos);
         UnitInstance hitUnit = hit ? hit.GetComponent<UnitInstance>() : null;
@@ -187,7 +179,6 @@ public class UnitHoverDetector : MonoBehaviour
         isUIHoverDriven = true;
         if (hoverUICanvasGroup != null) hoverUICanvasGroup.blocksRaycasts = false;
 
-        // Pass the anchor through to the UI
         hoverUIInstance.Show(unit, uiAnchor);
     }
 

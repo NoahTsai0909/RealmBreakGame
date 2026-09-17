@@ -109,6 +109,36 @@ public class LootSummaryUI : MonoBehaviour
             canvas.sortingLayerName = "Units";
             canvas.sortingOrder = 30000;
         }
+
+        UnityEngine.EventSystems.EventTrigger trigger = spawnedTacticPreview.gameObject.GetComponent<UnityEngine.EventSystems.EventTrigger>();
+        if (trigger == null) trigger = spawnedTacticPreview.gameObject.AddComponent<UnityEngine.EventSystems.EventTrigger>();
+
+        trigger.triggers.Clear();
+
+        // Add PointerEnter
+        var enterEntry = new UnityEngine.EventSystems.EventTrigger.Entry { eventID = UnityEngine.EventSystems.EventTriggerType.PointerEnter };
+        enterEntry.callback.AddListener((data) =>
+        {
+            Vector2 mousePos = UnityEngine.InputSystem.Mouse.current.position.ReadValue();
+
+            if (TacticHoverDetector.Instance != null)
+            {
+                TacticHoverDetector.Instance.ShowTooltipFromUI(
+                    spawnedTacticPreview.tacticName,
+                    spawnedTacticPreview.GetDescription(),
+                    spawnedTacticPreview.GetCooldown(),
+                    mousePos
+                );
+            }
+        });
+        trigger.triggers.Add(enterEntry);
+
+        var exitEntry = new UnityEngine.EventSystems.EventTrigger.Entry { eventID = UnityEngine.EventSystems.EventTriggerType.PointerExit };
+        exitEntry.callback.AddListener((data) =>
+        {
+            if (TacticHoverDetector.Instance != null) TacticHoverDetector.Instance.HideTooltipFromUI();
+        });
+        trigger.triggers.Add(exitEntry);
     }
 
     private void AcceptReward()

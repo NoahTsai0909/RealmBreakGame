@@ -166,7 +166,6 @@ public class UnitHoverUI : MonoBehaviour
 
         UpdateDynamicStats();
         UpdateDynamicValues();
-        // Show and position
         gameObject.SetActive(true);
         if (!useFixedPosition)
         {

@@ -19,13 +19,11 @@ public class UniversalPopupManager : MonoBehaviour
 
     private void Awake()
     {
-        // Enforce the Singleton pattern and keep it alive across all scenes
         if (Instance == null)
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
 
-            // Ensure it starts completely invisible
             if (popupCanvasGroup != null)
             {
                 popupCanvasGroup.alpha = 0f;
@@ -38,9 +36,6 @@ public class UniversalPopupManager : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Call this from ANY script using: UniversalPopupManager.ShowPopup("Message");
-    /// </summary>
     public static void ShowPopup(string message, float duration = -1f)
     {
         if (Instance != null)
@@ -56,7 +51,6 @@ public class UniversalPopupManager : MonoBehaviour
 
     private void DisplayPopup(string message, float duration)
     {
-        // If a popup is already on screen, interrupt its fade and instantly swap the text
         if (activePopupCoroutine != null)
         {
             StopCoroutine(activePopupCoroutine);
@@ -71,7 +65,6 @@ public class UniversalPopupManager : MonoBehaviour
         popupCanvasGroup.gameObject.SetActive(true);
         popupCanvasGroup.transform.localScale = Vector3.one * 0.9f;
 
-        // 1. Fade In and slightly scale up (gives it a nice "pop")
         float elapsed = 0f;
         while (elapsed < fadeDuration)
         {
@@ -84,10 +77,8 @@ public class UniversalPopupManager : MonoBehaviour
         }
         popupCanvasGroup.alpha = 1f;
 
-        // 2. Linger on screen
         yield return new WaitForSeconds(duration);
 
-        // 3. Fade Out
         elapsed = 0f;
         while (elapsed < fadeDuration)
         {

@@ -185,9 +185,26 @@ public class PlayerUnitManager : MonoBehaviour
         Region? targetRegion = null;
         if (rules.regionRule == TransformRule.Same) targetRegion = oldDef.region;
 
-        UnitDefinition newDef = UnitDatabase.Instance.GetRandomUnit(
-            targetRarity, targetRegion, UnitTagFlags.None, minProv, maxProv
-        );
+        UnitDefinition newDef = null;
+        int attempts = 0;
+
+        while (attempts < 50)
+        {
+            UnitDefinition candidate = UnitDatabase.Instance.GetRandomUnit(
+                targetRarity, targetRegion, UnitTagFlags.None, minProv, maxProv
+            );
+
+            if (candidate == null) break;
+
+            newDef = candidate;
+
+            if (candidate != oldDef)
+            {
+                break;
+            }
+
+            attempts++;
+        }
 
         if (newDef == null) return false;
 
@@ -199,6 +216,7 @@ public class PlayerUnitManager : MonoBehaviour
         RunManager.UnitPlacement placement = targetUnit.myPlacement;
         placement.unitData.definition = newDef;
         placement.unitData.rarity = targetRarity;
+        placement.unitData.id = System.Guid.NewGuid();
 
         if (!rules.keepMutations)
         {
@@ -207,10 +225,12 @@ public class PlayerUnitManager : MonoBehaviour
         }
 
         GridManager grid = targetUnit.myGrid;
-        int r = placement.row;
-        int col = placement.col;
-        bool isPlayer = targetUnit.isPlayer;
+        Vector2Int actualPos = grid.GetUnitPosition(targetUnit);
+        int r = actualPos.x;
+        int col = actualPos.y;
 
+        bool isPlayer = targetUnit.isPlayer;
+        grid.RemoveUnit(r, col, true);
         grid.PlaceUnit(placement, r, col, null, isPlayer);
 
         return true;

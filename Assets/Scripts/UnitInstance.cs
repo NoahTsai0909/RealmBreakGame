@@ -526,16 +526,16 @@ public class UnitInstance : MonoBehaviour
     public string GetMutationScalingText()
     {
         if (currentPrefix == null || definition == null) return "";
-
         ModifiableStats mainStat = definition.mainStat;
         ModifiableStats grantedStat = currentPrefix.statToGrant;
-        if (mainStat == ModifiableStats.None || mainStat == grantedStat) return "";
+        if (grantedStat == ModifiableStats.None ||grantedStat == ModifiableStats.Slow || grantedStat == ModifiableStats.Haste) return "";
         float mainWeight = Stats.GetStatWeight(mainStat);
         float grantedWeight = Stats.GetStatWeight(grantedStat);
         int percentage = Mathf.RoundToInt((mainWeight / grantedWeight) * 100f);
         string mainStatName = GetStatStringForUI(mainStat);
         string grantedStatName = GetStatStringForUI(grantedStat);
         string prefixHex = ColorUtility.ToHtmlStringRGB(currentPrefix.runeColor);
+        if (mainStat == grantedStat) return $"<color=#{prefixHex}>{currentPrefix.prefixName}</color>: This gains [{grantedStatName}] equal to 50% of its [{mainStatName}].";
         return $"<color=#{prefixHex}>{currentPrefix.prefixName}</color>: This gains [{grantedStatName}] equal to {percentage}% of its [{mainStatName}].";
     }
 

@@ -44,8 +44,6 @@ public class TooltipUIManager : MonoBehaviour
 
         titleText.text = entry.title;
         descriptionText.text = entry.description;
-
-        // Force Unity to immediately resize the panel to fit the new text
         LayoutRebuilder.ForceRebuildLayoutImmediate(tooltipPanel);
 
         UpdatePosition(mousePosition);
