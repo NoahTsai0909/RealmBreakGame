@@ -23,7 +23,7 @@ public class ShiftingSigil : UnitInstance, IConsumable
 
     public override string GetActiveDescription()
     {
-        return ($"Consume this to transform a unit permanently.");
+        return ($"Consume this to [c_transform]transform[/c] a unit permanently.");
     }
 }
 

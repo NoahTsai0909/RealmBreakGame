@@ -160,7 +160,7 @@ public class UnitHoverUI : MonoBehaviour
         provisionText.SetText(TextIconUtility.FormatProvision(unit.Definition.provisionCost));
         valueText.SetText(TextIconUtility.FormatGold(stats.Value));
         multicastContainer.SetActive(stats.Multicast > 1);
-        multicastText.SetText(TextIconUtility.FormatMulticast(stats.Multicast));
+        multicastText.SetText(TextIconUtility.ParseDescription("[c_multicast]X" + (stats.Multicast) + "[/c]"));
 
         lastEnergy = -1;
 
@@ -413,7 +413,7 @@ public class UnitHoverUI : MonoBehaviour
         }
 
         if (stats.Multicast > 1)
-            multicastText.SetText(TextIconUtility.FormatMulticast(stats.Multicast));
+            multicastText.SetText(TextIconUtility.ParseDescription("[c_multicast]X" + (stats.Multicast)+"[/c]"));
         else
             multicastContainer.SetActive(false);
 

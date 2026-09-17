@@ -17,6 +17,7 @@ public class RunHUDManager : MonoBehaviour
     [SerializeField] private TMP_Text goldText;
     [SerializeField] private Button squadButton;
     [SerializeField] private Button settingsButton;
+    [SerializeField] private Button inspectStatsButton;
 
 
     [Header("XP Settings")]
@@ -29,11 +30,13 @@ public class RunHUDManager : MonoBehaviour
     [Header("References")]
     [SerializeField] private GameObject runHUD;
     [SerializeField] private CanvasGroup runHUDCanvasGroup;
+    private GameObject currentUnitStatsWindow;
 
     [Header("Behavior")]
     [SerializeField] private bool dontDestroyOnLoad = false;
     private int currentProvision = -1; // -1 means not currently tracking provision usage
     private bool isProvisionValid = true;
+
 
     private void Awake()
     {
@@ -86,6 +89,17 @@ public class RunHUDManager : MonoBehaviour
                 SettingsManager.Instance.OpenSettings();
             }
         });
+        if (inspectStatsButton != null)
+        {
+            inspectStatsButton.onClick.AddListener(() =>
+            {
+                if (currentUnitStatsWindow != null)
+                {
+                    currentUnitStatsWindow.SetActive(!currentUnitStatsWindow.activeSelf);
+                }
+            });
+            inspectStatsButton.gameObject.SetActive(false);
+        }
         StartCoroutine(InitializeFromRunManager());
     }
 
@@ -195,6 +209,18 @@ public class RunHUDManager : MonoBehaviour
         isProvisionValid = true;
         if (RunManager.Instance != null)
             UpdateProvisionCap(RunManager.Instance.Stats.ProvisionCap);
+    }
+
+    public void EnableInspectStats(GameObject statsWindow)
+    {
+        currentUnitStatsWindow = statsWindow;
+        if (inspectStatsButton != null) inspectStatsButton.gameObject.SetActive(true);
+    }
+
+    public void DisableInspectStats()
+    {
+        currentUnitStatsWindow = null;
+        if (inspectStatsButton != null) inspectStatsButton.gameObject.SetActive(false);
     }
 
 

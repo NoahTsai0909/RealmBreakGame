@@ -111,7 +111,10 @@ public class StatsUIWindow : MonoBehaviour
                 segments.Add((stat.AdvancesGiven, advanceColor));
             }
 
-            row.UpdateRow(stat.UnitIcon, GetPrimaryStatForTab(stat), maxValue, segments);
+            bool isPlayerUnit = RunManager.Instance.playerTeamPlacements.Any(p => p.unitData != null && p.unitData.id == stat.UnitId) ||
+                        RunManager.Instance.playerBenchPlacements.Any(p => p.unitData != null && p.unitData.id == stat.UnitId);
+
+            row.UpdateRow(stat.UnitIcon, GetPrimaryStatForTab(stat), maxValue, segments, isPlayerUnit);
         }
     }
 

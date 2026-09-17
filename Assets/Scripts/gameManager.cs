@@ -23,7 +23,6 @@ public class gameManager : MonoBehaviour
 
     [Header("UI Manager")]
     [SerializeField] private BattleUIManager battleUIManager;
-    [SerializeField] private Button inspectStatsButton;
     [SerializeField] private Button continueButton;
     [SerializeField] private GameObject unitStatsWindowObject;
     [SerializeField] private CombatResultUI combatResultUI;
@@ -56,18 +55,8 @@ public class gameManager : MonoBehaviour
 
     void Start()
     {
-        if (inspectStatsButton != null) inspectStatsButton.gameObject.SetActive(true);
         if (continueButton != null) continueButton.gameObject.SetActive(false);
         if (unitStatsWindowObject != null) unitStatsWindowObject.SetActive(false);
-
-        if (inspectStatsButton != null)
-        {
-            inspectStatsButton.onClick.AddListener(() =>
-            {
-                if (unitStatsWindowObject != null) unitStatsWindowObject.SetActive(true);
-            });
-        }
-
         if (startCombatButton != null)
         {
             startCombatButton.onClick.AddListener(() =>
@@ -104,6 +93,10 @@ public class gameManager : MonoBehaviour
         if (RunHUDManager.Instance != null)
         {
             RunHUDManager.Instance.HideSquadButton();
+            if (unitStatsWindowObject != null)
+            {
+                RunHUDManager.Instance.EnableInspectStats(unitStatsWindowObject);
+            }
         }
     }
 
@@ -227,28 +220,28 @@ public class gameManager : MonoBehaviour
                 Time.timeScale = 1f;
                 if (RunHUDManager.Instance != null)
                 {
+                    RunHUDManager.Instance.DisableInspectStats();
                     RunHUDManager.Instance.ShowSquadButton();
                 }
 
-                if (RunManager.Instance.selectedEvent != null)
-                    RunManager.Instance.selectedEvent.OnCompleted();
-
                 bool isFinalDay = RunManager.Instance.Stats.CurrentDay >= RunManager.Instance.TOTAL_DAYS;
-                if (isFinalDay && playerWon)
-                {
-                    SceneLoader.Instance.LoadScene(GameScene.RunSummaryScene);
-                    return;
-                }
-
                 bool canUseLastChance = RunManager.Instance.Stats.PlayerHealth <= 0 && !isFinalDay && !RunManager.Instance.hasUsedLastChance;
+                bool isRunAlive = playerWon || RunManager.Instance.Stats.PlayerHealth > 0 || canUseLastChance;
 
-                if (playerWon || RunManager.Instance.Stats.PlayerHealth > 0 || canUseLastChance)
+                if (isRunAlive)
                 {
-                    SceneLoader.Instance.LoadScene(GameScene.MapScene);
+                    if (RunManager.Instance.selectedEvent != null)
+                        RunManager.Instance.selectedEvent.OnCompleted();
+
+                    if (!isFinalDay)
+                    {
+                        SceneLoader.Instance.LoadScene(GameScene.MapScene);
+                    }
                 }
                 else
                 {
-                    SceneLoader.Instance.LoadScene(GameScene.RunSummaryScene);
+                    SaveLoadManager.DeleteSave(); 
+                    SceneLoader.Instance.LoadScene(GameScene.RunSummaryScene); 
                 }
             });
         }

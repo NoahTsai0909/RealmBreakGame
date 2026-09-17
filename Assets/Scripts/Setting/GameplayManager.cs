@@ -45,7 +45,8 @@ public class GameplayManager : MonoBehaviour
             default: CombatSpeedMultiplier = 1f; break;
         }
 
-        if (Time.timeScale > 0f && Time.timeScale != 0.5f)
+        gameManager currentCombat = Object.FindFirstObjectByType<gameManager>();
+        if (currentCombat != null && currentCombat.isCombatActive())
         {
             Time.timeScale = CombatSpeedMultiplier;
         }

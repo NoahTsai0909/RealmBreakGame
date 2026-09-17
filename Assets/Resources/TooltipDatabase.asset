@@ -97,3 +97,11 @@ MonoBehaviour:
   - id: advance
     title: Advance
     description: Reduces the remaining cooldown by [X] seconds.
+  - id: transform
+    title: Transform
+    description: 'Permanently replace a unit with a random other unit of the same
+      rarity and provision. '
+  - id: mutation
+    title: Mutation
+    description: 'An enhancement effect to a unit. A unit can only have one mutation
+      at a time. '

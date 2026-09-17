@@ -10,14 +10,20 @@ public class StatRowUI : MonoBehaviour
     [Header("Segment References")]
     [SerializeField] private RectTransform[] segmentRects; // Assign the 3 segment objects here
     [SerializeField] private Image[] segmentImages;
+    [SerializeField] private Image unitBackdropImage;
 
     [SerializeField] private Color playerColor = new Color(0.2f, 0.6f, 1f);
     [SerializeField] private Color enemyColor = new Color(0.8f, 0.2f, 0.2f);
 
-    public void UpdateRow(Sprite icon, int totalValue, float maxValue, List<(int val, Color color)> segmentData)
+    public void UpdateRow(Sprite icon, int totalValue, float maxValue, List<(int val, Color color)> segmentData, bool isPlayer)
     {
         if (icon != null) unitIconImage.sprite = icon;
         valueText.text = totalValue.ToString();
+
+        if (unitBackdropImage != null)
+        {
+            unitBackdropImage.color = isPlayer ? playerColor : enemyColor;
+        }
 
         // 1. Sort the segments from highest contributor to lowest
         segmentData.Sort((a, b) => b.val.CompareTo(a.val));
@@ -32,16 +38,13 @@ public class StatRowUI : MonoBehaviour
                 segmentRects[i].gameObject.SetActive(true);
                 segmentImages[i].color = segmentData[i].color;
 
-                // Calculate what percentage of the MAX bar this segment takes up
                 float pct = maxValue > 0 ? (float)segmentData[i].val / maxValue : 0f;
 
-                // Use Unity's Anchor system to stretch the segment perfectly
                 segmentRects[i].anchorMin = new Vector2(currentOffset, 0);
                 segmentRects[i].anchorMax = new Vector2(currentOffset + pct, 1);
 
-                // Zero out any offsets so it strictly obeys the anchors
-                segmentRects[i].offsetMin = Vector2.zero;
-                segmentRects[i].offsetMax = Vector2.zero;
+                segmentRects[i].sizeDelta = Vector2.zero;
+                segmentRects[i].anchoredPosition = Vector2.zero;
 
                 currentOffset += pct;
             }
