@@ -103,10 +103,10 @@ TextureImporter:
       name: ProdigiousMage_0
       rect:
         serializedVersion: 2
-        x: 164
-        y: 10
-        width: 344
-        height: 419
+        x: 135
+        y: 3
+        width: 464
+        height: 461
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

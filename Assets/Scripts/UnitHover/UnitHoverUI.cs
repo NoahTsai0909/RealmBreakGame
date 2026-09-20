@@ -195,7 +195,7 @@ public class UnitHoverUI : MonoBehaviour
                 continue;
             }
 
-            if (flag == UnitTagFlags.BurnRef || flag == UnitTagFlags.PoisonRef || flag == UnitTagFlags.DamageRef || flag == UnitTagFlags.HealRef)
+            if (flag == UnitTagFlags.BurnRef || flag == UnitTagFlags.PoisonRef || flag == UnitTagFlags.DamageRef || flag == UnitTagFlags.HealRef || flag == UnitTagFlags.Death || flag == UnitTagFlags.Summon)
             {
                 continue;
             }

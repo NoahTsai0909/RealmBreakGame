@@ -72,6 +72,6 @@ public class Duelist : UnitInstance
 
     public override string GetPassiveDescription()
     {
-        return ($"When this is [c_shield]shielded[/c], advance this {advanceCount}.");
+        return ($"When this is [c_shield]shielded[/c], [c_advance]advance[/c] this {advanceCount}.");
     }
 }

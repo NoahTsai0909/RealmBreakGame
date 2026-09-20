@@ -122,7 +122,7 @@ public static class TextIconUtility
                                .Replace("[c_day]", $"<link=\"day\"><color={ColorLevel}>")
                                .Replace("[c_adjacent]", $"<link=\"adjacent\"><color={ColorLevel}>")
                                .Replace("[c_side]", $"<link=\"side\"><color={ColorLevel}>")
-                               .Replace("[c_advance],", $"<link=\"advance\"><color={ColorLevel}>")
+                               .Replace("[c_advance]", $"<link=\"advance\"><color={ColorLevel}>")
                                .Replace("[c_transform]", $"<link=\"transform\"><color={ColorLevel}>")
                                .Replace("[c_mutation]", $"<link=\"mutation\"><color={ColorLevel}>")
                                .Replace("[/c]", "</color></link>");

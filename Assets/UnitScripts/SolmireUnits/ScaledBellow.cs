@@ -64,11 +64,25 @@ public class ScaledBellow : UnitInstance
         if (action.source.isPlayer != this.isPlayer) return;
         if (action.type == CombatActionType.ApplyBurn)
         {
-            action.source.TemporaryStatModify(ModifiableStats.Burn, burnModifier);
+            CombatManager.Instance.ExecuteAction(new CombatAction
+            {
+                type = CombatActionType.Buff,
+                source = this,
+                target = action.source,
+                buffStat = ModifiableStats.Burn,
+                amount = burnModifier
+            });
             mutationTriggerCount++;
         }
         if (action.type == CombatActionType.Damage){
-            action.source.TemporaryStatModify(ModifiableStats.Attack, attackModifier);
+            CombatManager.Instance.ExecuteAction(new CombatAction
+            {
+                type = CombatActionType.Buff,
+                source = this,
+                target = action.source,
+                buffStat = ModifiableStats.Attack,
+                amount = attackModifier
+            });
             mutationTriggerCount++;
         }
         if (currentSuffix != null)

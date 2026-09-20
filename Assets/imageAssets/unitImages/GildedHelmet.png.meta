@@ -103,10 +103,10 @@ TextureImporter:
       name: GildedHelmet_0
       rect:
         serializedVersion: 2
-        x: 106
-        y: 7
-        width: 457
-        height: 585
+        x: 67
+        y: 4
+        width: 493
+        height: 567
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

@@ -19,6 +19,7 @@ public enum CombatActionType
     Debuff,
     Advance,
     Kill,
+    Summon,
 }
 
 public class CombatAction
@@ -35,6 +36,10 @@ public class CombatAction
     public GameObject projectileOverride; // Optional override
     public bool isSilent = false; // Optional flag for no floating combat text UI (for instance, individually attributed burn ticks)
     public bool isVisualOnly = false; // Optional flag for no stat tracking or combat log (for instance, consolidated burn damage)
+    public UnitDefinition spawnPayload;
+    public Vector2Int targetPos = new Vector2Int(-1, -1);
+    public ModifiableStats buffStat;
+    public Action onFail;
 }
 
 public class CombatManager : MonoBehaviour
@@ -115,9 +120,14 @@ public class CombatManager : MonoBehaviour
             case CombatActionType.Advance:
                 action.target.Advance(action.amount);
                 break;
-
+            case CombatActionType.Buff:
+                action.target.ApplyBuff(action.buffStat, action.amount);
+                break;
             case CombatActionType.Kill:
                 action.target.Die();
+                break;
+            case CombatActionType.Summon:
+                ResolveSummon(action);
                 break;
         }
 
@@ -139,5 +149,31 @@ public class CombatManager : MonoBehaviour
     }
 
     public IReadOnlyList<CombatAction> GetCombatLog() => combatLog;
+
+    private void ResolveSummon(CombatAction action)
+    {
+        if (action.spawnPayload == null || action.source == null) return;
+
+        int targetRow = action.targetPos.x;
+        int targetCol = action.targetPos.y;
+
+        if (targetRow == -1 || targetCol == -1)
+        {
+            targetRow = action.source.row;
+            targetCol = action.source.col;
+        }
+
+        if (UnitSpawner.Instance.TryFindSpawnPosition(targetRow, targetCol, action.source.isPlayer, out int spawnRow, out int spawnCol))
+        {
+            UnitSpawner.Instance.SpawnUnit(action.spawnPayload, spawnRow, spawnCol, action.source.isPlayer, action.source, action.source.CurrentRarity);
+        }
+        else
+        {
+            Debug.Log("Summon failed: No empty spaces available on the grid!");
+            action.onFail?.Invoke();
+        }
+    }
+
+
 }
 

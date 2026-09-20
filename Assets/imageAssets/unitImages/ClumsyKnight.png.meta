@@ -103,10 +103,10 @@ TextureImporter:
       name: ClumsyKnight_0
       rect:
         serializedVersion: 2
-        x: 133
-        y: 29
-        width: 383
-        height: 507
+        x: 43
+        y: 11
+        width: 481
+        height: 479
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

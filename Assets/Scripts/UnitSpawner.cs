@@ -73,11 +73,9 @@ public class UnitSpawner : MonoBehaviour
             unit.InitializeEnemy(definition, rarity ?? Rarity.Common);
         }
 
-        // Mark as spawned unit (important for persistence/save/load)
         unit.isSpawnedUnit = true;
-        unit.spawnSource = spawnParent; // Track what spawned it
+        unit.spawnSource = spawnParent; 
 
-        // Enter combat at the specified position
         unit.EnterCombat(targetGrid, row, col, isPlayer);
 
         // Trigger any spawn events
@@ -95,7 +93,6 @@ public class UnitSpawner : MonoBehaviour
     {
         GridManager targetGrid = isPlayer ? playerGrid : enemyGrid;
 
-        // Try original position first
         if (targetGrid.IsPositionValid(originalRow, originalCol) &&
             !targetGrid.IsPositionOccupied(originalRow, originalCol))
         {
@@ -104,31 +101,27 @@ public class UnitSpawner : MonoBehaviour
             return true;
         }
 
-        // Try adjacent positions
-        Vector2Int[] offsets = new Vector2Int[]
-        {
-            new Vector2Int(0, 1),  // Right
-            new Vector2Int(0, -1), // Left
-            new Vector2Int(1, 0),  // Up
-            new Vector2Int(-1, 0)  // Down
-        };
+        int bestDist = int.MaxValue;
+        spawnRow = -1;
+        spawnCol = -1;
 
-        foreach (var offset in offsets)
+        for (int r = 0; r < targetGrid.rows; r++)
         {
-            int testRow = originalRow + offset.x;
-            int testCol = originalCol + offset.y;
-
-            if (targetGrid.IsPositionValid(testRow, testCol) &&
-                !targetGrid.IsPositionOccupied(testRow, testCol))
+            for (int c = 0; c < targetGrid.cols; c++)
             {
-                spawnRow = testRow;
-                spawnCol = testCol;
-                return true;
+                if (!targetGrid.IsPositionOccupied(r, c))
+                {
+                    int dist = Mathf.Abs(r - originalRow) + Mathf.Abs(c - originalCol);
+                    if (dist < bestDist)
+                    {
+                        bestDist = dist;
+                        spawnRow = r;
+                        spawnCol = c;
+                    }
+                }
             }
         }
 
-        spawnRow = -1;
-        spawnCol = -1;
-        return false;
+        return bestDist != int.MaxValue; 
     }
 }

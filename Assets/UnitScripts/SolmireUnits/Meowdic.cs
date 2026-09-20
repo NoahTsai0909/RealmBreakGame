@@ -64,6 +64,6 @@ public class Meowdic : UnitInstance
 
     public override string GetPassiveDescription()
     {
-        return ("When an ally is [c_heal]healed[/c], advance this 1 second.");
+        return ("When an ally is [c_heal]healed[/c], [c_advance]advance[/c] this 1 second.");
     }
 }

@@ -16,7 +16,7 @@ public enum UnitTagFlags
     Consumable = 1 << 11,
     MaxHP = 1 << 12,
     Crit = 1 << 13,
-    Demon = 1 << 14,
+    Abberant = 1 << 14,
     Elemental = 1 << 15,
     Plant = 1 << 16,
     BurnRef = 1 << 17,
@@ -24,4 +24,7 @@ public enum UnitTagFlags
     DamageRef = 1 << 19,
     HealRef = 1 << 20,
     Mythic = 1 << 21,
+    Wraith = 1 << 22,
+    Death = 1 << 23,
+    Summon = 1 << 24,
 }

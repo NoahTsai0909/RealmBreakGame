@@ -638,6 +638,12 @@ public class UnitInstance : MonoBehaviour
         return;
     }
 
+    public void ApplyBuff(ModifiableStats statToBuff, int amount)
+    {
+        TemporaryStatModify(statToBuff, amount);
+        Visuals?.Flash(Color.yellow);
+    }
+
     public void AddTemporaryTag(UnitTagFlags tag)
     {
         temporaryStats.tagBonus |= tag;
