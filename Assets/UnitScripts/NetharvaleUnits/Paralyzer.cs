@@ -8,8 +8,6 @@ public class Paralyzer : UnitInstance
         base.UseAbility();
 
         UnitInstance target = FindNearestEnemy();
-
-        // If no enemies are left, stop here
         if (target == null) return;
 
 
@@ -23,11 +21,21 @@ public class Paralyzer : UnitInstance
                 reason = "Paralyzer Slow"
             }
         );
-        
+        CombatManager.Instance.ExecuteAction(
+            new CombatAction
+            {
+                type = CombatActionType.ApplyPoison,
+                source = this,
+                target = target,
+                amount = stats.Poison,
+                reason = "Paralyzer Poison"
+            }
+        );
+
     }
 
     public override string GetActiveDescription()
     {
-        return ($"[c_slow]Slow[/c] the nearest enemy for [SLOW] {stats.Slow}.");
+        return ($"[c_slow]Slow[/c] the nearest enemy for [SLOW] {stats.Slow}. [c_poison]Poison[/c] the nearest enemy for [POISON] {stats.Poison}.");
     }
 }

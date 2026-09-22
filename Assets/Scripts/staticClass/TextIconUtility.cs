@@ -125,6 +125,7 @@ public static class TextIconUtility
                                .Replace("[c_advance]", $"<link=\"advance\"><color={ColorLevel}>")
                                .Replace("[c_transform]", $"<link=\"transform\"><color={ColorLevel}>")
                                .Replace("[c_mutation]", $"<link=\"mutation\"><color={ColorLevel}>")
+                               .Replace("[c_lifesteal]", $"<link=\"lifesteal\"><color={ColorEpic}>")
                                .Replace("[/c]", "</color></link>");
 
         return parsedText;

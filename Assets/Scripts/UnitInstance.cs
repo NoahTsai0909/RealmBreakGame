@@ -354,13 +354,13 @@ public class UnitInstance : MonoBehaviour
 
     }
 
-    public virtual void TakeDamage(int dmg)
+    public virtual int TakeDamage(int dmg)
     {
-        if (this == null || combatFrozen) return;
-        if (dmg <= 0)
-            return;
+        if (this == null || combatFrozen) return 0;
+        if (dmg <= 0) return 0;
 
         int remainingDamage = dmg;
+        int startingHP = currentHP; 
 
         if (currentShield > 0)
         {
@@ -368,30 +368,21 @@ public class UnitInstance : MonoBehaviour
             currentShield -= absorbed;
             remainingDamage -= absorbed;
 
-            CombatEventBus.Publish(
-                CombatEventType.ShieldDamaged,
-                this,
-                this,
-                0
-            );
+            CombatEventBus.Publish(CombatEventType.ShieldDamaged, this, this, 0);
         }
 
         if (remainingDamage > 0)
         {
             currentHP = Mathf.Max(0, currentHP - remainingDamage);
 
-            CombatEventBus.Publish(
-                CombatEventType.DamageTaken,
-                this,
-                this,
-                0
-            );
+            CombatEventBus.Publish(CombatEventType.DamageTaken, this, this, 0);
 
             Visuals.Flash(Color.red, true);
             if (currentHP <= 0)
                 Die();
         }
         RefreshUI();
+        return startingHP - currentHP;
     }
 
     public virtual void HealDamage(int dmg)

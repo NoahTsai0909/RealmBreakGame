@@ -103,10 +103,10 @@ TextureImporter:
       name: CinderResurgent_0
       rect:
         serializedVersion: 2
-        x: 98
-        y: 41
-        width: 448
-        height: 458
+        x: 28
+        y: 4
+        width: 551
+        height: 632
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

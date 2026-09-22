@@ -5,6 +5,9 @@ TextureImporter:
   - first:
       213: 1470875929854126024
     second: ArcaneAugur_0
+  - first:
+      213: -3704899328235998750
+    second: ArcaneAugur_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -103,10 +106,10 @@ TextureImporter:
       name: ArcaneAugur_0
       rect:
         serializedVersion: 2
-        x: 136
-        y: 5
-        width: 381
-        height: 504
+        x: 162
+        y: 118
+        width: 310
+        height: 471
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -117,6 +120,28 @@ TextureImporter:
       bones: []
       spriteID: 8c7a0ab7dd9996410800000000000000
       internalID: 1470875929854126024
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArcaneAugur_1
+      rect:
+        serializedVersion: 2
+        x: 404
+        y: 469
+        width: 150
+        height: 165
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2e1f8ebb0bd859cc0800000000000000
+      internalID: -3704899328235998750
       vertices: []
       indices: 
       edges: []
@@ -136,6 +161,7 @@ TextureImporter:
       entries: []
     nameFileIdTable:
       ArcaneAugur_0: 1470875929854126024
+      ArcaneAugur_1: -3704899328235998750
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

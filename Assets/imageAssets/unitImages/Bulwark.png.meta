@@ -103,10 +103,10 @@ TextureImporter:
       name: Bulwark_0
       rect:
         serializedVersion: 2
-        x: 62
-        y: 4
-        width: 478
-        height: 448
+        x: 66
+        y: 9
+        width: 496
+        height: 499
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

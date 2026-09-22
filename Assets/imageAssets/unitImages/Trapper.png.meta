@@ -103,10 +103,10 @@ TextureImporter:
       name: Trapper_0
       rect:
         serializedVersion: 2
-        x: 150
-        y: 1
-        width: 366
-        height: 513
+        x: 126
+        y: 3
+        width: 435
+        height: 515
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

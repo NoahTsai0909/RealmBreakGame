@@ -5,12 +5,6 @@ TextureImporter:
   - first:
       213: -5776712154837391654
     second: Sharpsight_0
-  - first:
-      213: -7861773791646836405
-    second: Sharpsight_1
-  - first:
-      213: -5438129143711958328
-    second: Sharpsight_2
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -109,10 +103,10 @@ TextureImporter:
       name: Sharpsight_0
       rect:
         serializedVersion: 2
-        x: 181
-        y: 109
-        width: 36
-        height: 130
+        x: 167
+        y: 156
+        width: 308
+        height: 325
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -123,50 +117,6 @@ TextureImporter:
       bones: []
       spriteID: ad66c39c6eef4dfa0800000000000000
       internalID: -5776712154837391654
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Sharpsight_1
-      rect:
-        serializedVersion: 2
-        x: 215
-        y: 30
-        width: 207
-        height: 257
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: b491a64d36e55e290800000000000000
-      internalID: -7861773791646836405
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Sharpsight_2
-      rect:
-        serializedVersion: 2
-        x: 311
-        y: 207
-        width: 126
-        height: 107
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 8ca79523b52e784b0800000000000000
-      internalID: -5438129143711958328
       vertices: []
       indices: 
       edges: []
@@ -186,8 +136,6 @@ TextureImporter:
       entries: []
     nameFileIdTable:
       Sharpsight_0: -5776712154837391654
-      Sharpsight_1: -7861773791646836405
-      Sharpsight_2: -5438129143711958328
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

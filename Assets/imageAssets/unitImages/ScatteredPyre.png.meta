@@ -5,6 +5,9 @@ TextureImporter:
   - first:
       213: -5372278070012753507
     second: ScatteredPyre_0
+  - first:
+      213: 6745859583620573302
+    second: ScatteredPyre_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -103,10 +106,10 @@ TextureImporter:
       name: ScatteredPyre_0
       rect:
         serializedVersion: 2
-        x: 149
-        y: 72
-        width: 347
-        height: 197
+        x: 97
+        y: 3
+        width: 443
+        height: 336
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -117,6 +120,28 @@ TextureImporter:
       bones: []
       spriteID: d99c4421f85d175b0800000000000000
       internalID: -5372278070012753507
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ScatteredPyre_1
+      rect:
+        serializedVersion: 2
+        x: 241
+        y: 323
+        width: 34
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6786e5adc8b1e9d50800000000000000
+      internalID: 6745859583620573302
       vertices: []
       indices: 
       edges: []
@@ -136,6 +161,7 @@ TextureImporter:
       entries: []
     nameFileIdTable:
       ScatteredPyre_0: -5372278070012753507
+      ScatteredPyre_1: 6745859583620573302
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

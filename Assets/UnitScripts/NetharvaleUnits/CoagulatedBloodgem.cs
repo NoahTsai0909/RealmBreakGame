@@ -3,7 +3,6 @@ using System.Runtime.CompilerServices;
 using NUnit.Framework;
 using UnityEngine;
 using static CombatEventBus;
-using static UnityEngine.GraphicsBuffer;
 
 public class CoagulatedBloodgem : UnitInstance
 {

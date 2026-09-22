@@ -8,9 +8,6 @@ TextureImporter:
   - first:
       213: -5605348864480720937
     second: AirTreader_1
-  - first:
-      213: 2189385097060963080
-    second: AirTreader_2
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -109,10 +106,10 @@ TextureImporter:
       name: AirTreader_0
       rect:
         serializedVersion: 2
-        x: 152
-        y: 92
-        width: 57
-        height: 81
+        x: 59
+        y: 76
+        width: 486
+        height: 494
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -131,10 +128,10 @@ TextureImporter:
       name: AirTreader_1
       rect:
         serializedVersion: 2
-        x: 190
-        y: 92
-        width: 328
-        height: 422
+        x: 328
+        y: 55
+        width: 147
+        height: 47
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -145,28 +142,6 @@ TextureImporter:
       bones: []
       spriteID: 7d7cc7af7ecc532b0800000000000000
       internalID: -5605348864480720937
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: AirTreader_2
-      rect:
-        serializedVersion: 2
-        x: 252
-        y: 86
-        width: 44
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 8035ada5522426e10800000000000000
-      internalID: 2189385097060963080
       vertices: []
       indices: 
       edges: []
@@ -187,7 +162,6 @@ TextureImporter:
     nameFileIdTable:
       AirTreader_0: -2139310135062034717
       AirTreader_1: -5605348864480720937
-      AirTreader_2: 2189385097060963080
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

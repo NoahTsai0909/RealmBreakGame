@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::UnitDefinition
   unitName: Mother
   maxHP: 260
-  mainStat: 3
+  mainStat: 0
   attack: 0
   heal: 0
   shield: 0
@@ -45,4 +45,4 @@ MonoBehaviour:
   isEventExclusive: 0
   unitPrefab: {fileID: 3307937023041203995, guid: 4bac70be96dd4c24aa59bb7d34152fd9, type: 3}
   spawnDefinition: {fileID: 11400000, guid: 5222e919083a01948959ef3e90a16290, type: 2}
-  tagFlags: 16793600
+  tagFlags: 17317888

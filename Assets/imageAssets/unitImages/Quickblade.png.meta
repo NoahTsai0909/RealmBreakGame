@@ -103,10 +103,10 @@ TextureImporter:
       name: Quickblade_0
       rect:
         serializedVersion: 2
-        x: 130
-        y: 3
-        width: 401
-        height: 509
+        x: 75
+        y: 2
+        width: 489
+        height: 486
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

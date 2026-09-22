@@ -40,6 +40,7 @@ public class CombatAction
     public Vector2Int targetPos = new Vector2Int(-1, -1);
     public ModifiableStats buffStat;
     public Action onFail;
+    public bool isLifesteal = false;
 }
 
 public class CombatManager : MonoBehaviour
@@ -89,6 +90,20 @@ public class CombatManager : MonoBehaviour
         switch (action.type)
         {
             case CombatActionType.Damage:
+                int actualHealthLost = action.target.TakeDamage(action.amount);
+                if (action.isLifesteal && actualHealthLost > 0 && action.source != null && action.source.GetCurrentHP() > 0)
+                {
+                    ExecuteAction(new CombatAction
+                    {
+                        type = CombatActionType.Heal,
+                        source = action.source,
+                        target = action.source,
+                        amount = actualHealthLost,
+                        reason = "Lifesteal",
+                        isSilent = true
+                    });
+                }
+                break;
             case CombatActionType.BurnTick:
             case CombatActionType.PoisonTick:
                 action.target.TakeDamage(action.amount);

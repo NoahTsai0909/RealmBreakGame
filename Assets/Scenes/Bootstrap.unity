@@ -1075,16 +1075,6 @@ MonoBehaviour:
       suffix: {fileID: 0}
     row: 0
     col: 0
-  - unitData:
-      definition: {fileID: 11400000, guid: d2d1e11235afdb9498375d43595c45a9, type: 2}
-      rarity: 1
-      provisionCost: 0
-      provisionModifier: 0
-      valueModifier: 0
-      prefix: {fileID: 0}
-      suffix: {fileID: 0}
-    row: 1
-    col: 0
   benchSize: 5
   regularEventsCompleted: 0
   isBattlePhase: 0
