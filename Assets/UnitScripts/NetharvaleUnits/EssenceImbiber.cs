@@ -23,6 +23,6 @@ public class EssenceImbiber : UnitInstance
 
     public override string GetActiveDescription()
     {
-        return ($"[c_lifesteal]Lifesteal[/c]. \n[c_attack]Attack[/c] a random enemy for [ATTACK] {stats.Attack}.");
+        return ($"[c_lifesteal]Lifesteal[/c]. \n[c_attack]Attack[/c] a random enemy for [ATK] {stats.Attack}.");
     }
 }

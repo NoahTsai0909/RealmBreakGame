@@ -10,35 +10,36 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9bff6408a3a17924b9fb916c32996ac3, type: 3}
-  m_Name: DesyncedConvergence
+  m_Name: SmugglersHold
   m_EditorClassIdentifier: Assembly-CSharp::StoryEventSO
-  eventName: Desynced Convergence
-  description: Give a unit a random [c_mutation]mutation[/c].
+  eventName: Smuggler's Hold
+  description: Get a random unit from another region.
   eventIcon: {fileID: 21300000, guid: ef55c91682e07784b84d953429afcf3a, type: 3}
   eventBackgroundImage: {fileID: 21300000, guid: 9bf677eb2d018a84c9ff2577efc7bce9, type: 3}
-  portalGlowColor: {r: 0.5031446, g: 0, b: 0.49166262, a: 1}
-  minDayRequired: 9
+  portalGlowColor: {r: 0.99371064, g: 0.99371064, b: 0.99371064, a: 1}
+  minDayRequired: 6
   maxDayRequired: 12
-  selectionWeight: 4
-  maxAppearancesPerRun: 1
+  selectionWeight: 1
+  maxAppearancesPerRun: 0
   targetScene: 5
   pages:
-  - promptText: Something within your units has fallen out of sync with reality.
-      For a brief moment, what they are and what they could become overlap.
+  - promptText: 'You defeat a band of rift smuggler and manage to break the lock
+      on their prized contraband: a sealed containment pod. Will you enlist whatever
+      is inside? '
     choices:
-    - buttonText: Choose a unit to mutate.
+    - buttonText: 'Take the help. '
       previewUnit: {fileID: 0}
       rollRandomRarity: 0
       previewRarity: 0
-      generateRandomUnitPreview: 0
-      anyRegion: 0
+      generateRandomUnitPreview: 1
+      anyRegion: 1
       randomRegion: 0
       preferredTags: 0
-      excludePlayerRegion: 0
+      excludePlayerRegion: 1
       previewTactic: {fileID: 0}
       generateRandomTacticPreview: 0
       outcomes:
-      - {fileID: 11400000, guid: fc50889b61f35bf479fb237d92911891, type: 2}
+      - {fileID: 11400000, guid: f3fe3996dba820647a8d7b1847cc2416, type: 2}
       condition: {fileID: 0}
     - buttonText: Leave.
       previewUnit: {fileID: 0}

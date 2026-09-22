@@ -103,10 +103,10 @@ TextureImporter:
       name: Paladin_0
       rect:
         serializedVersion: 2
-        x: 74
-        y: 2
-        width: 419
-        height: 512
+        x: 41
+        y: 11
+        width: 468
+        height: 542
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

@@ -50,8 +50,13 @@ public class EventChoice
 
     [Tooltip("Check this to ignore previewUnit and generate a random unit instead")]
     public bool generateRandomUnitPreview;
+    [Tooltip("If checked, the unit can be from any valid region. Uncheck to force the specific Random Region below.")]
+    public bool anyRegion = false;
     public Region randomRegion;
     public UnitTagFlags preferredTags = UnitTagFlags.None;
+
+    [Tooltip("If checked, the random preview will NEVER pick a unit from the player's current region.")]
+    public bool excludePlayerRegion = false;
 
     [Header("Tactic Preview Settings")]
     public TacticDefinition previewTactic;

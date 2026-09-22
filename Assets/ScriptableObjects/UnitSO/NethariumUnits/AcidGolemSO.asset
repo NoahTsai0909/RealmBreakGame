@@ -23,7 +23,7 @@ MonoBehaviour:
   slow: 0
   haste: 0
   critChance: 0
-  cooldown: 0
+  cooldown: 8
   isPassive: 0
   isEnergy: 0
   maxEnergy: 0

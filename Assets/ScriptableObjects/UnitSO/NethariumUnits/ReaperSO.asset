@@ -45,4 +45,4 @@ MonoBehaviour:
   isEventExclusive: 0
   unitPrefab: {fileID: 3433320951962339120, guid: 106b6c9bba74d08468ecf13ed4d8c84b, type: 3}
   spawnDefinition: {fileID: 0}
-  tagFlags: 0
+  tagFlags: 8389632

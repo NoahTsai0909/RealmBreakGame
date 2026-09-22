@@ -5,6 +5,9 @@ TextureImporter:
   - first:
       213: 5183067009694554921
     second: Lightmare_0
+  - first:
+      213: -4375802260915830191
+    second: Lightmare_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -103,10 +106,10 @@ TextureImporter:
       name: Lightmare_0
       rect:
         serializedVersion: 2
-        x: 89
-        y: 6
+        x: 62
+        y: 4
         width: 401
-        height: 457
+        height: 441
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -117,6 +120,28 @@ TextureImporter:
       bones: []
       spriteID: 92bd3e7fbf3fde740800000000000000
       internalID: 5183067009694554921
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lightmare_1
+      rect:
+        serializedVersion: 2
+        x: 446
+        y: 238
+        width: 24
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 152c2c617070643c0800000000000000
+      internalID: -4375802260915830191
       vertices: []
       indices: 
       edges: []
@@ -136,6 +161,7 @@ TextureImporter:
       entries: []
     nameFileIdTable:
       Lightmare_0: 5183067009694554921
+      Lightmare_1: -4375802260915830191
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

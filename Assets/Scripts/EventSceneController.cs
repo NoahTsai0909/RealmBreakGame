@@ -130,9 +130,29 @@ public class EventSceneController : MonoBehaviour
 
                 if (choice.generateRandomUnitPreview)
                 {
-                    UnitSaveData randomData = UnitGenerationService.GenerateUnit(choice.randomRegion, choice.preferredTags);
+                    Region? excludedRegion = null;
+                    if (choice.excludePlayerRegion && RunManager.Instance != null)
+                    {
+                        excludedRegion = RunManager.Instance.playerRegion;
+                    }
+                    Region? targetRegion = choice.anyRegion ? null : choice.randomRegion;
+
+                    UnitSaveData randomData = UnitGenerationService.GenerateUnit(
+                        region: targetRegion,
+                        requiredTags: choice.preferredTags,
+                        bypassExclusive: false,
+                        excludedRegion: excludedRegion
+                    );
+
                     choiceContext.generatedUnit = randomData;
-                    SpawnUnitOnButton(randomData, newButton);
+                    if (randomData != null && randomData.definition != null)
+                    {
+                        SpawnUnitOnButton(randomData, newButton);
+                    }
+                    else
+                    {
+                        Debug.LogWarning($"Failed to generate preview unit for choice: {choice.buttonText}. Check region/tag constraints.");
+                    }
                 }
                 else if (choice.previewUnit != null)
                 {

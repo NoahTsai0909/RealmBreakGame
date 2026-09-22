@@ -103,10 +103,10 @@ TextureImporter:
       name: Dustraiser_0
       rect:
         serializedVersion: 2
-        x: 95
-        y: 10
-        width: 450
-        height: 328
+        x: 77
+        y: 30
+        width: 481
+        height: 377
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

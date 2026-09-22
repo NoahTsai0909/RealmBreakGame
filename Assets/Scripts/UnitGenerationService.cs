@@ -11,12 +11,12 @@ public static class UnitGenerationService
     public static UnitSaveData GenerateUnit(
         Region? region = null,
         UnitTagFlags requiredTags = UnitTagFlags.None,
-        bool bypassExclusive = false)
+        bool bypassExclusive = false, Region? excludedRegion = null)
     {
         int day = RunManager.Instance.Stats.CurrentDay;
         DayRarityEntry dist = RunManager.Instance.rarityDistributionTable.GetForDay(day);
         Rarity rolledRarity = RarityDistributionTable.RollRarity(dist);
-        UnitDefinition def = UnitDatabase.Instance.GetRandomUnit(rolledRarity, region, requiredTags, 0, -1, bypassExclusive);
+        UnitDefinition def = UnitDatabase.Instance.GetRandomUnit(rolledRarity, region, requiredTags, 0, -1, bypassExclusive, excludedRegion);
 
         return new UnitSaveData
         {

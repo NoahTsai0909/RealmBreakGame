@@ -33,8 +33,10 @@ MonoBehaviour:
       rollRandomRarity: 0
       previewRarity: 2
       generateRandomUnitPreview: 0
+      anyRegion: 0
       randomRegion: 4
       preferredTags: 0
+      excludePlayerRegion: 0
       previewTactic: {fileID: 0}
       generateRandomTacticPreview: 0
       outcomes:
@@ -46,8 +48,10 @@ MonoBehaviour:
       rollRandomRarity: 0
       previewRarity: 2
       generateRandomUnitPreview: 0
+      anyRegion: 1
       randomRegion: 0
       preferredTags: 2097152
+      excludePlayerRegion: 0
       previewTactic: {fileID: 0}
       generateRandomTacticPreview: 0
       outcomes:
@@ -59,8 +63,10 @@ MonoBehaviour:
       rollRandomRarity: 1
       previewRarity: 0
       generateRandomUnitPreview: 0
+      anyRegion: 1
       randomRegion: 0
       preferredTags: 0
+      excludePlayerRegion: 0
       previewTactic: {fileID: 0}
       generateRandomTacticPreview: 0
       outcomes:

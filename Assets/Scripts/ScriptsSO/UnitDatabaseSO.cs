@@ -25,7 +25,7 @@ public class UnitDatabase : ScriptableObject
         }
     }
 
-    public UnitDefinition GetRandomUnit(Rarity rolledRarity, Region? region = null, UnitTagFlags requiredTags = UnitTagFlags.None, int minProvision = 0, int maxProvision = -1, bool byPassExclusivity = false)
+    public UnitDefinition GetRandomUnit(Rarity rolledRarity, Region? region = null, UnitTagFlags requiredTags = UnitTagFlags.None, int minProvision = 0, int maxProvision = -1, bool byPassExclusivity = false, Region? excludedRegion = null)
     {
         IEnumerable<UnitDefinition> pool = allUnits;
 
@@ -43,6 +43,11 @@ public class UnitDatabase : ScriptableObject
 
         if (region.HasValue)
             pool = pool.Where(u => u.region == region.Value);
+        if (excludedRegion.HasValue)
+        {
+            pool = pool.Where(u => u.region != excludedRegion.Value);
+            pool = pool.Where(u => u.region != Region.None);
+        }
 
         if (requiredTags != UnitTagFlags.None)
             pool = pool.Where(u =>

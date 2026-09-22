@@ -103,10 +103,10 @@ TextureImporter:
       name: HillGiant_0
       rect:
         serializedVersion: 2
-        x: 114
-        y: 1
-        width: 363
-        height: 558
+        x: 139
+        y: 7
+        width: 379
+        height: 549
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

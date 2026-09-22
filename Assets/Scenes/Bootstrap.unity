@@ -1066,14 +1066,24 @@ MonoBehaviour:
   playerTactics: []
   defaultUnits:
   - unitData:
-      definition: {fileID: 11400000, guid: 45c62452ee9fd324eb36439c2e6a9b10, type: 2}
-      rarity: 2
+      definition: {fileID: 11400000, guid: 12d9a6ead08570544b39a0b4f08c053c, type: 2}
+      rarity: 1
+      provisionCost: 0
+      provisionModifier: 0
+      valueModifier: 0
+      prefix: {fileID: 11400000, guid: 37cb3ab5b9fe1a34cb7c9c7bdcb38b97, type: 2}
+      suffix: {fileID: 11400000, guid: f2e5c8b78a4251f4eab16d1066fbc6a3, type: 2}
+    row: 0
+    col: 0
+  - unitData:
+      definition: {fileID: 11400000, guid: 0c5b497a8951325439ced8990884fb05, type: 2}
+      rarity: 1
       provisionCost: 0
       provisionModifier: 0
       valueModifier: 0
       prefix: {fileID: 0}
       suffix: {fileID: 0}
-    row: 0
+    row: 1
     col: 0
   benchSize: 5
   regularEventsCompleted: 0

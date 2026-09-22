@@ -103,10 +103,10 @@ TextureImporter:
       name: StrongArm_0
       rect:
         serializedVersion: 2
-        x: 126
-        y: 4
-        width: 320
-        height: 573
+        x: 149
+        y: 1
+        width: 360
+        height: 544
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

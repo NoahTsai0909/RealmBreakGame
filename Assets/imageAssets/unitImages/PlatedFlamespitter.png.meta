@@ -103,10 +103,10 @@ TextureImporter:
       name: PlatedFlamespitter_0
       rect:
         serializedVersion: 2
-        x: 188
-        y: 8
-        width: 283
-        height: 432
+        x: 90
+        y: 3
+        width: 537
+        height: 518
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

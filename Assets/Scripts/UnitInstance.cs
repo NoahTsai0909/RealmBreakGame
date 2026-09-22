@@ -526,6 +526,7 @@ public class UnitInstance : MonoBehaviour
         string mainStatName = GetStatStringForUI(mainStat);
         string grantedStatName = GetStatStringForUI(grantedStat);
         string prefixHex = ColorUtility.ToHtmlStringRGB(currentPrefix.runeColor);
+        if (mainStat == ModifiableStats.None) return "";
         if (mainStat == grantedStat) return $"<color=#{prefixHex}>{currentPrefix.prefixName}</color>: This gains [{grantedStatName}] equal to 50% of its [{mainStatName}].";
         return $"<color=#{prefixHex}>{currentPrefix.prefixName}</color>: This gains [{grantedStatName}] equal to {percentage}% of its [{mainStatName}].";
     }
