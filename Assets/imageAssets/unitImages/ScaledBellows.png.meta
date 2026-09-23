@@ -103,10 +103,10 @@ TextureImporter:
       name: ScaledBellows_0
       rect:
         serializedVersion: 2
-        x: 82
+        x: 91
         y: 3
-        width: 442
-        height: 526
+        width: 410
+        height: 435
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

@@ -115,14 +115,11 @@ public class RunManager : MonoBehaviour
 
     public void SetupNewAdventure(AdventureDefinitionSO adventure, Region selectedRegion)
     {
-        // 1. Lock in the rules
         TOTAL_DAYS = adventure.totalDays;
 
-        // 2. Lock in the faction and automatically grab its reward tree
         playerRegion = selectedRegion;
         AssignRegionTree();
 
-        // 3. Reset all tracking variables
         masterUnitStats.Clear();
         regularEventsCompleted = 0;
         isBattlePhase = false;
@@ -137,14 +134,18 @@ public class RunManager : MonoBehaviour
         playerTactics.Clear();
         runSeed = UnityEngine.Random.Range(1, 99999999);
 
-        // 4. Reset team/bench to defaults
         playerTeamPlacements.Clear();
         InitializeDefaultTeam();
         playerBenchPlacements.Clear();
         InitializeBench();
 
-        // 5. Initialize stats using the adventure's specific starting values!
         Stats.Initialize(adventure.startingGold, adventure.startingHealth, adventure.startingProvisionCap);
+
+        List<BaseEventSO> regionEvents = currentRegionTree != null ? currentRegionTree.regionExclusiveEvents : new List<BaseEventSO>();
+        if (EventPoolManager.Instance != null)
+        {
+            EventPoolManager.Instance.BuildEventPool(adventure.regularEvents, adventure.combatEvents, regionEvents);
+        }
 
         Debug.Log($"Adventure Setup Complete: {adventure.adventureName} playing as {playerRegion}.");
     }
@@ -406,7 +407,7 @@ public class RunManager : MonoBehaviour
         return stats;
     }
 
-    public void InitializeShop(int unitCount, int tacticCount, Region region, UnitTagFlags unitTags, int minProvision = 0, int maxProvision = -1, bool forceRarity = false, Rarity designatedRarity = Rarity.Common, bool forceMutation = false)
+    public void InitializeShop(int unitCount, int tacticCount, Region? targetRegion, UnitTagFlags unitTags, int minProvision = 0, int maxProvision = -1, bool forceRarity = false, Rarity designatedRarity = Rarity.Common, bool forceMutation = false, Region? excludedRegion = null)
     {
         if (shopState != null) return;
 
@@ -414,14 +415,14 @@ public class RunManager : MonoBehaviour
         List<UnitSaveData> generatedUnits = new List<UnitSaveData>();
         if (unitCount > 0)
         {
-            generatedUnits = UnitGenerationService.GenerateShopUnits(unitCount, region, unitTags, minProvision, maxProvision, forceRarity, designatedRarity, forceMutation);
+            generatedUnits = UnitGenerationService.GenerateShopUnits(unitCount, targetRegion, unitTags, minProvision, maxProvision, forceRarity, designatedRarity, forceMutation, excludedRegion);
         }
 
         // 2. Generate Tactics (If this is a tactic shop)
         List<TacticSaveData> generatedTactics = new List<TacticSaveData>();
         if (tacticCount > 0)
         {
-            generatedTactics = TacticGenerationService.GenerateShopTactics(tacticCount, region);
+            generatedTactics = TacticGenerationService.GenerateShopTactics(tacticCount, targetRegion);
         }
 
         // 3. Create the unified Payload

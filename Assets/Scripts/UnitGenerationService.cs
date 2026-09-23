@@ -25,7 +25,7 @@ public static class UnitGenerationService
         };
     }
 
-    public static List<UnitSaveData> GenerateShopUnits(int count, Region region, UnitTagFlags unitTags, int minProvision = 0, int maxProvision = -1, bool forceRarity = false, Rarity designatedRarity = Rarity.Common, bool forceMutation = false)
+    public static List<UnitSaveData> GenerateShopUnits(int count, Region? targetRegion, UnitTagFlags unitTags, int minProvision = 0, int maxProvision = -1, bool forceRarity = false, Rarity designatedRarity = Rarity.Common, bool forceMutation = false, Region? excludedRegion = null)
     {
         var result = new List<UnitSaveData>();
         var usedDefinitions = new HashSet<UnitDefinition>();
@@ -42,10 +42,12 @@ public static class UnitGenerationService
 
                 var candidate = UnitDatabase.Instance.GetRandomUnit(
                     rolledRarity,
-                    region,
+                    targetRegion,
                     unitTags,
                     minProvision,
-                    maxProvision
+                    maxProvision,
+                    false,
+                    excludedRegion
                 );
 
                 if (candidate != null && !usedDefinitions.Contains(candidate))

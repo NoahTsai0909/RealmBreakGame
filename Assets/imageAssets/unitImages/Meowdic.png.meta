@@ -103,10 +103,10 @@ TextureImporter:
       name: Meowdic_0
       rect:
         serializedVersion: 2
-        x: 174
-        y: 11
-        width: 375
-        height: 440
+        x: 90
+        y: 1
+        width: 525
+        height: 488
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

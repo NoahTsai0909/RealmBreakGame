@@ -8,4 +8,7 @@ public class RegionLevelTreeSO : ScriptableObject
     public Region regionName;
 
     public List<LevelUpEventSO> levelNodes = new List<LevelUpEventSO>();
+    [Header("Region Identity")]
+    [Tooltip("Exclusive events (combat or regular) that only appear when playing as this region.")]
+    public List<BaseEventSO> regionExclusiveEvents = new List<BaseEventSO>();
 }

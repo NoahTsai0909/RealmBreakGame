@@ -5,9 +5,6 @@ TextureImporter:
   - first:
       213: -1692912528399605761
     second: Seamstress_0
-  - first:
-      213: -5912504873551160593
-    second: Seamstress_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -106,10 +103,10 @@ TextureImporter:
       name: Seamstress_0
       rect:
         serializedVersion: 2
-        x: 112
-        y: 9
-        width: 460
-        height: 522
+        x: 41
+        y: 0
+        width: 556
+        height: 508
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -120,28 +117,6 @@ TextureImporter:
       bones: []
       spriteID: fffdeec56019188e0800000000000000
       internalID: -1692912528399605761
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Seamstress_1
-      rect:
-        serializedVersion: 2
-        x: 316
-        y: 18
-        width: 6
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: fea973fa42092fda0800000000000000
-      internalID: -5912504873551160593
       vertices: []
       indices: 
       edges: []
@@ -161,7 +136,6 @@ TextureImporter:
       entries: []
     nameFileIdTable:
       Seamstress_0: -1692912528399605761
-      Seamstress_1: -5912504873551160593
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -13,9 +13,60 @@ MonoBehaviour:
   m_Name: RuinsBelow
   m_EditorClassIdentifier: Assembly-CSharp::AdventureDefinitionSO
   adventureName: Ruins Below
-  description: 
+  description: 'A spiral of stairs leads to the mysterious underground. What other
+    powers could have ventured down there already? '
   artworkCard: {fileID: 21300000, guid: 884917f0f561a20428de3a08cf984895, type: 3}
   totalDays: 12
   startingGold: 10
   startingHealth: 12
   startingProvisionCap: 4
+  regularEvents:
+  - {fileID: 11400000, guid: ff67c8b7f0080374fa1fe8093858351a, type: 2}
+  - {fileID: 11400000, guid: 055a7c2b601bd1a4c8e4105290ef9267, type: 2}
+  - {fileID: 11400000, guid: cfcb1ed0283debf4baefb33f32c74e29, type: 2}
+  - {fileID: 11400000, guid: 78a73f8400ba91b4bb15315abf44e827, type: 2}
+  - {fileID: 11400000, guid: b9b4121ef0a3a894f89f737142c6772f, type: 2}
+  - {fileID: 11400000, guid: 6c16955bee12c884b84e61338ec85ea6, type: 2}
+  - {fileID: 11400000, guid: b18731b481b4d404eb5deafa03ba53ae, type: 2}
+  - {fileID: 11400000, guid: c5a8c04adba2c0a47b2fae756fcb52bb, type: 2}
+  - {fileID: 11400000, guid: f14ff58af1827e549b0b9c2da2ce6855, type: 2}
+  - {fileID: 11400000, guid: 276f057b7f240634689b75c56ef92808, type: 2}
+  - {fileID: 11400000, guid: f6967a81bc7a27d44a1ff00d848d3374, type: 2}
+  - {fileID: 11400000, guid: 90ba05cc94aae134db5ff44945a3b641, type: 2}
+  - {fileID: 11400000, guid: a1b5baa498dfc03458baaf2352ad71d9, type: 2}
+  - {fileID: 11400000, guid: 4bbf8b30995531144be16f33a8bf3beb, type: 2}
+  - {fileID: 11400000, guid: a50abd76c766801459d0a7500da262ae, type: 2}
+  - {fileID: 11400000, guid: 0b968237a3923904e8f7a6487507d3d6, type: 2}
+  - {fileID: 11400000, guid: aa9a2e60c2e84f44aa2928b55beff739, type: 2}
+  - {fileID: 11400000, guid: cff4ed731c96c0e4aa3a3dee80bee164, type: 2}
+  - {fileID: 11400000, guid: 32890d401582f964e906ed7da41235ad, type: 2}
+  - {fileID: 11400000, guid: 96bf437f9f39cd94dbe76e62f0e573d2, type: 2}
+  - {fileID: 11400000, guid: 3cac1631090e3ba40b0dd0779846b01b, type: 2}
+  - {fileID: 11400000, guid: 613f599a2bf1fbf488639ea86b0e5485, type: 2}
+  - {fileID: 11400000, guid: b1d4626274e378e489569bf4183cfa72, type: 2}
+  - {fileID: 11400000, guid: bdbd746517603b94ba032b1ed2d45072, type: 2}
+  - {fileID: 11400000, guid: 973db869b4b0fd64c97cafa8d3a5b9cf, type: 2}
+  - {fileID: 11400000, guid: ef799aa296af5f648bf853caf49a996d, type: 2}
+  - {fileID: 11400000, guid: 19041253acd6ed943849be8adf095811, type: 2}
+  - {fileID: 11400000, guid: 1e5a4c869cd3bd748993d6fd1842ade7, type: 2}
+  - {fileID: 11400000, guid: e9814c2b35011eb4eb223d10f3353da0, type: 2}
+  combatEvents:
+  - {fileID: 11400000, guid: b3615fe7df907514cb301424572b2355, type: 2}
+  - {fileID: 11400000, guid: d33184092d9a4d84aab05cbf063570da, type: 2}
+  - {fileID: 11400000, guid: a42d383b15b05a448b2c0efa43867b22, type: 2}
+  - {fileID: 11400000, guid: 773a45379c029b34190aedb2be73c1b5, type: 2}
+  - {fileID: 11400000, guid: e5ed741e7d56fe147869f853c5874ac4, type: 2}
+  - {fileID: 11400000, guid: 51d7bdae49b0a014b8947f3bff99d492, type: 2}
+  - {fileID: 11400000, guid: 5e684060c29149248b162bc4a8f1d7fc, type: 2}
+  - {fileID: 11400000, guid: 907cb91864e67434dbbe7518aea648e9, type: 2}
+  - {fileID: 11400000, guid: fd1d9e2149bc53b4d8b555c3f0b8d27b, type: 2}
+  - {fileID: 11400000, guid: 5e11bb67cabb54c4eaa26000db9edb90, type: 2}
+  - {fileID: 11400000, guid: 1ccfed83e43c22642940fa9d48faf67f, type: 2}
+  - {fileID: 11400000, guid: 70d0cc018a93dd842b60e18ce63ef70b, type: 2}
+  - {fileID: 11400000, guid: 003b4300574ab104da55fe9894a11b23, type: 2}
+  - {fileID: 11400000, guid: cdad6b5908d019c4a852850d427522d7, type: 2}
+  - {fileID: 11400000, guid: 8ced2cad0a49ee740940a01a98a57522, type: 2}
+  - {fileID: 11400000, guid: bab2ee32738dc234e9bd6ff584313c3e, type: 2}
+  - {fileID: 11400000, guid: 099bfbc761602b74c93487b588660a53, type: 2}
+  - {fileID: 11400000, guid: f2287ba6145a5114197aa6d0e99a04a1, type: 2}
+  - {fileID: 11400000, guid: 3d52efd378c21b144adbca05c8d334ba, type: 2}

@@ -45,16 +45,23 @@ public class ShopSceneController : MonoBehaviour
             Debug.LogError("ShopScene loaded without ShopEventSO");
             return;
         }
+        Region? targetRegion = shopEvent.anyRegion ? null : shopEvent.region;
+        Region? excludedRegion = null;
+        if (shopEvent.excludePlayerRegion && RunManager.Instance != null)
+        {
+            excludedRegion = RunManager.Instance.playerRegion;
+        }
         RunManager.Instance.InitializeShop(
             shopEvent.totalUnitsGenerated,
             shopEvent.totalTacticsGenerated,
-            RunManager.Instance.playerRegion,
+            targetRegion, 
             shopEvent.allowedTags,
             shopEvent.minProvisionCost,
             shopEvent.maxProvisionCost,
             shopEvent.forceRarity,
             shopEvent.designatedRarity,
-            shopEvent.forceMutation
+            shopEvent.forceMutation,
+            excludedRegion 
         );
 
         shopState = RunManager.Instance.shopState;

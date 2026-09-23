@@ -103,10 +103,10 @@ TextureImporter:
       name: IroncladSentinel_0
       rect:
         serializedVersion: 2
-        x: 41
-        y: 2
-        width: 512
-        height: 535
+        x: 3
+        y: 0
+        width: 632
+        height: 484
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

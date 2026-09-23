@@ -12,7 +12,11 @@ public class ShopEventSO : BaseEventSO
     public bool discount = false;
     public bool forceMutation = false;
     public UnitTagFlags allowedTags = UnitTagFlags.None;
+    [Tooltip("If checked, the shop pulls from all valid regions instead of the specific Region below.")]
+    public bool anyRegion = false;
     public Region region;
+    [Tooltip("If checked, the shop will never sell units from the player's current region.")]
+    public bool excludePlayerRegion = false;
 
     [Header("Provision Filtering")]
     public int maxProvisionCost = -1;  // -1 means no filter, will add later

@@ -20,7 +20,6 @@ public class EventPoolManager : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
-            LoadEventsFromResources();
         }
         else
         {
@@ -34,13 +33,17 @@ public class EventPoolManager : MonoBehaviour
         DebugEventPool();
     }
 
-    private void LoadEventsFromResources()
+    public void BuildEventPool(List<BaseEventSO> advRegular, List<BaseEventSO> advCombat, List<BaseEventSO> regionExclusive)
     {
-        // This automatically finds EVERY BaseEventSO inside Assets/Resources/Events/
-        BaseEventSO[] loadedEvents = Resources.LoadAll<BaseEventSO>("Events");
+        allEvents.Clear();
+        eventAppearanceCounts.Clear(); // Reset memory of what we've seen this run
 
-        // Convert the array to list
-        allEvents = new List<BaseEventSO>(loadedEvents);
+        if (advRegular != null) allEvents.AddRange(advRegular);
+        if (advCombat != null) allEvents.AddRange(advCombat);
+        if (regionExclusive != null) allEvents.AddRange(regionExclusive);
+
+        CategorizeEvents();
+        DebugEventPool();
     }
 
     private void CategorizeEvents()
@@ -63,7 +66,6 @@ public class EventPoolManager : MonoBehaviour
     // Get combat events (weighted random)
     public List<BaseEventSO> GetCombatEvents(int count)
     {
-        if (allEvents.Count == 0) LoadEventsFromResources();
         CategorizeEvents();
         return GetWeightedRandomEvents(combatEvents, count);
     }
@@ -71,7 +73,6 @@ public class EventPoolManager : MonoBehaviour
     // Get regular events (weighted random)
     public List<BaseEventSO> GetRegularEvents(int count)
     {
-        if (allEvents.Count == 0) LoadEventsFromResources(); 
         CategorizeEvents();
         return GetWeightedRandomEvents(regularEvents, count);
     }

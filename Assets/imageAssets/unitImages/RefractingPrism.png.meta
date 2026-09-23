@@ -5,6 +5,15 @@ TextureImporter:
   - first:
       213: -2941718457411380057
     second: RefractingPrism_0
+  - first:
+      213: -3602905495477936228
+    second: RefractingPrism_1
+  - first:
+      213: -6193182578853529850
+    second: RefractingPrism_2
+  - first:
+      213: -1666428353447641261
+    second: RefractingPrism_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -103,10 +112,10 @@ TextureImporter:
       name: RefractingPrism_0
       rect:
         serializedVersion: 2
-        x: 130
-        y: 110
-        width: 355
-        height: 473
+        x: 155
+        y: 321
+        width: 34
+        height: 108
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -117,6 +126,72 @@ TextureImporter:
       bones: []
       spriteID: 7acd8cc16aaec27d0800000000000000
       internalID: -2941718457411380057
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RefractingPrism_1
+      rect:
+        serializedVersion: 2
+        x: 163
+        y: 45
+        width: 303
+        height: 465
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c9f1cb67a88effdc0800000000000000
+      internalID: -3602905495477936228
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RefractingPrism_2
+      rect:
+        serializedVersion: 2
+        x: 473
+        y: 148
+        width: 42
+        height: 178
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6073c46e1456d0aa0800000000000000
+      internalID: -6193182578853529850
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RefractingPrism_3
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 125
+        width: 43
+        height: 106
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 35f3d1ddd38afd8e0800000000000000
+      internalID: -1666428353447641261
       vertices: []
       indices: 
       edges: []
@@ -136,6 +211,9 @@ TextureImporter:
       entries: []
     nameFileIdTable:
       RefractingPrism_0: -2941718457411380057
+      RefractingPrism_1: -3602905495477936228
+      RefractingPrism_2: -6193182578853529850
+      RefractingPrism_3: -1666428353447641261
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

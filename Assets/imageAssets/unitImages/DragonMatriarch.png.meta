@@ -103,10 +103,10 @@ TextureImporter:
       name: DragonMatriarch_0
       rect:
         serializedVersion: 2
-        x: 86
-        y: 5
-        width: 475
-        height: 564
+        x: 2
+        y: 0
+        width: 624
+        height: 502
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

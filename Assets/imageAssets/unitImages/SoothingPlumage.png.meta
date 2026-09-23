@@ -103,10 +103,10 @@ TextureImporter:
       name: SoothingPlumage_0
       rect:
         serializedVersion: 2
-        x: 172
-        y: 10
-        width: 295
-        height: 335
+        x: 114
+        y: 1
+        width: 442
+        height: 416
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
