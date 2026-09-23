@@ -1066,8 +1066,8 @@ MonoBehaviour:
   playerTactics: []
   defaultUnits:
   - unitData:
-      definition: {fileID: 11400000, guid: 12d9a6ead08570544b39a0b4f08c053c, type: 2}
-      rarity: 1
+      definition: {fileID: 11400000, guid: fdacd95638806794eb68fb3b19794bd8, type: 2}
+      rarity: 2
       provisionCost: 0
       provisionModifier: 0
       valueModifier: 0
@@ -1076,8 +1076,8 @@ MonoBehaviour:
     row: 0
     col: 0
   - unitData:
-      definition: {fileID: 11400000, guid: 0c5b497a8951325439ced8990884fb05, type: 2}
-      rarity: 1
+      definition: {fileID: 11400000, guid: 1c0698f5c01762c429057db044ec6ddf, type: 2}
+      rarity: 2
       provisionCost: 0
       provisionModifier: 0
       valueModifier: 0

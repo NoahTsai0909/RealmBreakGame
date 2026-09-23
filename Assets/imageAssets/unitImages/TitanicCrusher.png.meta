@@ -103,10 +103,10 @@ TextureImporter:
       name: TitanicCrusher_0
       rect:
         serializedVersion: 2
-        x: 42
-        y: 11
-        width: 563
-        height: 463
+        x: 13
+        y: 0
+        width: 627
+        height: 422
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

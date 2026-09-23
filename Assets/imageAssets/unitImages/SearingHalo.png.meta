@@ -11,6 +11,15 @@ TextureImporter:
   - first:
       213: 2579674763638635974
     second: SearingHalo_2
+  - first:
+      213: 189493985941050961
+    second: SearingHalo_3
+  - first:
+      213: 2686049932737398189
+    second: SearingHalo_4
+  - first:
+      213: 80549745444355590
+    second: SearingHalo_5
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -109,10 +118,10 @@ TextureImporter:
       name: SearingHalo_0
       rect:
         serializedVersion: 2
-        x: 142
-        y: 196
-        width: 387
-        height: 343
+        x: 111
+        y: 307
+        width: 108
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -131,10 +140,10 @@ TextureImporter:
       name: SearingHalo_1
       rect:
         serializedVersion: 2
-        x: 225
-        y: 508
-        width: 25
-        height: 45
+        x: 140
+        y: 113
+        width: 358
+        height: 394
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -153,10 +162,10 @@ TextureImporter:
       name: SearingHalo_2
       rect:
         serializedVersion: 2
-        x: 476
-        y: 370
-        width: 85
-        height: 46
+        x: 419
+        y: 174
+        width: 132
+        height: 254
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -167,6 +176,72 @@ TextureImporter:
       bones: []
       spriteID: 6cd78b2a788dcc320800000000000000
       internalID: 2579674763638635974
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SearingHalo_3
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 104
+        width: 158
+        height: 185
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 156d617b6c731a200800000000000000
+      internalID: 189493985941050961
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SearingHalo_4
+      rect:
+        serializedVersion: 2
+        x: 226
+        y: 39
+        width: 61
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: da546c9be24c64520800000000000000
+      internalID: 2686049932737398189
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SearingHalo_5
+      rect:
+        serializedVersion: 2
+        x: 370
+        y: 57
+        width: 78
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 60e75f3119b2e1100800000000000000
+      internalID: 80549745444355590
       vertices: []
       indices: 
       edges: []
@@ -188,6 +263,9 @@ TextureImporter:
       SearingHalo_0: 1734321436556707521
       SearingHalo_1: 8359144358976749326
       SearingHalo_2: 2579674763638635974
+      SearingHalo_3: 189493985941050961
+      SearingHalo_4: 2686049932737398189
+      SearingHalo_5: 80549745444355590
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
