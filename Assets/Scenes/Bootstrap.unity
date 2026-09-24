@@ -1076,7 +1076,7 @@ MonoBehaviour:
     row: 0
     col: 0
   - unitData:
-      definition: {fileID: 11400000, guid: 898f27d0e6084ad47b441b8cfe6d6588, type: 2}
+      definition: {fileID: 11400000, guid: 1c0698f5c01762c429057db044ec6ddf, type: 2}
       rarity: 2
       provisionCost: 0
       provisionModifier: 0

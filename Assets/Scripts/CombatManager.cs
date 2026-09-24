@@ -90,7 +90,7 @@ public class CombatManager : MonoBehaviour
         switch (action.type)
         {
             case CombatActionType.Damage:
-                int actualHealthLost = action.target.TakeDamage(action.amount);
+                int actualHealthLost = action.target.TakeDamage(action.amount, action.source);
                 if (action.isLifesteal && actualHealthLost > 0 && action.source != null && action.source.GetCurrentHP() > 0)
                 {
                     ExecuteAction(new CombatAction
@@ -99,8 +99,7 @@ public class CombatManager : MonoBehaviour
                         source = action.source,
                         target = action.source,
                         amount = actualHealthLost,
-                        reason = "Lifesteal",
-                        isSilent = true
+                        reason = "Lifesteal"
                     });
                 }
                 break;
@@ -118,10 +117,10 @@ public class CombatManager : MonoBehaviour
                 break;
 
             case CombatActionType.ApplyBurn:
-                action.target.ApplyBurn(action.amount, action.sourceId);
+                action.target.ApplyBurn(action.amount, action.source);
                 break;
             case CombatActionType.ApplyPoison:
-                action.target.ApplyPoison(action.amount, action.sourceId);
+                action.target.ApplyPoison(action.amount, action.source);
                 break;
 
             case CombatActionType.ApplySlow:

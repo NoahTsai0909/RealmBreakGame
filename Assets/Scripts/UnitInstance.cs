@@ -355,7 +355,7 @@ public class UnitInstance : MonoBehaviour
 
     }
 
-    public virtual int TakeDamage(int dmg)
+    public virtual int TakeDamage(int dmg, UnitInstance source = null)
     {
         if (this == null || combatFrozen) return 0;
         if (dmg <= 0) return 0;
@@ -368,19 +368,18 @@ public class UnitInstance : MonoBehaviour
             int absorbed = Mathf.Min(currentShield, remainingDamage);
             currentShield -= absorbed;
             remainingDamage -= absorbed;
-
-            CombatEventBus.Publish(CombatEventType.ShieldDamaged, this, this, 0);
+            CombatEventBus.Publish(CombatEventType.ShieldDamaged, source, this, absorbed);
         }
 
         if (remainingDamage > 0)
         {
             currentHP = Mathf.Max(0, currentHP - remainingDamage);
 
-            CombatEventBus.Publish(CombatEventType.DamageTaken, this, this, 0);
+            CombatEventBus.Publish(CombatEventType.DamageTaken, source, this, remainingDamage);
 
             Visuals.Flash(Color.red, true);
             if (currentHP <= 0)
-                Die();
+                Die(source);
         }
         RefreshUI();
         return startingHP - currentHP;
@@ -398,7 +397,7 @@ public class UnitInstance : MonoBehaviour
         RefreshUI();
     }
 
-    public virtual void Die()
+    public virtual void Die(UnitInstance killer = null)
     {
         RemoveAuras();
         Status.ClearAllStatusEffects();
@@ -411,8 +410,7 @@ public class UnitInstance : MonoBehaviour
             uiManager.RemoveUnitUI(this);
 
         OnDeathEffect();
-
-        CombatEventBus.Publish(CombatEventType.UnitDied, this, this, 0);
+        CombatEventBus.Publish(CombatEventBus.CombatEventType.UnitDied, killer, this, 0);
         inCombat = false;
         if (Visuals != null)
         {
@@ -469,8 +467,8 @@ public class UnitInstance : MonoBehaviour
         RefreshUI();
     }
 
-    public void ApplyBurn(int amount, Guid sourceId) => Status.AddBurn(amount, sourceId);
-    public void ApplyPoison(int amount, Guid sourceId) => Status.AddPoison(amount, sourceId);
+    public void ApplyBurn(int amount, UnitInstance source) {GetComponent<StatusEffectController>().AddBurn(amount, source);}
+    public void ApplyPoison(int amount, UnitInstance source) {GetComponent<StatusEffectController>().AddPoison(amount, source);}
     public void ApplySlow(int amount) => Status.AddSlow(amount); // amount is now treated as seconds!
     public void ApplyHaste(int amount) => Status.AddHaste(amount);
 

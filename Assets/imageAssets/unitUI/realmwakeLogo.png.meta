@@ -1,0 +1,741 @@
+fileFormatVersion: 2
+guid: 40f6386cd4a0a454c85f6f5e508c59cd
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 3791139783705146117
+    second: realmwakeLogo_0
+  - first:
+      213: -1369616662432339860
+    second: realmwakeLogo_1
+  - first:
+      213: -926539569104639062
+    second: realmwakeLogo_2
+  - first:
+      213: -8390060242166357413
+    second: realmwakeLogo_3
+  - first:
+      213: -1614815103949561803
+    second: realmwakeLogo_4
+  - first:
+      213: -6808387487297351744
+    second: realmwakeLogo_5
+  - first:
+      213: -6358814061072394949
+    second: realmwakeLogo_6
+  - first:
+      213: 1286705959152152609
+    second: realmwakeLogo_7
+  - first:
+      213: -4055912459708368633
+    second: realmwakeLogo_8
+  - first:
+      213: -5846560458292269647
+    second: realmwakeLogo_9
+  - first:
+      213: 5809046998265983246
+    second: realmwakeLogo_10
+  - first:
+      213: 5742417240955262226
+    second: realmwakeLogo_11
+  - first:
+      213: 667664344227099179
+    second: realmwakeLogo_12
+  - first:
+      213: -3279049095475352109
+    second: realmwakeLogo_13
+  - first:
+      213: -1380318715567562980
+    second: realmwakeLogo_14
+  - first:
+      213: -2276573071944006615
+    second: realmwakeLogo_15
+  - first:
+      213: 8205920682397104514
+    second: realmwakeLogo_16
+  - first:
+      213: -6604881740255272168
+    second: realmwakeLogo_17
+  - first:
+      213: -6941249478354503579
+    second: realmwakeLogo_18
+  - first:
+      213: 3179668173673247436
+    second: realmwakeLogo_19
+  - first:
+      213: 7438534406341980198
+    second: realmwakeLogo_20
+  - first:
+      213: -8995867358516971695
+    second: realmwakeLogo_21
+  - first:
+      213: -8714318568650443343
+    second: realmwakeLogo_22
+  - first:
+      213: -4700896282504593088
+    second: realmwakeLogo_23
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 160
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: realmwakeLogo_0
+      rect:
+        serializedVersion: 2
+        x: 653
+        y: 715
+        width: 233
+        height: 206
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 503b8950c85dc9430800000000000000
+      internalID: 3791139783705146117
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: realmwakeLogo_1
+      rect:
+        serializedVersion: 2
+        x: 927
+        y: 812
+        width: 54
+        height: 212
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c68a34de6e42efce0800000000000000
+      internalID: -1369616662432339860
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: realmwakeLogo_2
+      rect:
+        serializedVersion: 2
+        x: 1026
+        y: 717
+        width: 231
+        height: 206
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aabac21cb254423f0800000000000000
+      internalID: -926539569104639062
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: realmwakeLogo_3
+      rect:
+        serializedVersion: 2
+        x: 322
+        y: 703
+        width: 311
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b52eb8589a4809b80800000000000000
+      internalID: -8390060242166357413
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: realmwakeLogo_4
+      rect:
+        serializedVersion: 2
+        x: 868
+        y: 576
+        width: 176
+        height: 231
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 530a627f7360799e0800000000000000
+      internalID: -1614815103949561803
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: realmwakeLogo_5
+      rect:
+        serializedVersion: 2
+        x: 1278
+        y: 700
+        width: 309
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0cf4d6617afb381a0800000000000000
+      internalID: -6808387487297351744
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: realmwakeLogo_6
+      rect:
+        serializedVersion: 2
+        x: 117
+        y: 678
+        width: 353
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b3555094d44f0c7a0800000000000000
+      internalID: -6358814061072394949
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: realmwakeLogo_7
+      rect:
+        serializedVersion: 2
+        x: 1418
+        y: 677
+        width: 379
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 12074a9a04c4bd110800000000000000
+      internalID: 1286705959152152609
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: realmwakeLogo_8
+      rect:
+        serializedVersion: 2
+        x: 110
+        y: 259
+        width: 239
+        height: 385
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 70970076b1186b7c0800000000000000
+      internalID: -4055912459708368633
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: realmwakeLogo_9
+      rect:
+        serializedVersion: 2
+        x: 316
+        y: 609
+        width: 549
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1bde4a55d38dcdea0800000000000000
+      internalID: -5846560458292269647
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: realmwakeLogo_10
+      rect:
+        serializedVersion: 2
+        x: 1039
+        y: 606
+        width: 531
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e01713f9771ed9050800000000000000
+      internalID: 5809046998265983246
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: realmwakeLogo_11
+      rect:
+        serializedVersion: 2
+        x: 1619
+        y: 260
+        width: 182
+        height: 383
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 21597375e0a21bf40800000000000000
+      internalID: 5742417240955262226
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: realmwakeLogo_12
+      rect:
+        serializedVersion: 2
+        x: 358
+        y: 344
+        width: 128
+        height: 252
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b22b9d20f25044900800000000000000
+      internalID: 667664344227099179
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: realmwakeLogo_13
+      rect:
+        serializedVersion: 2
+        x: 515
+        y: 361
+        width: 169
+        height: 222
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3dd2027883a7e72d0800000000000000
+      internalID: -3279049095475352109
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: realmwakeLogo_14
+      rect:
+        serializedVersion: 2
+        x: 707
+        y: 367
+        width: 118
+        height: 211
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c1f95c1017f18dce0800000000000000
+      internalID: -1380318715567562980
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: realmwakeLogo_15
+      rect:
+        serializedVersion: 2
+        x: 857
+        y: 370
+        width: 166
+        height: 203
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 924ce855adcf760e0800000000000000
+      internalID: -2276573071944006615
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: realmwakeLogo_16
+      rect:
+        serializedVersion: 2
+        x: 914
+        y: 177
+        width: 82
+        height: 201
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2897f41426941e170800000000000000
+      internalID: 8205920682397104514
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: realmwakeLogo_17
+      rect:
+        serializedVersion: 2
+        x: 1049
+        y: 365
+        width: 210
+        height: 211
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 813ee982d0fb654a0800000000000000
+      internalID: -6604881740255272168
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: realmwakeLogo_18
+      rect:
+        serializedVersion: 2
+        x: 1246
+        y: 356
+        width: 167
+        height: 226
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5687051306abbaf90800000000000000
+      internalID: -6941249478354503579
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: realmwakeLogo_19
+      rect:
+        serializedVersion: 2
+        x: 1431
+        y: 335
+        width: 170
+        height: 262
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cc2b86b7b53702c20800000000000000
+      internalID: 3179668173673247436
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: realmwakeLogo_20
+      rect:
+        serializedVersion: 2
+        x: 231
+        y: 216
+        width: 665
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 620f88ba1abfa3760800000000000000
+      internalID: 7438534406341980198
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: realmwakeLogo_21
+      rect:
+        serializedVersion: 2
+        x: 687
+        y: 97
+        width: 197
+        height: 183
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1577011bc42482380800000000000000
+      internalID: -8995867358516971695
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: realmwakeLogo_22
+      rect:
+        serializedVersion: 2
+        x: 1007
+        y: 97
+        width: 664
+        height: 226
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1b5fff7ae65801780800000000000000
+      internalID: -8714318568650443343
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: realmwakeLogo_23
+      rect:
+        serializedVersion: 2
+        x: 940
+        y: 20
+        width: 29
+        height: 151
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0410c5bccbf03ceb0800000000000000
+      internalID: -4700896282504593088
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      realmwakeLogo_0: 3791139783705146117
+      realmwakeLogo_1: -1369616662432339860
+      realmwakeLogo_10: 5809046998265983246
+      realmwakeLogo_11: 5742417240955262226
+      realmwakeLogo_12: 667664344227099179
+      realmwakeLogo_13: -3279049095475352109
+      realmwakeLogo_14: -1380318715567562980
+      realmwakeLogo_15: -2276573071944006615
+      realmwakeLogo_16: 8205920682397104514
+      realmwakeLogo_17: -6604881740255272168
+      realmwakeLogo_18: -6941249478354503579
+      realmwakeLogo_19: 3179668173673247436
+      realmwakeLogo_2: -926539569104639062
+      realmwakeLogo_20: 7438534406341980198
+      realmwakeLogo_21: -8995867358516971695
+      realmwakeLogo_22: -8714318568650443343
+      realmwakeLogo_23: -4700896282504593088
+      realmwakeLogo_3: -8390060242166357413
+      realmwakeLogo_4: -1614815103949561803
+      realmwakeLogo_5: -6808387487297351744
+      realmwakeLogo_6: -6358814061072394949
+      realmwakeLogo_7: 1286705959152152609
+      realmwakeLogo_8: -4055912459708368633
+      realmwakeLogo_9: -5846560458292269647
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

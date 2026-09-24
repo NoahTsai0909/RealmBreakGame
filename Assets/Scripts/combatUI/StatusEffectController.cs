@@ -23,6 +23,7 @@ public class StatusEffectController : MonoBehaviour
     public int TotalPoisonStacks => poisonSources.Values.Sum();
     private Coroutine poisonRoutine;
 
+    private Dictionary<Guid, UnitInstance> sourceReferences = new Dictionary<Guid, UnitInstance>();
 
     void Awake()
     {
@@ -66,16 +67,17 @@ public class StatusEffectController : MonoBehaviour
 
     // --- COMPLEX BURN LOGIC ---
 
-    public void AddBurn(int amount, Guid sourceId)
+    public void AddBurn(int amount, UnitInstance source)
     {
+        Guid sourceId = source != null ? source.id : Guid.Empty;
+        if (source != null) sourceReferences[sourceId] = source;
+
         if (burnSources.ContainsKey(sourceId))
             burnSources[sourceId] += amount;
         else
             burnSources[sourceId] = amount;
 
         CombatEventBus.PublishStatusChanged(unit, StatusEffectType.Burn, TotalBurnStacks);
-
-        // If not already burning, start the local routine!
         if (burnRoutine == null)
             burnRoutine = StartCoroutine(BurnTickRoutine());
     }
@@ -90,7 +92,7 @@ public class StatusEffectController : MonoBehaviour
             if (unit != null && unit.inCombat)
             {
                 int totalBurnDamage = TotalBurnStacks;
-                unit.TakeDamage(totalBurnDamage);
+                unit.TakeDamage(totalBurnDamage, GetTopSource(burnSources));
 
                 // 1. Visual Only Tracker (For UI popups)
                 CombatAction visualTracker = new CombatAction
@@ -156,8 +158,10 @@ public class StatusEffectController : MonoBehaviour
         }
     }
 
-    public void AddPoison(int amount, Guid sourceId)
+    public void AddPoison(int amount, UnitInstance source)
     {
+        Guid sourceId = source != null ? source.id : Guid.Empty;
+        if (source != null) sourceReferences[sourceId] = source;
         if (poisonSources.ContainsKey(sourceId))
             poisonSources[sourceId] += amount;
         else
@@ -177,7 +181,7 @@ public class StatusEffectController : MonoBehaviour
             if (unit != null && unit.inCombat)
             {
                 int totalPoisonDamage = TotalPoisonStacks;
-                unit.TakeDamage(totalPoisonDamage);
+                unit.TakeDamage(totalPoisonDamage, GetTopSource(poisonSources));
 
                 CombatAction visualTracker = new CombatAction
                 {
@@ -214,6 +218,18 @@ public class StatusEffectController : MonoBehaviour
             }
         }
         poisonRoutine = null;
+    }
+
+    private UnitInstance GetTopSource(Dictionary<Guid, int> sourceDict)
+    {
+        if (sourceDict.Count == 0) return null;
+
+        // Find the Guid with the highest value
+        Guid topId = sourceDict.OrderByDescending(kvp => kvp.Value).First().Key;
+
+        // Return the actual UnitInstance if it still exists
+        sourceReferences.TryGetValue(topId, out UnitInstance topSource);
+        return topSource;
     }
 
 
