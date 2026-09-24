@@ -21,6 +21,8 @@ public class Arsonist : UnitInstance
 
     private void HandleActionResolved(CombatAction action)
     {
+        if (action.source == null) return;
+        if (action.source == this) return;
         if (action.type != CombatActionType.ApplyBurn) return;
         if (action.target.isPlayer == this.isPlayer) return;
         if (action.isPassive) return;
