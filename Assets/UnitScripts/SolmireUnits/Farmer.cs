@@ -3,21 +3,10 @@ using UnityEngine;
 public class Farmer : UnitInstance
 {
     private int goldReward = 1;
-    public override void InitializeFromSaveData(UnitSaveData data)
-    {
-        base.InitializeFromSaveData(data);
-        goldReward = findGoldReward(CurrentRarity);
-    }
 
-    public override void InitializeEnemy(UnitDefinition def, Rarity rarity)
+    protected override void UpdateRarityModifiers()
     {
-        base.InitializeEnemy(def, rarity);
-        goldReward = findGoldReward(rarity);
-    }
-
-    private int findGoldReward(Rarity rarity)
-    {
-        return rarity switch
+        goldReward = CurrentRarity switch
         {
             Rarity.Common => 1,
             Rarity.Uncommon => 2,
@@ -25,11 +14,6 @@ public class Farmer : UnitInstance
             Rarity.Epic => 4,
             _ => 1
         };
-    }
-    protected override void OnTierUpgraded()
-    {
-        base.OnTierUpgraded();
-        goldReward = findGoldReward(CurrentRarity);
     }
 
 

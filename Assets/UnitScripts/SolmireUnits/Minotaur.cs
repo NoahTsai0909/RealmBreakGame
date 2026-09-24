@@ -3,21 +3,10 @@ using UnityEngine;
 public class Minotaur : UnitInstance
 {
     private int bonusMaxHPstat = 5;
-    public override void InitializeFromSaveData(UnitSaveData data)
-    {
-        base.InitializeFromSaveData(data);
-        bonusMaxHPstat = findHPstat(CurrentRarity);
-    }
 
-    public override void InitializeEnemy(UnitDefinition def, Rarity rarity)
+    protected override void UpdateRarityModifiers()
     {
-        base.InitializeEnemy(def, rarity);
-        bonusMaxHPstat = findHPstat(rarity);
-    }
-
-    private int findHPstat(Rarity rarity)
-    {
-        return rarity switch
+        bonusMaxHPstat = CurrentRarity switch
         {
             Rarity.Common => 5,
             Rarity.Uncommon => 10,
@@ -25,12 +14,6 @@ public class Minotaur : UnitInstance
             Rarity.Epic => 40,
             _ => 5
         };
-    }
-
-    protected override void OnTierUpgraded()
-    {
-        base.OnTierUpgraded();
-        bonusMaxHPstat = findHPstat(CurrentRarity);
     }
 
     public override void EnterCombat(GridManager grid, int row, int col, bool isPlayer, bool startCombat = true)

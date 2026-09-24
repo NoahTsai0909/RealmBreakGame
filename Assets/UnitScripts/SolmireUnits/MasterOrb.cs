@@ -7,22 +7,9 @@ using static UnityEngine.EventSystems.EventTrigger;
 public class MasterOrb : UnitInstance
 {
     private int energyBuff = 3;
-
-    public override void InitializeFromSaveData(UnitSaveData data)
+    protected override void UpdateRarityModifiers()
     {
-        base.InitializeFromSaveData(data);
-        energyBuff = findEnergyBuff(CurrentRarity);
-    }
-
-    public override void InitializeEnemy(UnitDefinition def, Rarity rarity)
-    {
-        base.InitializeEnemy(def, rarity);
-        energyBuff = findEnergyBuff(rarity);
-    }
-
-    private int findEnergyBuff(Rarity rarity)
-    {
-        return rarity switch
+        energyBuff = CurrentRarity switch
         {
             Rarity.Rare => 3,
             Rarity.Epic => 4,
@@ -58,12 +45,6 @@ public class MasterOrb : UnitInstance
                 target.TemporaryStatModify(ModifiableStats.MaxEnergy, energyBuff);
             }
         }
-    }
-
-    protected override void OnTierUpgraded()
-    {
-        base.OnTierUpgraded();
-        energyBuff = findEnergyBuff(CurrentRarity);
     }
 
 

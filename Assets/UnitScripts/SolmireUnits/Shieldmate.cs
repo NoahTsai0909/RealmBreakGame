@@ -3,21 +3,10 @@ using UnityEngine;
 public class Shieldmate : UnitInstance
 {
     private int shieldBuff = 1;
-    public override void InitializeFromSaveData(UnitSaveData data)
-    {
-        base.InitializeFromSaveData(data);
-        shieldBuff = findShieldBuff(CurrentRarity);
-    }
 
-    public override void InitializeEnemy(UnitDefinition def, Rarity rarity)
+    protected override void UpdateRarityModifiers()
     {
-        base.InitializeEnemy(def, rarity);
-        shieldBuff = findShieldBuff(rarity);
-    }
-
-    private int findShieldBuff(Rarity rarity)
-    {
-        return rarity switch
+        shieldBuff = CurrentRarity switch
         {
             Rarity.Common => 1,
             Rarity.Uncommon => 2,
@@ -25,12 +14,6 @@ public class Shieldmate : UnitInstance
             Rarity.Epic => 8,
             _ => 1
         };
-    }
-
-    protected override void OnTierUpgraded()
-    {
-        base.OnTierUpgraded();
-        shieldBuff = findShieldBuff(CurrentRarity);
     }
 
     public override void EnterCombat(GridManager grid, int row, int col, bool isPlayer, bool startCombat = true)

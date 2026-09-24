@@ -8,22 +8,9 @@ public class NoxiousAltar : UnitInstance
     private int mutationTriggerCount = 0;
     private int mutationTriggerThreshold = 3;
 
-    public override void InitializeFromSaveData(UnitSaveData data)
+    protected override void UpdateRarityModifiers()
     {
-
-        base.InitializeFromSaveData(data);
-        poisonBuff = findBuff(CurrentRarity);
-    }
-
-    public override void InitializeEnemy(UnitDefinition def, Rarity rarity)
-    {
-        base.InitializeEnemy(def, rarity);
-        poisonBuff = findBuff(rarity);
-    }
-
-    private int findBuff(Rarity rarity)
-    {
-        return rarity switch
+        poisonBuff = CurrentRarity switch
         {
             Rarity.Common => 1,
             Rarity.Uncommon => 2,
@@ -40,12 +27,6 @@ public class NoxiousAltar : UnitInstance
     public override string GetPassiveDescription()
     {
         return ($"When this unit survives combat, all allies gain [c_poison]+{poisonBuff}[/c] [POISON] permanently.");
-    }
-
-    protected override void OnTierUpgraded()
-    {
-        base.OnTierUpgraded();
-        poisonBuff = findBuff(CurrentRarity);
     }
 
     public override void EnterCombat(GridManager grid, int row, int col, bool isPlayer, bool startCombat = true)

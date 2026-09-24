@@ -5,22 +5,10 @@ public class Shepherd : UnitInstance
 {
     private int attackBuff = 10;
     private int advanceCount = 1;
-    public override void InitializeFromSaveData(UnitSaveData data)
-    {
 
-        base.InitializeFromSaveData(data);
-        attackBuff = findBuff(CurrentRarity);
-    }
-
-    public override void InitializeEnemy(UnitDefinition def, Rarity rarity)
+    protected override void UpdateRarityModifiers()
     {
-        base.InitializeEnemy(def, rarity);
-        attackBuff = findBuff(rarity);
-    }
-
-    private int findBuff(Rarity rarity)
-    {
-        return rarity switch
+        attackBuff = CurrentRarity switch
         {
             Rarity.Uncommon => 10,
             Rarity.Rare => 20,

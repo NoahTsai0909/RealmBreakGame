@@ -745,7 +745,7 @@ MonoBehaviour:
   defaultPoisonProjectilePrefab: {fileID: 4564892777239986246, guid: 5ad4dc53cc3d8db4b9bad652be1c3231, type: 3}
   defaultSlowProjectilePrefab: {fileID: 4564892777239986246, guid: 5ad4dc53cc3d8db4b9bad652be1c3231, type: 3}
   defaultHasteProjectilePrefab: {fileID: 4564892777239986246, guid: 5ad4dc53cc3d8db4b9bad652be1c3231, type: 3}
-  healImpactPrefab: {fileID: 6854945807307277782, guid: 9d4e141eec2f4ce46bb2291ddd17e34a, type: 3}
+  healImpactPrefab: {fileID: 6575969720952597355, guid: 8819d5fb2abce8d4598fee66d98d1e59, type: 3}
   attackImpactPrefab: {fileID: 5915805118745668908, guid: 0456b27261cbb284a98dfebaa302543f, type: 3}
   shieldImpactPrefab: {fileID: 5704024670665266947, guid: d8ab3a0599d9850469f8ed9c0dfdc1de, type: 3}
   burnImpactPrefab: {fileID: 8778281742901235260, guid: d26da328717e433479d5fad936291c17, type: 3}

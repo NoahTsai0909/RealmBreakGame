@@ -6,8 +6,11 @@ public class CombatEventSO : BaseEventSO
 {
     [Header("Combat Settings")]
     public EncounterDefinition encounter;
+    [Tooltip("If checked, this is considered a Difficult/Elite combat event.")]
+    public bool isDifficult = false;
     public int goldReward;
     public int reputationReward;
+
 
     public override void OnSelected()
     {

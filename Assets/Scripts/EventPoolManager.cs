@@ -8,8 +8,9 @@ public class EventPoolManager : MonoBehaviour
 
     private List<BaseEventSO> allEvents = new List<BaseEventSO>();
 
-    // Separate pools for faster filtering
     private List<BaseEventSO> combatEvents = new List<BaseEventSO>();
+    private List<BaseEventSO> normalCombatEvents = new List<BaseEventSO>();
+    private List<BaseEventSO> difficultCombatEvents = new List<BaseEventSO>();
     private List<BaseEventSO> regularEvents = new List<BaseEventSO>();
 
     private Dictionary<string, int> eventAppearanceCounts = new Dictionary<string, int>();
@@ -49,16 +50,26 @@ public class EventPoolManager : MonoBehaviour
     private void CategorizeEvents()
     {
         combatEvents.Clear();
+        normalCombatEvents.Clear();
+        difficultCombatEvents.Clear();
         regularEvents.Clear();
 
         foreach (var eventSO in allEvents)
         {
             if (eventSO.IsAvailable())
             {
-                if (eventSO is CombatEventSO)
-                    combatEvents.Add(eventSO);
+                if (eventSO is CombatEventSO combatEvent)
+                {
+                    combatEvents.Add(combatEvent);
+                    if (combatEvent.isDifficult)
+                        difficultCombatEvents.Add(combatEvent);
+                    else
+                        normalCombatEvents.Add(combatEvent);
+                }
                 else
+                {
                     regularEvents.Add(eventSO);
+                }
             }
         }
     }
@@ -69,6 +80,28 @@ public class EventPoolManager : MonoBehaviour
         CategorizeEvents();
         return GetWeightedRandomEvents(combatEvents, count);
     }
+    public List<BaseEventSO> GetStructuredCombatEvents(bool isLastTwoDays)
+    {
+        CategorizeEvents();
+        List<BaseEventSO> selectedEvents = new List<BaseEventSO>();
+
+        if (isLastTwoDays)
+        {
+            selectedEvents.AddRange(GetWeightedRandomEvents(difficultCombatEvents, 3));
+        }
+        else
+        {
+            selectedEvents.AddRange(GetWeightedRandomEvents(normalCombatEvents, 2));
+            selectedEvents.AddRange(GetWeightedRandomEvents(difficultCombatEvents, 1));
+        }
+        if (selectedEvents.Count < 3)
+        {
+            int missingCount = 3 - selectedEvents.Count;
+            selectedEvents.AddRange(GetWeightedRandomEvents(combatEvents, missingCount));
+        }
+        return selectedEvents;
+    }
+
 
     // Get regular events (weighted random)
     public List<BaseEventSO> GetRegularEvents(int count)

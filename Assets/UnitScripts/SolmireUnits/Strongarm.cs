@@ -5,33 +5,15 @@ public class Strongarm : UnitInstance
 {
     private int attackBuff = 5;
 
-    public override void InitializeFromSaveData(UnitSaveData data)
+    protected override void UpdateRarityModifiers()
     {
-        base.InitializeFromSaveData(data);
-        attackBuff = findBuff(CurrentRarity);
-    }
-
-    public override void InitializeEnemy(UnitDefinition def, Rarity rarity)
-    {
-        base.InitializeEnemy(def, rarity);
-        attackBuff = findBuff(rarity);
-    }
-
-    private int findBuff(Rarity rarity)
-    {
-        return rarity switch
+        attackBuff = CurrentRarity switch
         {
             Rarity.Uncommon => 10,
             Rarity.Rare => 20,
             Rarity.Epic => 30,
             _ => 10
         };
-    }
-
-    protected override void OnTierUpgraded()
-    {
-        base.OnTierUpgraded();
-        attackBuff = findBuff(CurrentRarity);
     }
     protected override void UseAbility()
     {

@@ -5,21 +5,9 @@ public class Shrine : UnitInstance
 {
     private int healBuff = 10;
 
-    public override void InitializeFromSaveData(UnitSaveData data)
+    protected override void UpdateRarityModifiers()
     {
-        base.InitializeFromSaveData(data);
-        healBuff = findHealBuff(CurrentRarity);
-    }
-
-    public override void InitializeEnemy(UnitDefinition def, Rarity rarity)
-    {
-        base.InitializeEnemy(def, rarity);
-        healBuff = findHealBuff(rarity);
-    }
-
-    private int findHealBuff(Rarity rarity)
-    {
-        return rarity switch
+        healBuff = CurrentRarity switch
         {
             Rarity.Common => 10,
             Rarity.Uncommon => 20,
@@ -57,12 +45,6 @@ public class Shrine : UnitInstance
                 target.TemporaryStatModify(ModifiableStats.Heal, healBuff);
             }
         }
-    }
-
-    protected override void OnTierUpgraded()
-    {
-        base.OnTierUpgraded();
-        healBuff = findHealBuff(CurrentRarity);
     }
 
     protected override void UseAbility()

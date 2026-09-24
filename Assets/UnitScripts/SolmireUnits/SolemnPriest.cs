@@ -4,21 +4,9 @@ public class SolemnPriest : UnitInstance
 {
     private int maxhealthBuff;
 
-    public override void InitializeFromSaveData(UnitSaveData data)
+    protected override void UpdateRarityModifiers()
     {
-        base.InitializeFromSaveData(data);
-        maxhealthBuff = findShieldBuff(CurrentRarity);
-    }
-
-    public override void InitializeEnemy(UnitDefinition def, Rarity rarity)
-    {
-        base.InitializeEnemy(def, rarity);
-        maxhealthBuff = findShieldBuff(rarity);
-    }
-
-    private int findShieldBuff(Rarity rarity)
-    {
-        return rarity switch
+        maxhealthBuff = CurrentRarity switch
         {
             Rarity.Common => 5,
             Rarity.Uncommon => 10,

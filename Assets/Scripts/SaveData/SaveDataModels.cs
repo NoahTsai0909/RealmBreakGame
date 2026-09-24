@@ -8,7 +8,7 @@ public class RunSaveData
 {
     public RunStats stats;
     public Region playerRegion;
-
+    public string activeAdventureName;
     // Core Progression
     public int totalDays;
     public int regularEventsCompleted;

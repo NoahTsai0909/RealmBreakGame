@@ -9,32 +9,14 @@ public class SearingHalo : UnitInstance
     private int advanceCount = 1;
     private int burnBuff = 2;
 
-    public override void InitializeFromSaveData(UnitSaveData data)
+    protected override void UpdateRarityModifiers()
     {
-        base.InitializeFromSaveData(data);
-        burnBuff = findBurnBuff(CurrentRarity);
-    }
-
-    public override void InitializeEnemy(UnitDefinition def, Rarity rarity)
-    {
-        base.InitializeEnemy(def, rarity);
-        burnBuff = findBurnBuff(rarity);
-    }
-
-    private int findBurnBuff(Rarity rarity)
-    {
-        return rarity switch
+        burnBuff = CurrentRarity switch
         {
             Rarity.Rare => 2,
             Rarity.Epic => 4,
             _ => 2
         };
-    }
-
-    protected override void OnTierUpgraded()
-    {
-        base.OnTierUpgraded();
-        burnBuff = findBurnBuff(CurrentRarity);
     }
 
     public override void EnterCombat(GridManager grid, int row, int col, bool isPlayer, bool startCombat = true)

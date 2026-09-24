@@ -6,21 +6,9 @@ public class AncientTome : UnitInstance
 {
     private int energyBuff;
 
-    public override void InitializeFromSaveData(UnitSaveData data)
+    protected override void UpdateRarityModifiers()
     {
-        base.InitializeFromSaveData(data);
-        energyBuff = findBuff(CurrentRarity);
-    }
-
-    public override void InitializeEnemy(UnitDefinition def, Rarity rarity)
-    {
-        base.InitializeEnemy(def, rarity);
-        energyBuff = findBuff(rarity);
-    }
-
-    private int findBuff(Rarity rarity)
-    {
-        return rarity switch
+        energyBuff = CurrentRarity switch
         {
             Rarity.Uncommon => 1,
             Rarity.Rare => 2,
@@ -66,12 +54,6 @@ public class AncientTome : UnitInstance
                 target.TemporaryStatModify(ModifiableStats.MaxEnergy, energyBuff);
             }
         }
-    }
-
-    protected override void OnTierUpgraded()
-    {
-        base.OnTierUpgraded();
-        energyBuff = findBuff(CurrentRarity);
     }
 
     public override void EnterCombat(GridManager grid, int row, int col, bool isPlayer, bool startCombat = true)

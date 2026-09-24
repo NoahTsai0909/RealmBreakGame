@@ -28,33 +28,15 @@ public class SludgeVortex : UnitInstance
         this.TemporaryStatModify(ModifiableStats.Attack, attackBuff);
     }
 
-    public override void InitializeFromSaveData(UnitSaveData data)
-    {
-        base.InitializeFromSaveData(data);
-        attackBuff = findBuff(CurrentRarity);
-    }
 
-
-    public override void InitializeEnemy(UnitDefinition def, Rarity rarity)
+    protected override void UpdateRarityModifiers()
     {
-        base.InitializeEnemy(def, rarity);
-        attackBuff = findBuff(rarity);
-    }
-
-    private int findBuff(Rarity rarity)
-    {
-        return rarity switch
+        attackBuff = CurrentRarity switch
         {
             Rarity.Rare => 15,
             Rarity.Epic => 30,
             _ => 15
         };
-    }
-
-    protected override void OnTierUpgraded()
-    {
-        base.OnTierUpgraded();
-        attackBuff = findBuff(CurrentRarity);
     }
 
     protected override void UseAbility()

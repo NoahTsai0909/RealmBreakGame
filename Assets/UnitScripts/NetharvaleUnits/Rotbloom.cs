@@ -5,22 +5,9 @@ public class Rotbloom : UnitInstance
 {
     private int poisonBuff = 1;
 
-    public override void InitializeFromSaveData(UnitSaveData data)
+    protected override void UpdateRarityModifiers()
     {
-        base.InitializeFromSaveData(data);
-        poisonBuff = findBuff(CurrentRarity);
-    }
-
-
-    public override void InitializeEnemy(UnitDefinition def, Rarity rarity)
-    {
-        base.InitializeEnemy(def, rarity);
-        poisonBuff = findBuff(rarity);
-    }
-
-    private int findBuff(Rarity rarity)
-    {
-        return rarity switch
+        poisonBuff = CurrentRarity switch
         {
             Rarity.Common => 1,
             Rarity.Uncommon => 2,

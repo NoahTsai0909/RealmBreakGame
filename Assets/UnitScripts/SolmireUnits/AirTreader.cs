@@ -6,21 +6,9 @@ public class AirTreader : UnitInstance
 {
     private int hasteModifier = 0;
 
-    public override void InitializeFromSaveData(UnitSaveData data)
+    protected override void UpdateRarityModifiers()
     {
-        base.InitializeFromSaveData(data);
-        hasteModifier = findBuff(CurrentRarity);
-    }
-
-    public override void InitializeEnemy(UnitDefinition def, Rarity rarity)
-    {
-        base.InitializeEnemy(def, rarity);
-        hasteModifier = findBuff(rarity);
-    }
-
-    private int findBuff(Rarity rarity)
-    {
-        return rarity switch
+        hasteModifier = CurrentRarity switch
         {
             Rarity.Rare => 0,
             Rarity.Epic => 1,

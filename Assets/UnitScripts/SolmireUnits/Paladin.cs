@@ -6,32 +6,15 @@ public class Paladin : UnitInstance
 {
     private int attackModifier = 10;
 
-    public override void InitializeFromSaveData(UnitSaveData data)
+    protected override void UpdateRarityModifiers()
     {
-        base.InitializeFromSaveData(data);
-        attackModifier = findBuff(CurrentRarity);
-    }
-
-    public override void InitializeEnemy(UnitDefinition def, Rarity rarity)
-    {
-        base.InitializeEnemy(def, rarity);
-        attackModifier = findBuff(rarity);
-    }
-
-    private int findBuff(Rarity rarity)
-    {
-        return rarity switch
+        attackModifier = CurrentRarity switch
         {
             Rarity.Uncommon => 10,
             Rarity.Rare => 20,
             Rarity.Epic => 40,
             _ => 10
         };
-    }
-    protected override void OnTierUpgraded()
-    {
-        base.OnTierUpgraded();
-        attackModifier = findBuff(CurrentRarity);
     }
 
     public override void EnterCombat(GridManager grid, int row, int col, bool isPlayer, bool startCombat = true)

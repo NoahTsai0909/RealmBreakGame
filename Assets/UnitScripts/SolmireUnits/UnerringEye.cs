@@ -5,33 +5,16 @@ public class UnerringEye : UnitInstance
 {
     private int hasteModifier = 0;
     private int critModifier = 25;
-    public override void InitializeFromSaveData(UnitSaveData data)
-    {
-        base.InitializeFromSaveData(data);
-        hasteModifier = findBuff(CurrentRarity);
-        critModifier = findCritBuff(CurrentRarity);
-    }
 
-    public override void InitializeEnemy(UnitDefinition def, Rarity rarity)
+    protected override void UpdateRarityModifiers()
     {
-        base.InitializeEnemy(def, rarity);
-        hasteModifier = findBuff(rarity);
-        critModifier = findCritBuff(rarity);
-    }
-
-    private int findBuff(Rarity rarity)
-    {
-        return rarity switch
+        hasteModifier = CurrentRarity switch
         {
             Rarity.Rare => 0,
             Rarity.Epic => 1,
             _ => 0
         };
-    }
-
-    private int findCritBuff(Rarity rarity)
-    {
-        return rarity switch
+        critModifier = CurrentRarity switch
         {
             Rarity.Rare => 25,
             Rarity.Epic => 50,
@@ -92,12 +75,6 @@ public class UnerringEye : UnitInstance
                 target.TemporaryStatModify(ModifiableStats.CritChance, critModifier);
             }
         }
-    }
-
-    protected override void OnTierUpgraded()
-    {
-        base.OnTierUpgraded();
-        critModifier = findCritBuff(CurrentRarity);
     }
 
     public override string GetActiveDescription()

@@ -19,6 +19,7 @@ public static class SaveLoadManager
         // Save Primitives & Stats
         data.stats = rm.Stats;
         data.playerRegion = rm.playerRegion;
+        data.activeAdventureName = rm.activeAdventureName;
         data.totalDays = rm.TOTAL_DAYS;
         data.regularEventsCompleted = rm.regularEventsCompleted;
         data.isBattlePhase = rm.isBattlePhase;
@@ -60,6 +61,7 @@ public static class SaveLoadManager
             // Restore Primitives & Stats
             rm.Stats = data.stats;
             rm.playerRegion = data.playerRegion;
+            rm.activeAdventureName = data.activeAdventureName;
             rm.AssignRegionTree();
             rm.TOTAL_DAYS = data.totalDays;
             rm.regularEventsCompleted = data.regularEventsCompleted;
@@ -68,6 +70,7 @@ public static class SaveLoadManager
             rm.hasUsedLastChance = data.hasUsedLastChance;
             rm.eventInProgress = data.eventInProgress;
             rm.runSeed = data.runSeed;
+            rm.RestoreEventPoolFromSave();
             // SAFELY RESTORE DICTIONARIES
             if (data.permanentStatsMap != null)
                 rm.SetPermanentStatsMap(data.permanentStatsMap);

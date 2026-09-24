@@ -6,32 +6,15 @@ public class PatientIdeator : UnitInstance
     private int mutationTriggerThreshold = 3;
     private int mutationTriggerCount = 0;
 
-    public override void InitializeFromSaveData(UnitSaveData data)
+    protected override void UpdateRarityModifiers()
     {
-        base.InitializeFromSaveData(data);
-        maxHealthBuff = findBuff(CurrentRarity);
-    }
-
-    public override void InitializeEnemy(UnitDefinition def, Rarity rarity)
-    {
-        base.InitializeEnemy(def, rarity);
-        maxHealthBuff = findBuff(rarity);
-    }
-
-    private int findBuff(Rarity rarity)
-    {
-        return rarity switch
+        maxHealthBuff = CurrentRarity switch
         {
             Rarity.Uncommon => 5,
             Rarity.Rare => 10,
             Rarity.Epic => 20,
             _ => 20
         };
-    }
-    protected override void OnTierUpgraded()
-    {
-        base.OnTierUpgraded();
-        maxHealthBuff = findBuff(CurrentRarity);
     }
 
     public override void EnterCombat(GridManager grid, int row, int col, bool isPlayer, bool startCombat = true)

@@ -47,6 +47,7 @@ public class RunManager : MonoBehaviour
         public HashSet<TacticDefinition> purchasedTactics = new HashSet<TacticDefinition>();
         public int currentPage;
         public bool hasRefreshed;
+        public int refreshCount = 0;
         public int minProvisionFilter;  
         public int maxProvisionFilter;
     }
@@ -84,7 +85,10 @@ public class RunManager : MonoBehaviour
     [Tooltip("Drag all your specific RegionLevelTreeSO assets into this list!")]
     [SerializeField] private List<RegionLevelTreeSO> allRegionTrees = new List<RegionLevelTreeSO>();
     [SerializeField] public LastChanceEventSO lastChanceEvent;
-
+    [Header("Adventure Tracking")]
+    public string activeAdventureName;
+    [Tooltip("Drag all your AdventureDefinitionSO assets into this list!")]
+    [SerializeField] private List<AdventureDefinitionSO> allAdventures = new List<AdventureDefinitionSO>();
     [Header("Mutation Pool")]
     public List<MutationPrefixSO> allAvailablePrefixes = new List<MutationPrefixSO>();
 
@@ -116,7 +120,7 @@ public class RunManager : MonoBehaviour
     public void SetupNewAdventure(AdventureDefinitionSO adventure, Region selectedRegion)
     {
         TOTAL_DAYS = adventure.totalDays;
-
+        activeAdventureName = adventure.adventureName;
         playerRegion = selectedRegion;
         AssignRegionTree();
 
@@ -318,21 +322,17 @@ public class RunManager : MonoBehaviour
 
     public void GenerateDailyEvents()
     {
-
         EventPoolManager eventPool = EventPoolManager.Instance;
-
-        if (eventPool == null)
-        {
-            Debug.LogError("EventPoolManager.Instance is NULL!");
-            return;
-        }
+        if (eventPool == null) return;
 
         if (isBattlePhase)
         {
             Debug.Log("GENERATING COMBAT EVENTS (Battle Phase)");
-            currentDailyEvents = eventPool.GetCombatEvents(3);
+            bool isLastTwoDays = (Stats.CurrentDay >= TOTAL_DAYS - 1);
+            currentDailyEvents = eventPool.GetStructuredCombatEvents(isLastTwoDays);
+
             allDayEvents.Clear();
-            Debug.Log($"Got {currentDailyEvents.Count} combat events for battle");
+            Debug.Log($"Got {currentDailyEvents.Count} structured combat events for battle");
 
             foreach (var ev in currentDailyEvents)
             {
@@ -441,6 +441,24 @@ public class RunManager : MonoBehaviour
         };
     }
 
+    public void RestoreEventPoolFromSave()
+    {
+        AdventureDefinitionSO savedAdventure = allAdventures.FirstOrDefault(a => a.adventureName == activeAdventureName);
+
+        if (savedAdventure == null)
+        {
+            Debug.LogError($"Could not find Adventure '{activeAdventureName}' to restore the event pool! Check your allAdventures list.");
+            return;
+        }
+        AssignRegionTree();
+        List<BaseEventSO> regionEvents = currentRegionTree != null ? currentRegionTree.regionExclusiveEvents : new List<BaseEventSO>();
+
+        if (EventPoolManager.Instance != null)
+        {
+            EventPoolManager.Instance.BuildEventPool(savedAdventure.regularEvents, savedAdventure.combatEvents, regionEvents);
+            Debug.Log($"Event pool successfully restored from save for: {activeAdventureName}");
+        }
+    }
 
     public Rarity RollRarityForDay(int day)
     {

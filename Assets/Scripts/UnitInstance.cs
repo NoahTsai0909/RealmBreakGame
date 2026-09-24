@@ -162,7 +162,7 @@ public class UnitInstance : MonoBehaviour
         // CRITICAL: Prevent save bloat
         permanentStats = null;
         temporaryStats = new TemporaryStats();
-
+        UpdateRarityModifiers();
         RecalculateStats();
 
         currentEnergy = stats.maxEnergy;
@@ -181,7 +181,6 @@ public class UnitInstance : MonoBehaviour
         id = data.id;
         currentPrefix = data.prefix;
         currentSuffix = data.suffix;
-
         RecalculateStats();
         Visuals?.ApplyMutationVisuals(currentPrefix);
     }
@@ -207,7 +206,7 @@ public class UnitInstance : MonoBehaviour
 
         // Fresh combat-only modifiers
         temporaryStats = new TemporaryStats();
-
+        UpdateRarityModifiers();
         RecalculateStats();
 
         currentEnergy = stats.maxEnergy;
@@ -311,11 +310,13 @@ public class UnitInstance : MonoBehaviour
     }
     protected virtual void OnTierUpgraded()
     {
-        // Derived classes can override this to update cached variables (like Torch's burnBuff)
+        UpdateRarityModifiers();
     }
+    protected virtual void UpdateRarityModifiers() { }
     public void PreviewRaritySwap(Rarity tempRarity)
     {
         CurrentRarity = tempRarity;
+        UpdateRarityModifiers();
         RecalculateStats();
     }
 

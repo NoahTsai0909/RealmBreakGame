@@ -6,21 +6,10 @@ using static UnityEngine.GraphicsBuffer;
 public class ClumsyKnight : UnitInstance
 {
     private int shieldBuff;
-    public override void InitializeFromSaveData(UnitSaveData data)
-    {
-        base.InitializeFromSaveData(data);
-        shieldBuff = findShieldBuff(CurrentRarity);
-    }
 
-    public override void InitializeEnemy(UnitDefinition def, Rarity rarity)
+    protected override void UpdateRarityModifiers()
     {
-        base.InitializeEnemy(def, rarity);
-        shieldBuff = findShieldBuff(rarity);
-    }
-
-    private int findShieldBuff(Rarity rarity)
-    {
-        return rarity switch
+        shieldBuff = CurrentRarity switch
         {
             Rarity.Common => 5,
             Rarity.Uncommon => 10,
@@ -63,12 +52,6 @@ public class ClumsyKnight : UnitInstance
                 reason = "Clumsy Knight Shield"
             }
         );
-    }
-
-    protected override void OnTierUpgraded()
-    {
-        base.OnTierUpgraded();
-        shieldBuff = findShieldBuff(CurrentRarity);
     }
 
     public override string GetActiveDescription()

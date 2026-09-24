@@ -4,34 +4,17 @@ public class HillGiant :UnitInstance
 {
     private int maxHealthBuffPercent = 5;
 
-    public override void InitializeFromSaveData(UnitSaveData data)
+    protected override void UpdateRarityModifiers()
     {
-        base.InitializeFromSaveData(data);
-        maxHealthBuffPercent = findBuff(CurrentRarity);
-    }
-
-    public override void InitializeEnemy(UnitDefinition def, Rarity rarity)
-    {
-        base.InitializeEnemy(def, rarity);
-        maxHealthBuffPercent = findBuff(rarity);
-    }
-
-    private int findBuff(Rarity rarity)
-    {
-        return rarity switch
+        maxHealthBuffPercent = CurrentRarity switch
         {
-            Rarity.Uncommon => 5,
-            Rarity.Rare => 10,
-            Rarity.Epic => 20,
-            _ => 5
+            Rarity.Uncommon => 10,
+            Rarity.Rare => 20,
+            Rarity.Epic => 40,
+            _ => 10
         };
     }
 
-    protected override void OnTierUpgraded()
-    {
-        base.OnTierUpgraded();
-        maxHealthBuffPercent = findBuff(CurrentRarity);
-    }
     protected override void UseAbility()
     {
         base.UseAbility();

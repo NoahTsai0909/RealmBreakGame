@@ -3,22 +3,9 @@ using UnityEngine;
 public class Swiftswipe : UnitInstance
 {
     private int attackModifier = 5;
-
-    public override void InitializeFromSaveData(UnitSaveData data)
+    protected override void UpdateRarityModifiers()
     {
-        base.InitializeFromSaveData(data);
-        attackModifier = findBuff(CurrentRarity);
-    }
-
-    public override void InitializeEnemy(UnitDefinition def, Rarity rarity)
-    {
-        base.InitializeEnemy(def, rarity);
-        attackModifier = findBuff(rarity);
-    }
-
-    private int findBuff(Rarity rarity)
-    {
-        return rarity switch
+        attackModifier = CurrentRarity switch
         {
             Rarity.Uncommon => 5,
             Rarity.Rare => 10,
@@ -48,12 +35,6 @@ public class Swiftswipe : UnitInstance
         }
 
         TemporaryStatModify(ModifiableStats.Attack, attackModifier);
-    }
-
-    protected override void OnTierUpgraded()
-    {
-        base.OnTierUpgraded();
-        attackModifier = findBuff(CurrentRarity);
     }
 
     public override string GetActiveDescription()

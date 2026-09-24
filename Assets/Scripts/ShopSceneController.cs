@@ -84,26 +84,67 @@ public class ShopSceneController : MonoBehaviour
 
     void SetupRefreshButton()
     {
-        refreshButton.gameObject.SetActive(!shopState.hasRefreshed);
+        int currentRefreshCost = shopEvent.refreshCost;
+        if (shopEvent.infiniteRerolls)
+        {
+            currentRefreshCost += (shopState.refreshCount * shopEvent.refreshCostIncrease);
+        }
+        refreshButton.gameObject.SetActive(shopEvent.infiniteRerolls || !shopState.hasRefreshed);
 
         var buttonText = refreshButton.GetComponentInChildren<TextMeshProUGUI>();
-        if (buttonText != null) {
-            buttonText.text = $"Refresh ({shopEvent.refreshCost} [GOLD])";
+        if (buttonText != null)
+        {
+            buttonText.text = $"Refresh ({currentRefreshCost} [GOLD])";
             buttonText.SetText(TextIconUtility.ParseDescription(buttonText.text));
         }
+
         refreshButton.onClick.RemoveAllListeners();
         refreshButton.onClick.AddListener(() =>
         {
-            if (RunManager.Instance.Stats.CurrentGold < shopEvent.refreshCost)
+            if (RunManager.Instance.Stats.CurrentGold < currentRefreshCost)
             {
                 UniversalPopupManager.ShowPopup($"Not enough [GOLD]");
                 return;
             }
 
-            RunManager.Instance.Stats.CurrentGold -= shopEvent.refreshCost;
+            RunManager.Instance.Stats.CurrentGold -= currentRefreshCost;
+            shopState.refreshCount++;
             shopState.hasRefreshed = true;
-            shopState.currentPage = 1;
-            refreshButton.gameObject.SetActive(false);
+
+            if (shopEvent.infiniteRerolls)
+            {
+                Region? targetRegion = shopEvent.anyRegion ? null : shopEvent.region;
+                Region? excludedRegion = null;
+                if (shopEvent.excludePlayerRegion && RunManager.Instance != null)
+                {
+                    excludedRegion = RunManager.Instance.playerRegion;
+                }
+
+                if (shopEvent.totalUnitsGenerated > 0)
+                {
+                    shopState.offeredUnits = UnitGenerationService.GenerateShopUnits(
+                        shopEvent.unitsPerPage, targetRegion, shopEvent.allowedTags,
+                        shopEvent.minProvisionCost, shopEvent.maxProvisionCost,
+                        shopEvent.forceRarity, shopEvent.designatedRarity,
+                        shopEvent.forceMutation, excludedRegion
+                    );
+                }
+
+                if (shopEvent.totalTacticsGenerated > 0)
+                {
+                    shopState.offeredTactics = TacticGenerationService.GenerateShopTactics(
+                        shopEvent.unitsPerPage, targetRegion
+                    );
+                }
+                shopState.currentPage = 0;
+                SetupRefreshButton();
+            }
+            else
+            {
+                refreshButton.gameObject.SetActive(false);
+                shopState.currentPage = 1;
+            }
+
             DisplayCurrentPage();
         });
     }

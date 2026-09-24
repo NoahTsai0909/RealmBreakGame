@@ -3,22 +3,9 @@ using UnityEngine;
 public class Longshot : UnitInstance
 {
     private int critModifier = 10;
-
-    public override void InitializeFromSaveData(UnitSaveData data)
+    protected override void UpdateRarityModifiers()
     {
-        base.InitializeFromSaveData(data);
-        critModifier = findBuff(CurrentRarity);
-    }
-
-    public override void InitializeEnemy(UnitDefinition def, Rarity rarity)
-    {
-        base.InitializeEnemy(def, rarity);
-        critModifier = findBuff(rarity);
-    }
-
-    private int findBuff(Rarity rarity)
-    {
-        return rarity switch
+        critModifier = CurrentRarity switch
         {
             Rarity.Uncommon => 10,
             Rarity.Rare => 20,

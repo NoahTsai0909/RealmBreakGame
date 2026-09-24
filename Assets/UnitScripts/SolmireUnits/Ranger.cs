@@ -5,21 +5,9 @@ public class Ranger : UnitInstance
 {
     private int critBuff;
 
-    public override void InitializeFromSaveData(UnitSaveData data)
+    protected override void UpdateRarityModifiers()
     {
-        base.InitializeFromSaveData(data);
-        critBuff = findCritBuff(CurrentRarity);
-    }
-
-    public override void InitializeEnemy(UnitDefinition def, Rarity rarity)
-    {
-        base.InitializeEnemy(def, rarity);
-        critBuff = findCritBuff(rarity);
-    }
-
-    private int findCritBuff(Rarity rarity)
-    {
-        return rarity switch
+        critBuff = CurrentRarity switch
         {
             Rarity.Common => 25,
             Rarity.Uncommon => 50,
@@ -29,11 +17,6 @@ public class Ranger : UnitInstance
         };
     }
 
-    protected override void OnTierUpgraded()
-    {
-        base.OnTierUpgraded();
-        critBuff = findCritBuff(CurrentRarity);
-    }
 
     protected override void UseAbility()
     {

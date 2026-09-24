@@ -4,21 +4,9 @@ public class Sharpshooter : UnitInstance
 {
     private int attackBuff = 20;
 
-    public override void InitializeFromSaveData(UnitSaveData data)
+    protected override void UpdateRarityModifiers()
     {
-        base.InitializeFromSaveData(data);
-        attackBuff = findBuff(CurrentRarity);
-    }
-
-    public override void InitializeEnemy(UnitDefinition def, Rarity rarity)
-    {
-        base.InitializeEnemy(def, rarity);
-        attackBuff = findBuff(rarity);
-    }
-
-    private int findBuff(Rarity rarity)
-    {
-        return rarity switch
+        attackBuff = CurrentRarity switch
         {
             Rarity.Uncommon => 20,
             Rarity.Rare => 40,

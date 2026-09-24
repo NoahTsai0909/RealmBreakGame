@@ -4,9 +4,9 @@ public class Sharpsight : UnitInstance, IConsumable
 {
     public int buffValue = 4;
 
-    private int GetBuffValue(Rarity rarity)
+    protected override void UpdateRarityModifiers()
     {
-        return rarity switch
+        buffValue = CurrentRarity switch
         {
             Rarity.Common => 4,
             Rarity.Uncommon => 8,
@@ -16,30 +16,12 @@ public class Sharpsight : UnitInstance, IConsumable
         };
     }
 
-    public override void InitializeFromSaveData(UnitSaveData data)
-    {
-        base.InitializeFromSaveData(data);
-        buffValue = GetBuffValue(CurrentRarity);
-    }
-
-    public override void InitializeEnemy(UnitDefinition def, Rarity rarity)
-    {
-        base.InitializeEnemy(def, rarity);
-        buffValue = GetBuffValue(rarity);
-    }
-
     public bool OnConsume(UnitInstance target)
     {
         if (target == null) return false;
         RunManager.Instance.GetPermanentStatsForUnit(target.id).bonusCritChance += buffValue;
         target.RecalculateStats();
         return true;
-    }
-
-    protected override void OnTierUpgraded()
-    {
-        base.OnTierUpgraded();
-        buffValue = GetBuffValue(CurrentRarity);
     }
 
     public override string GetActiveDescription()

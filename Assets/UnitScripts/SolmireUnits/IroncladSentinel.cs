@@ -6,33 +6,15 @@ public class IroncladSentinel : UnitInstance
     private int critBuff = 75;
     public bool isShielded = false;
 
-    public override void InitializeFromSaveData(UnitSaveData data)
+    protected override void UpdateRarityModifiers()
     {
-        base.InitializeFromSaveData(data);
-        critBuff = findCritBuff(CurrentRarity);
-    }
-
-    public override void InitializeEnemy(UnitDefinition def, Rarity rarity)
-    {
-        base.InitializeEnemy(def, rarity);
-        critBuff = findCritBuff(rarity);
-    }
-
-    private int findCritBuff(Rarity rarity)
-    {
-        return rarity switch
+        critBuff = CurrentRarity switch
         {
             Rarity.Rare => 75,
             Rarity.Epic => 100,
             _ => 75
         };
     }
-    protected override void OnTierUpgraded()
-    {
-        base.OnTierUpgraded();
-        critBuff = findCritBuff(CurrentRarity);
-    }
-
     public override void EnterCombat(GridManager grid, int row, int col, bool isPlayer, bool startCombat = true)
     {
         base.EnterCombat(grid, row, col, isPlayer, startCombat);

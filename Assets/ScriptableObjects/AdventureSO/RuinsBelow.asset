@@ -50,6 +50,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 19041253acd6ed943849be8adf095811, type: 2}
   - {fileID: 11400000, guid: 1e5a4c869cd3bd748993d6fd1842ade7, type: 2}
   - {fileID: 11400000, guid: e9814c2b35011eb4eb223d10f3353da0, type: 2}
+  - {fileID: 11400000, guid: 2ae96be46b26f4f4994433b0df01962a, type: 2}
   combatEvents:
   - {fileID: 11400000, guid: b3615fe7df907514cb301424572b2355, type: 2}
   - {fileID: 11400000, guid: d33184092d9a4d84aab05cbf063570da, type: 2}
@@ -70,3 +71,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 099bfbc761602b74c93487b588660a53, type: 2}
   - {fileID: 11400000, guid: f2287ba6145a5114197aa6d0e99a04a1, type: 2}
   - {fileID: 11400000, guid: 3d52efd378c21b144adbca05c8d334ba, type: 2}
+  - {fileID: 11400000, guid: 83c8117e7c3bd3d4db765474a21944c4, type: 2}
+  - {fileID: 11400000, guid: 9d32c87b3ef26884788cce3610147e71, type: 2}

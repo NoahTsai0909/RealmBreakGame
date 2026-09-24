@@ -3,29 +3,16 @@ using UnityEngine;
 
 public class Tinderheart : UnitInstance
 {
-    private int burnBuff = 2;
+    private int burnBuff = 3;
 
-    public override void InitializeFromSaveData(UnitSaveData data)
+    protected override void UpdateRarityModifiers()
     {
-        base.InitializeFromSaveData(data);
-        burnBuff = findBuff(CurrentRarity);
-    }
-    
-
-    public override void InitializeEnemy(UnitDefinition def, Rarity rarity)
-    {
-        base.InitializeEnemy(def, rarity);
-        burnBuff = findBuff(rarity);
-    }
-
-    private int findBuff(Rarity rarity)
-    {
-        return rarity switch
+        burnBuff = CurrentRarity switch
         {
-            Rarity.Uncommon => 2,
-            Rarity.Rare => 4,
-            Rarity.Epic => 8,
-            _ => 2
+            Rarity.Uncommon => 3,
+            Rarity.Rare => 6,
+            Rarity.Epic => 12,
+            _ => 3
         };
     }
     protected override void UseAbility()

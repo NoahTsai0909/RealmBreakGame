@@ -6,21 +6,9 @@ public class Scout : UnitInstance
     private int critBuff;
     List<UnitInstance> targets;
 
-    public override void InitializeFromSaveData(UnitSaveData data)
+    protected override void UpdateRarityModifiers()
     {
-        base.InitializeFromSaveData(data);
-        critBuff = findBuff(CurrentRarity);
-    }
-
-    public override void InitializeEnemy(UnitDefinition def, Rarity rarity)
-    {
-        base.InitializeEnemy(def, rarity);
-        critBuff = findBuff(rarity);
-    }
-
-    private int findBuff(Rarity rarity)
-    {
-        return rarity switch
+        critBuff = CurrentRarity switch
         {
             Rarity.Uncommon => 7,
             Rarity.Rare => 15,

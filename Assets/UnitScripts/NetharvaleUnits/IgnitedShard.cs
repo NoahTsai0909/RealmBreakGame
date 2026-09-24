@@ -8,22 +8,10 @@ public class IgnitedShard : UnitInstance
     private int mutationTriggerCount = 0;
     private int mutationTriggerThreshold = 3;
 
-    public override void InitializeFromSaveData(UnitSaveData data)
-    {
 
-        base.InitializeFromSaveData(data);
-        burnBuff = findBuff(CurrentRarity);
-    }
-
-    public override void InitializeEnemy(UnitDefinition def, Rarity rarity)
+    protected override void UpdateRarityModifiers()
     {
-        base.InitializeEnemy(def, rarity);
-        burnBuff = findBuff(rarity);
-    }
-
-    private int findBuff(Rarity rarity)
-    {
-        return rarity switch
+        burnBuff = CurrentRarity switch
         {
             Rarity.Common => 1,
             Rarity.Uncommon => 2,
@@ -40,12 +28,6 @@ public class IgnitedShard : UnitInstance
     public override string GetPassiveDescription()
     {
         return ($"When this unit survives combat, all allies gain [c_burn]+{burnBuff}[/c] [BURN] permanently.");
-    }
-
-    protected override void OnTierUpgraded()
-    {
-        base.OnTierUpgraded();
-        burnBuff = findBuff(CurrentRarity);
     }
 
     public override void EnterCombat(GridManager grid, int row, int col, bool isPlayer, bool startCombat = true)

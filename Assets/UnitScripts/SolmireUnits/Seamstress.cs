@@ -9,32 +9,15 @@ public class Seamstress : UnitInstance
     private int buffAmount = 0;
     private int originalMaxHP = 0;
 
-    public override void InitializeFromSaveData(UnitSaveData data)
-    {
-        base.InitializeFromSaveData(data);
-        maxHealthBuffPercent = findBuff(CurrentRarity);
-    }
 
-    public override void InitializeEnemy(UnitDefinition def, Rarity rarity)
+    protected override void UpdateRarityModifiers()
     {
-        base.InitializeEnemy(def, rarity);
-        maxHealthBuffPercent = findBuff(rarity);
-    }
-
-    private int findBuff(Rarity rarity)
-    {
-        return rarity switch
+        maxHealthBuffPercent = CurrentRarity switch
         {
             Rarity.Rare => 25,
             Rarity.Epic => 50,
             _ => 25
         };
-    }
-
-    protected override void OnTierUpgraded()
-    {
-        base.OnTierUpgraded();
-        maxHealthBuffPercent = findBuff(CurrentRarity);
     }
 
     public override void CombatStartEffect()

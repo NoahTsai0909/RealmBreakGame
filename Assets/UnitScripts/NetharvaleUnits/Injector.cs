@@ -3,21 +3,10 @@ using UnityEngine;
 public class Injector : UnitInstance
 {
     private int poisonBuff = 1;
-    public override void InitializeFromSaveData(UnitSaveData data)
-    {
-        base.InitializeFromSaveData(data);
-        poisonBuff = findPoisonBuff(CurrentRarity);
-    }
 
-    public override void InitializeEnemy(UnitDefinition def, Rarity rarity)
+    protected override void UpdateRarityModifiers()
     {
-        base.InitializeEnemy(def, rarity);
-        poisonBuff = findPoisonBuff(rarity);
-    }
-
-    private int findPoisonBuff(Rarity rarity)
-    {
-        return rarity switch
+        poisonBuff = CurrentRarity switch
         {
             Rarity.Common => 1,
             Rarity.Uncommon => 2,
@@ -25,12 +14,6 @@ public class Injector : UnitInstance
             Rarity.Epic => 8,
             _ => 1
         };
-    }
-
-    protected override void OnTierUpgraded()
-    {
-        base.OnTierUpgraded();
-        poisonBuff = findPoisonBuff(CurrentRarity);
     }
 
     public override void EnterCombat(GridManager grid, int row, int col, bool isPlayer, bool startCombat = true)

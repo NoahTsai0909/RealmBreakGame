@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4916822454852765802}
   - component: {fileID: 1704054189927790909}
   - component: {fileID: 7078682640383536305}
+  - component: {fileID: 3479446572675864164}
   m_Layer: 0
   m_Name: hasteImpact_VFX
   m_TagString: Untagged
@@ -114,3 +115,16 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!114 &3479446572675864164
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6328882538875790131}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ef9e651343e0004cbc06df2dffee71f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VFXAutoDestroy
+  lifetime: 1.5

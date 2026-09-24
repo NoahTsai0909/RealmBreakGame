@@ -47,39 +47,22 @@ public class DragonMatriarch : UnitInstance
         }
     }
 
-    public override void InitializeFromSaveData(UnitSaveData data)
+    protected override void UpdateRarityModifiers()
     {
-        base.InitializeFromSaveData(data);
-        burnBuff = findBurnBuff(CurrentRarity);
-        attackBuff = findAttackBuff(CurrentRarity);
-    }
-
-    public override void InitializeEnemy(UnitDefinition def, Rarity rarity)
-    {
-        base.InitializeEnemy(def, rarity);
-        burnBuff = findBurnBuff(rarity);
-        attackBuff = findAttackBuff(rarity);
-    }
-
-    private int findBurnBuff(Rarity rarity)
-    {
-        return rarity switch
+        burnBuff = CurrentRarity switch
         {
             Rarity.Rare => 4,
             Rarity.Epic => 8,
             _ => 4
         };
-    }
-
-    private int findAttackBuff(Rarity rarity)
-    {
-        return rarity switch
+        attackBuff = CurrentRarity switch
         {
             Rarity.Rare => 15,
             Rarity.Epic => 30,
             _ => 15
         };
     }
+
 
     protected override void UseAbility()
     {

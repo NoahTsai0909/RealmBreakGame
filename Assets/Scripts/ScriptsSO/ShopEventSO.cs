@@ -8,7 +8,9 @@ public class ShopEventSO : BaseEventSO
     public int totalUnitsGenerated = 6;
     public int totalTacticsGenerated = 0;
     public int unitsPerPage = 3;
-    public int refreshCost = 2;  // Add this line
+    public int refreshCost = 2;
+    public bool infiniteRerolls = false;
+    public int refreshCostIncrease = 1;
     public bool discount = false;
     public bool forceMutation = false;
     public UnitTagFlags allowedTags = UnitTagFlags.None;

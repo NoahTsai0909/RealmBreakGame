@@ -6,45 +6,23 @@ public class ScaledBellow : UnitInstance
     private int burnModifier = 2;
     private int mutationTriggerThreshold = 5;
     private int mutationTriggerCount = 0;
-    public override void InitializeFromSaveData(UnitSaveData data)
-    {
-        base.InitializeFromSaveData(data);
-        attackModifier = findBuff(CurrentRarity);
-        burnModifier = findBurnBuff(CurrentRarity);
-    }
 
-    public override void InitializeEnemy(UnitDefinition def, Rarity rarity)
+    protected override void UpdateRarityModifiers()
     {
-        base.InitializeEnemy(def, rarity);
-        attackModifier = findBuff(rarity);
-        burnModifier = findBurnBuff(CurrentRarity);
-    }
-
-    private int findBuff(Rarity rarity)
-    {
-        return rarity switch
+        attackModifier = CurrentRarity switch
         {
             Rarity.Uncommon => 10,
             Rarity.Rare => 20,
             Rarity.Epic => 30,
             _ => 30
         };
-    }
-    private int findBurnBuff(Rarity rarity)
-    {
-        return rarity switch
+        burnModifier = CurrentRarity switch
         {
             Rarity.Uncommon => 2,
             Rarity.Rare => 4,
             Rarity.Epic => 6,
             _ => 2
         };
-    }
-
-    protected override void OnTierUpgraded()
-    {
-        base.OnTierUpgraded();
-        attackModifier = findBuff(CurrentRarity);
     }
 
     public override void EnterCombat(GridManager grid, int row, int col, bool isPlayer, bool startCombat = true)
