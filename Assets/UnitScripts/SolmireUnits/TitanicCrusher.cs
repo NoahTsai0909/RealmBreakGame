@@ -8,6 +8,7 @@ public class TitanicCrusher : UnitInstance
     {
         base.UseAbility();
         enemies = FindAllEnemies();
+        bool isFirstTarget = true;
         foreach (UnitInstance enemy in enemies)
         {
             if (enemy != null && enemy != this)
@@ -20,9 +21,11 @@ public class TitanicCrusher : UnitInstance
                         target = enemy,
                         amount = stats.MaxHP,
                         reason = "Titanic Crusher Attack",
-                        isCrit = abilityCrit
+                        isCrit = abilityCrit,
+                        isAoEExtraHit = !isFirstTarget
                     }
                 );
+                isFirstTarget = false;
             }
         }
 

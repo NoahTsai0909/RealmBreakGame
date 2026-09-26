@@ -128,11 +128,12 @@ public class CombatVFXManager : MonoBehaviour
             // Fade out to the same color but with 0 Alpha
             tr.endColor = new Color(projColor.r, projColor.g, projColor.b, 0f);*/
         }
-
-        // --- NEW LOGIC: Wrap the impact action ---
         Action wrappedOnImpact = () =>
         {
-            // 1. Spawn the VFX if it's a heal and the target is still alive
+            if (CombatSFXManager.Instance != null)
+            {
+                CombatSFXManager.Instance.PlayActionSFX(action);
+            }
             if (action.type == CombatActionType.Heal && action.target != null && healImpactPrefab != null)
             {
                 Instantiate(healImpactPrefab, action.target.transform.position, Quaternion.identity);
@@ -161,8 +162,6 @@ public class CombatVFXManager : MonoBehaviour
             {
                 Instantiate(hasteImpactPrefab, action.target.transform.position, Quaternion.identity);
             }
-
-                // 2. Execute the actual gameplay heal logic you passed in originally
                 onImpact?.Invoke();
         };
 
@@ -171,7 +170,7 @@ public class CombatVFXManager : MonoBehaviour
                 proj.transform,
                 action.target.transform,
                 projectileTravelTime,
-                wrappedOnImpact // <-- Pass the wrapped action here!
+                wrappedOnImpact 
             )
         );
     }
@@ -242,6 +241,10 @@ public class CombatVFXManager : MonoBehaviour
 
     private void PlayInstantEffect(CombatAction action)
     {
+        if (CombatSFXManager.Instance != null)
+        {
+            CombatSFXManager.Instance.PlayActionSFX(action);
+        }
         if (action.target == null) return;
         if (action.target.Visuals != null)
         {
@@ -303,10 +306,8 @@ public class CombatVFXManager : MonoBehaviour
 
     private IEnumerator MeleeRoutine(CombatAction action, Action onImpact)
     {
-        // 1. Spawn the slash effect at the ATTACKER'S position
         if (action.source != null && meleeSlashPrefab != null)
         {
-            // Store a reference to the spawned object so we can modify it
             GameObject slashVFX = Instantiate(meleeSlashPrefab, action.source.transform.position, Quaternion.identity);
 
             // Check if it's an enemy (isPlayer == false)
@@ -319,16 +320,17 @@ public class CombatVFXManager : MonoBehaviour
             }
         }
 
-        // 2. Wait for a short duration to simulate the attack landing
         yield return new WaitForSeconds(0.2f);
+        if (CombatSFXManager.Instance != null)
+        {
+            CombatSFXManager.Instance.PlayActionSFX(action);
+        }
 
-        // 3. NEW: Spawn the target impact VFX right before the damage happens
         if (action.target != null && attackImpactPrefab != null)
         {
             Instantiate(attackImpactPrefab, action.target.transform.position, Quaternion.identity);
         }
 
-        // 4. Trigger the actual damage and the target's visual impact
         onImpact?.Invoke();
     }
 

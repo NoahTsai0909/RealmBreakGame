@@ -39,6 +39,6 @@ public class WidowsKiss : UnitInstance, IConsumable
 
     public override string GetActiveDescription()
     {
-        return ($"Consume this to grant [c_poison]{poisonModifier}[/c] [POISON] permanently.");
+        return ($"[c_consume]Consume[/c] this to grant [c_poison]{poisonModifier}[/c] [POISON] permanently.");
     }
 }

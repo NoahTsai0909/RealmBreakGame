@@ -109,3 +109,11 @@ MonoBehaviour:
     title: Lifesteal
     description: A unit with lifesteal heals itself for the same amount of damage
       it deals when it attacks.
+  - id: experience
+    title: Experience
+    description: Sufficient experience will lead to a level up. Leveling up resets
+      experience to 0.
+  - id: consume
+    title: Consume
+    description: 'Drag and drop a consumable unit on top of another unit to consume
+      it for its specified effect. '

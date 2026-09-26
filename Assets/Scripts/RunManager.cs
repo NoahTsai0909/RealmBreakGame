@@ -285,7 +285,6 @@ public class RunManager : MonoBehaviour
     public void CompleteRegularEvent()
     {
         regularEventsCompleted++;
-        Stats.Experience++;
 
         currentEventPhase++;
 

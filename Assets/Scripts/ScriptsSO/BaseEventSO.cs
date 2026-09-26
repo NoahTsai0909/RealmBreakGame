@@ -23,6 +23,10 @@ public abstract class BaseEventSO : ScriptableObject
     [Header("Scene Management")]
     public GameScene targetScene;
 
+    [Header("Rewards")]
+    [Tooltip("How much experience/reputation this event grants when finished.")]
+    public int experienceReward = 1;
+
     public virtual void OnSelected()
     {
         Debug.Log($"Event selected: {eventName}");
@@ -34,6 +38,7 @@ public abstract class BaseEventSO : ScriptableObject
 
     public virtual void OnCompleted()
     {
+        RunManager.Instance.Stats.Experience += experienceReward;
         Debug.Log($"Event completed: {eventName}");
         RunManager.Instance.eventInProgress = false;
         RunManager.Instance.selectedEvent = null;

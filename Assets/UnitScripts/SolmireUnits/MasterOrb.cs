@@ -68,6 +68,7 @@ public class MasterOrb : UnitInstance
         if (source.isEnergy == false) return;
 
         UnitInstance targetEnemy = FindFarthestEnemy();
+        if (targetEnemy == null) return;
         CombatManager.Instance.ExecuteAction(
             new CombatAction
             {

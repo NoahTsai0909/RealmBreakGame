@@ -76,6 +76,7 @@ public class ModularSuffixSO : MutationSuffixSO
 
         if (grantedStat == ModifiableStats.Burn)
         {
+            bool isFirstTarget = true;
             foreach (var t in target)
             {
                 if (CombatManager.Instance != null && t != null)
@@ -86,13 +87,16 @@ public class ModularSuffixSO : MutationSuffixSO
                         source = caster,
                         target = t,
                         amount = finalAmount,
-                        reason = caster.currentPrefix.name
+                        reason = caster.currentPrefix.name,
+                        isAoEExtraHit = !isFirstTarget
                     });
+                    isFirstTarget = false;
                 }
             }
         }
         else if (grantedStat == ModifiableStats.Poison)
         {
+            bool isFirstTarget = true;
             foreach (var t in target)
             {
                 if (CombatManager.Instance != null && t != null)
@@ -103,13 +107,16 @@ public class ModularSuffixSO : MutationSuffixSO
                         source = caster,
                         target = t,
                         amount = finalAmount,
-                        reason = caster.currentPrefix.name
+                        reason = caster.currentPrefix.name,
+                        isAoEExtraHit = !isFirstTarget
                     });
+                    isFirstTarget = false;
                 }
             }
         }
         else if (grantedStat == ModifiableStats.Attack)
         {
+            bool isFirstTarget = true;
             foreach (var t in target)
             {
                 if (CombatManager.Instance != null && t != null)
@@ -120,13 +127,16 @@ public class ModularSuffixSO : MutationSuffixSO
                         source = caster,
                         target = t,
                         amount = finalAmount,
-                        reason = caster.currentPrefix.name
+                        reason = caster.currentPrefix.name,
+                        isAoEExtraHit = !isFirstTarget
                     });
                 }
+                isFirstTarget = false;
             }
         }
         else if (grantedStat == ModifiableStats.Heal)
         {
+            bool isFirstTarget = true;
             foreach (var t in target)
             {
                 if (CombatManager.Instance != null && t != null)
@@ -137,13 +147,16 @@ public class ModularSuffixSO : MutationSuffixSO
                         source = caster,
                         target = t,
                         amount = finalAmount,
-                        reason = caster.currentPrefix.name
+                        reason = caster.currentPrefix.name,
+                        isAoEExtraHit = !isFirstTarget
                     });
                 }
+                isFirstTarget = false;
             }
         }
         else if (grantedStat == ModifiableStats.Shield)
         {
+            bool isFirstTarget = true;
             foreach (var t in target)
             {
                 if (CombatManager.Instance != null && t != null)
@@ -154,13 +167,16 @@ public class ModularSuffixSO : MutationSuffixSO
                         source = caster,
                         target = t,
                         amount = finalAmount,
-                        reason = caster.currentPrefix.name
+                        reason = caster.currentPrefix.name,
+                        isAoEExtraHit = !isFirstTarget
                     });
                 }
+                isFirstTarget = false;
             }
         }
         else if (grantedStat == ModifiableStats.Slow)
         {
+            bool isFirstTarget = true;
             foreach (var t in target)
             {
                 if (CombatManager.Instance != null && t != null)
@@ -171,13 +187,16 @@ public class ModularSuffixSO : MutationSuffixSO
                         source = caster,
                         target = t,
                         amount = finalAmount,
-                        reason = caster.currentPrefix.name
+                        reason = caster.currentPrefix.name,
+                        isAoEExtraHit = !isFirstTarget
                     });
                 }
+                isFirstTarget = false;
             }
         }
         else if (grantedStat == ModifiableStats.Haste)
         {
+            bool isFirstTarget = true;
             foreach (var t in target)
             {
                 if (CombatManager.Instance != null && t != null)
@@ -188,9 +207,11 @@ public class ModularSuffixSO : MutationSuffixSO
                         source = caster,
                         target = t,
                         amount = finalAmount,
-                        reason = caster.currentPrefix.name
+                        reason = caster.currentPrefix.name,
+                        isAoEExtraHit = !isFirstTarget
                     });
                 }
+                isFirstTarget = false;
             }
         }
         }

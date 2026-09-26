@@ -39,6 +39,6 @@ public class Cinderblight : UnitInstance, IConsumable
 
     public override string GetActiveDescription()
     {
-        return ($"Consume this to grant [c_burn]{burnModifier}[/c] [BURN] permanently.");
+        return ($"[c_consume]Consume[/c] this to grant [c_burn]{burnModifier}[/c] [BURN] permanently.");
     }
 }

@@ -117,7 +117,7 @@ public class PortalArtifactUI : MonoBehaviour, IPointerEnterHandler, IPointerExi
         isHovered = true;
         if (MapController.Instance == null) return;
         if (currentEvent == null) return;
-        MapController.Instance.ShowEventInfo(currentEvent.eventName, currentEvent.description, transform.position);
+        MapController.Instance.ShowEventInfo(currentEvent, transform.position);
     }
 
     public void OnPointerExit(PointerEventData eventData)
@@ -170,4 +170,11 @@ public class PortalArtifactUI : MonoBehaviour, IPointerEnterHandler, IPointerExi
 
         currentEvent.OnSelected();
     }
+
+    private void OnDisable()
+    {
+        isHovered = false;
+        currentLift = 0f;
+    }
+
 }

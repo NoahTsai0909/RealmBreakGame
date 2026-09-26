@@ -49,6 +49,6 @@ public class ArcaneAugur : UnitInstance
 
     public override string GetPassiveDescription()
     {
-        return ("Whenever another ally uses [ENERGY], recharge [c_energy]1[/c] [ENERGY].");
+        return ("Whenever another [ENERGY] ally uses an ability, recharge [c_energy]1[/c] [ENERGY].");
     }
 }

@@ -38,7 +38,7 @@ public class Abjudicator : UnitInstance
     {
         base.UseAbility();
         UnitInstance enemy = FindRandomEnemy();
-        UnitInstance ally = FindRandomAlly();
+        UnitInstance ally = FindRandomAlly(excludeSelf: true);
         if (enemy != null)
         {
             CombatManager.Instance.ExecuteAction(

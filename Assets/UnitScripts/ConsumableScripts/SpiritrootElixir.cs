@@ -39,6 +39,6 @@ public class SpiritrootElixir : UnitInstance, IConsumable
 
     public override string GetActiveDescription()
     {
-        return ($"Consume this to grant [c_maxhealth]{healthModifier}[/c] [MAXHEALTH] permanently.");
+        return ($"[c_consume]Consume[/c] this to grant [c_maxhealth]{healthModifier}[/c] [MAXHEALTH] permanently.");
     }
 }

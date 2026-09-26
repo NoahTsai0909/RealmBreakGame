@@ -22,6 +22,7 @@ MonoBehaviour:
   selectionWeight: 1
   maxAppearancesPerRun: 0
   targetScene: 2
+  experienceReward: 2
   encounter: {fileID: 11400000, guid: 351bdef2bce433b41856f84ac1105b9c, type: 2}
+  isDifficult: 0
   goldReward: 5
-  reputationReward: 2

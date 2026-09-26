@@ -43,6 +43,8 @@ public class RuinEngine : UnitInstance
 
     protected override void HandleCombatAction(CombatAction action)
     {
+        if (action.source == null) return;
+        if (action.isAoEExtraHit) return;
         if ((action.type == CombatActionType.Damage) && (action.source.isPlayer == this.isPlayer))
         {
             CombatManager.Instance.ExecuteAction(

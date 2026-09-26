@@ -39,6 +39,7 @@ public class SoothingPlumage : UnitInstance
     {
         base.UseAbility();
         List<UnitInstance> targets = FindAllAllies();
+        bool isFirstTarget = true;
         foreach (UnitInstance target in targets)
         {
             CombatManager.Instance.ExecuteAction(
@@ -49,10 +50,11 @@ public class SoothingPlumage : UnitInstance
                 target = target,
                 amount = stats.Heal,
                 reason = "Soothing Plumage Heal",
-                isCrit = abilityCrit
+                isCrit = abilityCrit,
+                isAoEExtraHit = !isFirstTarget
             }
-
             );
+            isFirstTarget = false;
         }
     }
 

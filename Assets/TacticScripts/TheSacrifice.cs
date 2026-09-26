@@ -21,11 +21,11 @@ public class TheSacrifice : TacticInstance
     private void OnCombatEvent(CombatEventBus.CombatEventType type, UnitInstance source, UnitInstance target, int amount)
     {
         if (firstTimeTriggered) return;
-        if (type == CombatEventBus.CombatEventType.UnitDied && source.isPlayer == this.isPlayer && enemyGrid != null && allyGrid != null)
+        if (type == CombatEventBus.CombatEventType.UnitDied && target != null && target.isPlayer == this.isPlayer && enemyGrid != null && allyGrid != null)
         {
             List<UnitInstance> targets = FindAllEnemies();
             List<UnitInstance> allies = FindAllAllies();
-            foreach(UnitInstance enemy in targets)
+            foreach (UnitInstance enemy in targets)
             {
                 if (CombatManager.Instance != null)
                 {

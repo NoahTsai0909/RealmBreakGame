@@ -25,6 +25,7 @@ public class SludgeVortex : UnitInstance
         if (action.source == null) return;
         if (action.target.isPlayer == this.isPlayer) return;
         if (action.type != CombatActionType.ApplySlow) return;
+        if (action.isAoEExtraHit) return;
         this.TemporaryStatModify(ModifiableStats.Attack, attackBuff);
     }
 

@@ -17,6 +17,6 @@ public class PerfectedCrown : UnitInstance, IConsumable
 
     public override string GetActiveDescription()
     {
-        return "Consume this to upgrade the tier of a [c_rare]rare[/c] unit.";
+        return "[c_consume]Consume[/c] this to upgrade the tier of a [c_rare]rare[/c] unit.";
     }
 }

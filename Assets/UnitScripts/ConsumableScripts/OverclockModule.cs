@@ -26,6 +26,6 @@ public class OverclockModule : UnitInstance, IConsumable
 
     public override string GetActiveDescription()
     {
-        return ($"Consume this to reduce target cooldown by {buffValue}% permanently.");
+        return ($"[c_consume]Consume[/c] this to reduce target cooldown by {buffValue}% permanently.");
     }
 }

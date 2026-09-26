@@ -39,6 +39,6 @@ public class EssenceofWrath : UnitInstance, IConsumable
 
     public override string GetActiveDescription()
     {
-        return ($"Consume this to grant [c_attack]{attackModifier}[/c] [ATK] permanently.");
+        return ($"[c_consume]Consume[/c] this to grant [c_attack]{attackModifier}[/c] [ATK] permanently.");
     }
 }

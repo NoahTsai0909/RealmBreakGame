@@ -33,6 +33,7 @@ public class UnitInstance : MonoBehaviour
 
     public bool inCombat = false;
     protected bool combatFrozen = false;
+    public bool isDead = false;
 
     private int currentHP;
     public int currentEnergy;
@@ -256,6 +257,7 @@ public class UnitInstance : MonoBehaviour
 
     public void InitializeCombatState()
     {
+        isDead = false;
         currentHP = stats.MaxHP;
         currentEnergy = stats.maxEnergy;
         cooldownTimer = stats.Cooldown;
@@ -357,7 +359,7 @@ public class UnitInstance : MonoBehaviour
 
     public virtual int TakeDamage(int dmg, UnitInstance source = null)
     {
-        if (this == null || combatFrozen) return 0;
+        if (this == null || combatFrozen || isDead) return 0;
         if (dmg <= 0) return 0;
 
         int remainingDamage = dmg;
@@ -399,6 +401,9 @@ public class UnitInstance : MonoBehaviour
 
     public virtual void Die(UnitInstance killer = null)
     {
+        if (isDead) return;
+        isDead = true;
+        currentHP = 0;
         RemoveAuras();
         Status.ClearAllStatusEffects();
         if (myGrid != null)
@@ -754,6 +759,17 @@ public class UnitInstance : MonoBehaviour
             TargetingSystem.SortMethod.Random
         );
         return targetingSystem.FindUnit(criteria, transform.position);
+    }
+
+    protected UnitInstance FindRandomAlly(bool excludeSelf)
+    {
+        var allies = FindAllAllies();
+        if (allies == null || allies.Count == 0) return null;
+
+        if (excludeSelf) allies.Remove(this);
+
+        if (allies.Count == 0) return null;
+        return allies[UnityEngine.Random.Range(0, allies.Count)];
     }
 
     protected bool IsAdjacent(UnitInstance other)

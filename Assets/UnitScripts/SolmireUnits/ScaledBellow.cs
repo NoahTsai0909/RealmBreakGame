@@ -40,6 +40,7 @@ public class ScaledBellow : UnitInstance
     {
         if (action.source == null) return;
         if (action.source.isPlayer != this.isPlayer) return;
+        if (action.isAoEExtraHit) return;
         if (action.type == CombatActionType.ApplyBurn)
         {
             CombatManager.Instance.ExecuteAction(new CombatAction

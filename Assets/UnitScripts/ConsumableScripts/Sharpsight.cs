@@ -26,6 +26,6 @@ public class Sharpsight : UnitInstance, IConsumable
 
     public override string GetActiveDescription()
     {
-        return ($"Consume this to grant [c_crit]{buffValue}[/c] [CRIT] permanently.");
+        return ($"[c_consume]Consume[/c] this to grant [c_crit]{buffValue}[/c] [CRIT] permanently.");
     }
 }

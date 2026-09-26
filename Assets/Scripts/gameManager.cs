@@ -174,7 +174,7 @@ public class gameManager : MonoBehaviour
             if (playerWon)
             {
                 RunManager.Instance.Stats.CurrentGold += (combatEvent.goldReward - goldFromKills);
-                RunManager.Instance.Stats.Experience += combatEvent.reputationReward;
+                RunManager.Instance.Stats.Experience += combatEvent.experienceReward;
             }
             else
             {
@@ -199,7 +199,7 @@ public class gameManager : MonoBehaviour
             var combatEvent = RunManager.Instance.selectedEvent as CombatEventSO;
 
             int goldEarned = (playerWon && combatEvent != null) ? combatEvent.goldReward : goldFromKills;
-            int xpEarned = (playerWon && combatEvent != null) ? combatEvent.reputationReward : 0;
+            int xpEarned = (playerWon && combatEvent != null) ? combatEvent.experienceReward : 0;
 
             if (playerWon)
             {

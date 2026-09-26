@@ -238,20 +238,24 @@ public class MapController : MonoBehaviour
         return false;
     }
 
-    public void ShowEventInfo(string eventName, string eventDescription, Vector3 targetPosition)
+    public void ShowEventInfo(BaseEventSO eventData, Vector3 targetPosition)
     {
-        if (isPinned) return; // Ignore new hover attempts if one is already pinned
+        if (isPinned) return;
+        if (eventData == null) return;
 
-        infoTitleText.text = eventName;
-        infoDescText.SetText(TextIconUtility.ParseDescription(eventDescription));
+        infoTitleText.text = eventData.eventName;
+        string finalDescription = eventData.description;
+        finalDescription += $"\n\n<size=70%>Completion: [EXPERIENCE] {eventData.experienceReward}";
+        if (eventData is CombatEventSO combatEvent && combatEvent.goldReward > 0)
+        {
+            finalDescription += $" [GOLD] {combatEvent.goldReward}";
+        }
+        finalDescription += "</size>";
+        infoDescText.SetText(TextIconUtility.ParseDescription(finalDescription));
 
         Canvas canvas = eventInfoPanel.GetComponentInParent<Canvas>();
         float scale = canvas != null ? canvas.scaleFactor : 1f;
-
-        // Apply the scaled offset
         eventInfoPanel.transform.position = targetPosition + (hoverOffset * scale);
-
-        //Ensure it behaves like a ghost while just normally hovering
         CanvasGroup cg = eventInfoPanel.GetComponent<CanvasGroup>();
         if (cg != null) cg.blocksRaycasts = false;
 

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using static CombatEventBus;
 using static UnityEngine.GraphicsBuffer;
 
 public class Caustic : UnitInstance
@@ -8,28 +9,27 @@ public class Caustic : UnitInstance
     {
         base.EnterCombat(grid, row, col, isPlayer, startCombat);
 
-        CombatEventBus.OnActionResolved += HandleActionResolved;
-
+        CombatEventBus.OnCombatEvent += HandleCombatEvent;
     }
 
     private void OnDestroy()
     {
-        CombatEventBus.OnActionResolved -= HandleActionResolved;
+        CombatEventBus.OnCombatEvent -= HandleCombatEvent;
     }
 
-    private void HandleActionResolved(CombatAction action)
+    protected override void HandleCombatEvent(CombatEventType type, UnitInstance source, UnitInstance target, int amount)
     {
-        if (action.source == null) return;
-        if (action.type != CombatActionType.Kill) return;
-        if (action.source != this) return;
+        if (type != CombatEventType.UnitDied) return;
+        if (source != this) return;
+        if (target == this) return;
         CombatManager.Instance.ExecuteAction(
                 new CombatAction
                 {
                     type = CombatActionType.Buff,
                     source = this,
                     target = this,
-                    amount = stats.Poison,
                     buffStat = ModifiableStats.Poison,
+                    amount = stats.Poison,
                     reason = "Caustic Poison Buff"
                 }
         );

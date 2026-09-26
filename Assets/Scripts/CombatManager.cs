@@ -34,6 +34,7 @@ public class CombatAction
     public string reason; // optional (ability name, etc)
     public bool isPassive; // optional (for passive abilities)
     public GameObject projectileOverride; // Optional override
+    public AudioClip audioOverride;
     public bool isSilent = false; // Optional flag for no floating combat text UI (for instance, individually attributed burn ticks)
     public bool isVisualOnly = false; // Optional flag for no stat tracking or combat log (for instance, consolidated burn damage)
     public UnitDefinition spawnPayload;
@@ -41,6 +42,8 @@ public class CombatAction
     public ModifiableStats buffStat;
     public Action onFail;
     public bool isLifesteal = false;
+    [Tooltip("True if this is an additional target of a multi-target AoE cast.")]
+    public bool isAoEExtraHit = false;
 }
 
 public class CombatManager : MonoBehaviour
@@ -72,7 +75,10 @@ public class CombatManager : MonoBehaviour
 
     public void ResolveAction(CombatAction action)
     {
-
+        if (action.target == null && action.type != CombatActionType.Summon)
+        {
+            return;
+        }
         if (action.isCrit)
         {
             switch (action.type)
@@ -138,7 +144,7 @@ public class CombatManager : MonoBehaviour
                 action.target.ApplyBuff(action.buffStat, action.amount);
                 break;
             case CombatActionType.Kill:
-                action.target.Die();
+                action.target.Die(action.source);
                 break;
             case CombatActionType.Summon:
                 ResolveSummon(action);

@@ -27,7 +27,7 @@ public class DragonMatriarch : UnitInstance
         {
             return;
         }
-        if (action.source.isPlayer == this.isPlayer && action.type == CombatActionType.ApplyBurn)
+        if (action.source.isPlayer == this.isPlayer && action.type == CombatActionType.ApplyBurn && !action.isAoEExtraHit)
         {
             CombatManager.Instance.ExecuteAction(
                 new CombatAction

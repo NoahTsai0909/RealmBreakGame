@@ -52,6 +52,7 @@ public class Sharpshooter : UnitInstance
         if (action.source == null) return;
         if (action.source.isPlayer != this.isPlayer) return;
         if (action.isCrit != true) return;
+        if (action.isAoEExtraHit) return;
         this.TemporaryStatModify(ModifiableStats.Attack, attackBuff);
     }
 

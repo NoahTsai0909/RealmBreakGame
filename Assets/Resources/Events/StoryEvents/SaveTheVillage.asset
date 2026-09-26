@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SaveTheVillage
   m_EditorClassIdentifier: Assembly-CSharp::StoryEventSO
   eventName: Save The Village
-  description: Gain experience or lose experience to gain [GOLD].
+  description: Gain [EXPERIENCE] or lose [EXPERIENCE] to gain [GOLD].
   eventIcon: {fileID: 21300000, guid: ef55c91682e07784b84d953429afcf3a, type: 3}
   eventBackgroundImage: {fileID: 21300000, guid: 9bf677eb2d018a84c9ff2577efc7bce9, type: 3}
   portalGlowColor: {r: 1, g: 0.7058824, b: 0.12941177, a: 1}

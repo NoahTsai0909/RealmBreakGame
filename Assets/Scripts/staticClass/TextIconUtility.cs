@@ -17,6 +17,7 @@ public static class TextIconUtility
     private const string ProvisionIcon = "<sprite name=provision>";
     private const string MaxProvisionIcon = "<sprite name=maxprovision>";
     private const string MaxHealthIcon = "<sprite name=maxhealth>";
+    private const string ExperienceIcon = "<sprite name=experience>";
 
     // Define your hex colors
     private const string ColorGold = "#FFFFFF";
@@ -33,6 +34,7 @@ public static class TextIconUtility
     private const string ColorProvision = "#AA55CB";
     private const string ColorMaxProvision = "#AA55CB";
     private const string ColorMaxHealth = "#088A06";
+    private const string ColorExperience = "#D25729";
 
     // NEW: Text-only keyword colors
     private const string ColorCommon = "#B0B0B0";     // Gray
@@ -58,6 +60,8 @@ public static class TextIconUtility
     public static string FormatMulticast(int amount) => $"<nobr><link=\"multicast\">{MulticastIcon} <color={ColorMulticast}>{amount}</color></link></nobr>";
     public static string FormatProvision(int amount) => $"<nobr><link=\"provision\">{ProvisionIcon} <color={ColorProvision}>{amount}</color></link></nobr>";
     public static string FormatMaxProvision(int amount) => $"<nobr><link=\"maxprovision\">{MaxProvisionIcon} <color={ColorMaxProvision}>{amount}</color></link></nobr>";
+
+    public static string FormatExperience(int amount) => $"<nobr><link=\"experience\">{ExperienceIcon} <color={ColorExperience}>{amount}</color></link></nobr>";
     public static string ParseDescription(string rawDescription)
     {
         if (string.IsNullOrEmpty(rawDescription)) return "";
@@ -79,6 +83,7 @@ public static class TextIconUtility
         parsedText = Regex.Replace(parsedText, @"\[MULTICAST\]\s*(\d+)", $"<nobr><link=\"multicast\">{MulticastIcon} <color={ColorMulticast}>$1</color></link></nobr>");
         parsedText = Regex.Replace(parsedText, @"\[PROVISION\]\s*(\d+)", $"<nobr><link=\"provision\">{ProvisionIcon} <color={ColorProvision}>$1</color></link></nobr>");
         parsedText = Regex.Replace(parsedText, @"\[MAXPROVISION\]\s*(\d+)", $"<nobr><link=\"maxprovision\">{MaxProvisionIcon} <color={ColorMaxProvision}>$1</color></link></nobr>");
+        parsedText = Regex.Replace(parsedText, @"\[EXPERIENCE\]\s*(\d+)", $"<nobr><link=\"experience\">{ExperienceIcon} <color={ColorExperience}>$1</color></link></nobr>");
 
         // 2. Wrap standalone icons in links
         parsedText = parsedText.Replace("[GOLD]", $"<link=\"gold\">{GoldIcon}</link>")
@@ -94,7 +99,8 @@ public static class TextIconUtility
                                .Replace("[MULTICAST]", $"<link=\"multicast\">{MulticastIcon}</link>")
                                .Replace("[PROVISION]", $"<link=\"provision\">{ProvisionIcon}</link>")
                                .Replace("[MAXPROVISION]", $"<link=\"maxprovision\">{MaxProvisionIcon}</link>")
-                               .Replace("[MAXHEALTH]", $"<link=\"maxhealth\">{MaxHealthIcon}</link>");
+                               .Replace("[MAXHEALTH]", $"<link=\"maxhealth\">{MaxHealthIcon}</link>")
+                               .Replace("[EXPERIENCE]", $"<link=\"experience\">{ExperienceIcon}</link>");
 
         // 3. Inject the link tag alongside the color tag for text keywords
         parsedText = parsedText.Replace("[c_attack]", $"<link=\"attack\"><color={ColorAttack}>")
@@ -111,6 +117,7 @@ public static class TextIconUtility
                                .Replace("[c_multicast]", $"<link=\"multicast\"><color={ColorMulticast}>")
                                .Replace("[c_provision]", $"<link=\"provision\"><color={ColorProvision}>")
                                .Replace("[c_maxprovision]", $"<link=\"maxprovision\"><color={ColorMaxProvision}>")
+                               .Replace("[c_experience]", $"<link=\"experience\"><color={ColorExperience}>")
 
                                .Replace("[c_common]", $"<link=\"common\"><color={ColorCommon}>")
                                .Replace("[c_uncommon]", $"<link=\"uncommon\"><color={ColorUncommon}>")
@@ -126,6 +133,7 @@ public static class TextIconUtility
                                .Replace("[c_transform]", $"<link=\"transform\"><color={ColorLevel}>")
                                .Replace("[c_mutation]", $"<link=\"mutation\"><color={ColorLevel}>")
                                .Replace("[c_lifesteal]", $"<link=\"lifesteal\"><color={ColorEpic}>")
+                               .Replace("[c_consume]", $"<link=\"consume\"><color={ColorEpic}>")
                                .Replace("[/c]", "</color></link>");
 
         return parsedText;

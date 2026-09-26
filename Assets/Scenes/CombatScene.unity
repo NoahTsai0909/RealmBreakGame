@@ -718,6 +718,7 @@ GameObject:
   m_Component:
   - component: {fileID: 297485664}
   - component: {fileID: 297485663}
+  - component: {fileID: 297485665}
   m_Layer: 0
   m_Name: combatVFXManager
   m_TagString: Untagged
@@ -834,6 +835,26 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &297485665
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 297485662}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5104933b6d0442d41816f0b7fbb1584d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CombatSFXManager
+  defaultDamageSound: {fileID: 8300000, guid: 0ddd508fe72c2c441a8c2a5daa2f7a1d, type: 3}
+  defaultHealSound: {fileID: 8300000, guid: 4822f0cad1b829a4597e828a07f4d0a8, type: 3}
+  defaultShieldSound: {fileID: 8300000, guid: 347279ab008d07449a61a7b1277021f3, type: 3}
+  defaultBurnSound: {fileID: 8300000, guid: e05c952d2e4fb7348a7e0176fd56ea18, type: 3}
+  defaultPoisonSound: {fileID: 8300000, guid: 5c523d2d54d0e494a8217cdd7ba6b321, type: 3}
+  defaultHasteSound: {fileID: 8300000, guid: a99df0109df7f2c438bb41253a1ed477, type: 3}
+  defaultSlowSound: {fileID: 8300000, guid: 6d1711e859cd48f4c9dc962564d447a5, type: 3}
+  defaultDeathSound: {fileID: 8300000, guid: 3cd9e0d2b335edc4b8ec6a39d3940f61, type: 3}
 --- !u!1 &316490906
 GameObject:
   m_ObjectHideFlags: 0
@@ -3614,7 +3635,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 270e5bc9b61d80943a1be7f3b0177a53, type: 3}
+  m_Sprite: {fileID: 21300000, guid: dda1489a7d6543a4eaf35fe1a0310dac, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -9923,7 +9944,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 1859246f6fe833e45bcb27dc579a560e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1a78a0d21d7f850438fd7d46b446fb07, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
